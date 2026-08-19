@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+      font-family: Georgia, serif;
+      color: white;
+    }
+
+    .screen {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      background: radial-gradient(circle, #180009 0%, #000 65%);
+    }
+
+    .intro {
+      animation: fadeIn 4s ease forwards;
+    }
+
+    .intro p {
+      font-size: 17px;
+      letter-spacing: 4px;
+      margin: 0 0 20px;
+      opacity: 0;
+      animation: fadeText 3s ease 1s forwards;
+    }
+
+    .intro h1 {
+      font-size: 42px;
+      font-weight: normal;
+      margin: 0;
+      opacity: 0;
+      animation: fadeText 3s ease 2s forwards;
+      text-shadow: 0 0 20px rgba(255, 100, 150, 0.7);
+    }
+
+    .heart {
+      margin-top: 55px;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 35px;
+      cursor: pointer;
+      opacity: 0;
+      animation: heartAppear 2s ease 4s forwards,
+                 heartbeat 1.5s ease-in-out 6s infinite;
+      box-shadow: 0 0 25px rgba(255, 70, 120, 0.5);
+    }
+
+    .unlock {
+      margin-top: 15px;
+      font-size: 12px;
+      letter-spacing: 3px;
+      opacity: 0;
+      animation: fadeText 2s ease 5s forwards;
+    }
+
+    @keyframes fadeText {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes heartAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.12);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="screen">
+
+    <div class="intro">
+      <p>FOR MY</p>
+      <h1>Princess... ❤️</h1>
+
+      <div class="heart" onclick="unlockStory()">
+        ❤️
+      </div>
+
+      <div class="unlock">
+        TAP TO UNLOCK OUR STORY
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function unlockStory() {
+      alert("✨ Our Story is about to begin... ❤️");
+    }
+  </script>
+
+</body>
+</html>
