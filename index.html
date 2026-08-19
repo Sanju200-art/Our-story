@@ -132,7 +132,18 @@
 
   <script>
     function unlockStory() {
-      alert("✨ Our Story is about to begin... ❤️");
+  document.querySelector(".heart").style.transform = "scale(2)";
+  document.querySelector(".heart").style.opacity = "0";
+
+  setTimeout(() => {
+    document.body.innerHTML = `
+      <div class="chapter">
+        <p>OUR FIRST CHAPTER</p>
+        <h1>8 October 2024</h1>
+        <h2>It all started on...</h2>
+      </div>
+    `;
+  }, 900);
     }
   </script>
 
