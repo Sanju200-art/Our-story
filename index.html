@@ -1,151 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Story ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story ❤️</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      background: #000;
-      font-family: Georgia, serif;
-      color: white;
-    }
+html, body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    background: #050505;
+    color: white;
+    font-family: Georgia, serif;
+}
 
-    .screen {
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      background: radial-gradient(circle, #180009 0%, #000 65%);
-    }
+body {
+    overflow-x: hidden;
+}
 
-    .intro {
-      animation: fadeIn 4s ease forwards;
-    }
+.screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px;
+    position: relative;
+    overflow: hidden;
+}
 
-    .intro p {
-      font-size: 17px;
-      letter-spacing: 4px;
-      margin: 0 0 20px;
-      opacity: 0;
-      animation: fadeText 3s ease 1s forwards;
-    }
+.glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 45, 100, 0.15);
+    filter: blur(80px);
+    border-radius: 50%;
+    animation: pulse 4s infinite alternate;
+}
 
-    .intro h1 {
-      font-size: 42px;
-      font-weight: normal;
-      margin: 0;
-      opacity: 0;
-      animation: fadeText 3s ease 2s forwards;
-      text-shadow: 0 0 20px rgba(255, 100, 150, 0.7);
-    }
+@keyframes pulse {
+    from { transform: scale(.8); opacity: .4; }
+    to { transform: scale(1.2); opacity: .8; }
+}
 
-    .heart {
-      margin-top: 55px;
-      width: 75px;
-      height: 75px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 35px;
-      cursor: pointer;
-      opacity: 0;
-      animation: heartAppear 2s ease 4s forwards,
-                 heartbeat 1.5s ease-in-out 6s infinite;
-      box-shadow: 0 0 25px rgba(255, 70, 120, 0.5);
-    }
+.heart {
+    font-size: 70px;
+    animation: heartbeat 1.5s infinite;
+    margin-bottom: 25px;
+}
 
-    .unlock {
-      margin-top: 15px;
-      font-size: 12px;
-      letter-spacing: 3px;
-      opacity: 0;
-      animation: fadeText 2s ease 5s forwards;
-    }
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.18); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.12); }
+}
 
-    @keyframes fadeText {
-      from {
+.small-title {
+    font-size: 14px;
+    letter-spacing: 5px;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 48px;
+    margin: 0;
+    line-height: 1.1;
+}
+
+h1 span {
+    color: #ff4f81;
+}
+
+.subtitle {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #ccc;
+    font-style: italic;
+}
+
+.start-btn {
+    margin-top: 45px;
+    padding: 16px 35px;
+    border: 1px solid #ff4f81;
+    border-radius: 50px;
+    background: rgba(255, 79, 129, .08);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.start-btn:hover {
+    background: #ff4f81;
+    transform: scale(1.05);
+}
+
+.chapter {
+    display: none;
+    min-height: 100vh;
+    padding: 70px 25px;
+    text-align: center;
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
         opacity: 0;
-        transform: translateY(15px);
-      }
-      to {
+        transform: translateY(20px);
+    }
+    to {
         opacity: 1;
         transform: translateY(0);
-      }
+    }
+}
+
+.chapter-label {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #ff6b95;
+    margin-bottom: 25px;
+}
+
+.date {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 35px;
+}
+
+.story-line {
+    font-size: 25px;
+    line-height: 1.5;
+    color: #eee;
+}
+
+.continue-btn {
+    margin-top: 50px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 30px;
+    background: #ff4f81;
+    color: white;
+    font-size: 16px;
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 40px;
     }
 
-    @keyframes heartAppear {
-      from {
-        opacity: 0;
-        transform: scale(0.3);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+    .date {
+        font-size: 34px;
     }
 
-    @keyframes heartbeat {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.12);
-      }
+    .story-line {
+        font-size: 22px;
     }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-  <div class="screen">
+<!-- OPENING SCREEN -->
+<section class="screen" id="opening">
 
-    <div class="intro">
-      <p>FOR MY</p>
-      <h1>Princess... ❤️</h1>
+    <div class="glow"></div>
 
-      <div class="heart" onclick="unlockStory()">
-        ❤️
-      </div>
+    <div class="heart">❤️</div>
 
-      <div class="unlock">
-        TAP TO UNLOCK OUR STORY
-      </div>
+    <div class="small-title">
+        A STORY WRITTEN BY TWO HEARTS
     </div>
 
-  </div>
+    <h1>
+        Our <span>Story</span>
+    </h1>
 
-  <script>
-    function unlockStory() {
-  document.querySelector(".heart").style.transform = "scale(2)";
-  document.querySelector(".heart").style.opacity = "0";
+    <div class="subtitle">
+        Some stories are meant to be remembered forever...
+    </div>
 
-  setTimeout(() => {
-    document.body.innerHTML = `
-      <div class="chapter">
-        <p>OUR FIRST CHAPTER</p>
-        <h1>8 October 2024</h1>
-        <h2>It all started on...</h2>
-      </div>
-    `;
-  }, 900);
-    }
-  </script>
+    <button class="start-btn" onclick="startStory()">
+        Begin Our Story ❤️
+    </button>
+
+</section>
+
+
+<!-- FIRST CHAPTER -->
+<section class="chapter" id="chapter1">
+
+    <div class="chapter-label">
+        OUR FIRST CHAPTER
+    </div>
+
+    <div class="date">
+        8 October 2024
+    </div>
+
+    <div class="story-line">
+        It all started on...
+        <br><br>
+        the day our story quietly began. ❤️
+    </div>
+
+    <button class="continue-btn" onclick="nextChapter()">
+        Continue →
+    </button>
+
+</section>
+
+
+<script>
+
+function startStory() {
+
+    document.getElementById("opening").style.display = "none";
+
+    document.getElementById("chapter1").style.display = "flex";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function nextChapter() {
+
+    alert("Our next chapter is coming soon... ❤️");
+
+}
+
+</script>
 
 </body>
 </html>
