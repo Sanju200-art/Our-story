@@ -3,27 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Our Story ❤️</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
 
-html, body {
-    margin: 0;
-    width: 100%;
-    min-height: 100%;
-    background: #050505;
-    color: white;
-    font-family: Georgia, serif;
+html {
+    scroll-behavior: smooth;
 }
 
 body {
+    margin: 0;
+    background: #050505;
+    color: white;
+    font-family: Georgia, serif;
     overflow-x: hidden;
 }
 
-.screen {
+/* =========================
+   OPENING SCREEN
+========================= */
+
+.opening {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -35,96 +40,424 @@ body {
     overflow: hidden;
 }
 
-.glow {
+.opening-glow {
     position: absolute;
-    width: 300px;
-    height: 300px;
-    background: rgba(255, 45, 100, 0.15);
+    width: 280px;
+    height: 280px;
+    background: rgba(255, 30, 100, 0.16);
     filter: blur(80px);
     border-radius: 50%;
-    animation: pulse 4s infinite alternate;
 }
 
-@keyframes pulse {
-    from { transform: scale(.8); opacity: .4; }
-    to { transform: scale(1.2); opacity: .8; }
-}
-
-.heart {
-    font-size: 70px;
+.top-heart {
+    font-size: 62px;
+    margin-bottom: 18px;
     animation: heartbeat 1.5s infinite;
-    margin-bottom: 25px;
+    z-index: 2;
 }
 
 @keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    15% { transform: scale(1.18); }
-    30% { transform: scale(1); }
-    45% { transform: scale(1.12); }
+
+    0%,100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.18);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.12);
+    }
 }
 
 .small-title {
-    font-size: 14px;
-    letter-spacing: 5px;
-    color: #aaa;
-    margin-bottom: 20px;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #e99;
+    margin-bottom: 15px;
+    z-index: 2;
 }
 
 h1 {
-    font-size: 48px;
     margin: 0;
-    line-height: 1.1;
+    font-size: clamp(48px, 14vw, 75px);
+    line-height: 1;
+    z-index: 2;
 }
 
 h1 span {
-    color: #ff4f81;
+    color: #ff3f78;
 }
 
 .subtitle {
-    margin-top: 20px;
-    font-size: 18px;
+    margin-top: 25px;
+    max-width: 500px;
     color: #ccc;
+    font-size: 18px;
     font-style: italic;
+    line-height: 1.5;
+    z-index: 2;
 }
 
-.start-btn {
-    margin-top: 45px;
-    padding: 16px 35px;
-    border: 1px solid #ff4f81;
+.begin-btn {
+    margin-top: 40px;
+    padding: 17px 34px;
+    border: 1px solid #ff3f78;
     border-radius: 50px;
-    background: rgba(255, 79, 129, .08);
+    background: #d41452;
     color: white;
-    font-size: 16px;
+    font-size: 17px;
+    box-shadow: 0 0 25px rgba(255, 30, 100, .35);
     cursor: pointer;
+    z-index: 2;
     transition: .3s;
 }
 
-.start-btn:hover {
-    background: #ff4f81;
-    transform: scale(1.05);
+.begin-btn:active {
+    transform: scale(.94);
 }
 
-.chapter {
-    display: none;
+/* =========================
+   LOVE ANIMATION
+========================= */
+
+.love-animation {
     min-height: 100vh;
     width: 100%;
-    padding: 80px 25px;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
+    position: relative;
+    display: none;
     align-items: center;
-    animation: fadeIn 1.5s ease;
+    justify-content: center;
+    overflow: hidden;
+    background: #050505;
 }
 
-@keyframes fadeIn {
+.love-animation.active {
+    display: flex;
+}
+
+.animation-title {
+    position: absolute;
+    top: 18%;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: #ff8aaa;
+    opacity: 0;
+    animation: titleAppear 1s ease forwards;
+    animation-delay: .3s;
+}
+
+@keyframes titleAppear {
+
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(15px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* HEART CONTAINER */
+
+.heart-stage {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+/* HEART */
+
+.winged-heart {
+    position: absolute;
+    top: 50%;
+    width: 95px;
+    height: 95px;
+    transform: translateY(-50%) rotate(-45deg);
+    background: #ff2464;
+    border-radius: 12px;
+    box-shadow:
+        0 0 20px #ff2464,
+        0 0 50px rgba(255, 36, 100, .7);
+}
+
+.winged-heart::before,
+.winged-heart::after {
+    content: "";
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    background: #ff2464;
+    border-radius: 50%;
+}
+
+.winged-heart::before {
+    top: -48px;
+    left: 0;
+}
+
+.winged-heart::after {
+    top: 0;
+    left: 48px;
+}
+
+/* LEFT HEART */
+
+.left-heart {
+    left: -130px;
+    animation: leftHeart 4s ease-in-out forwards;
+}
+
+/* RIGHT HEART */
+
+.right-heart {
+    right: -130px;
+    animation: rightHeart 4s ease-in-out forwards;
+}
+
+/* LEFT HEART MOVEMENT */
+
+@keyframes leftHeart {
+
+    0% {
+        left: -130px;
+        transform: translateY(-50%) rotate(-45deg) scale(.7);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    35% {
+        left: 15%;
+        transform: translateY(-50%) rotate(-45deg) scale(.85);
+    }
+
+    60% {
+        left: 33%;
+        transform: translateY(-50%) rotate(-45deg) scale(1);
+    }
+
+    72% {
+        left: 42%;
+        transform: translateY(-50%) rotate(-45deg) scale(1.08);
+    }
+
+    82% {
+        left: 47%;
+        transform: translateY(-50%) rotate(-45deg) scale(1.15);
+    }
+
+    100% {
+        left: 50%;
+        transform: translateY(-50%) rotate(-45deg) scale(0);
+        opacity: 0;
+    }
+}
+
+/* RIGHT HEART MOVEMENT */
+
+@keyframes rightHeart {
+
+    0% {
+        right: -130px;
+        transform: translateY(-50%) rotate(-45deg) scale(.7);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    35% {
+        right: 15%;
+        transform: translateY(-50%) rotate(-45deg) scale(.85);
+    }
+
+    60% {
+        right: 33%;
+        transform: translateY(-50%) rotate(-45deg) scale(1);
+    }
+
+    72% {
+        right: 42%;
+        transform: translateY(-50%) rotate(-45deg) scale(1.08);
+    }
+
+    82% {
+        right: 47%;
+        transform: translateY(-50%) rotate(-45deg) scale(1.15);
+    }
+
+    100% {
+        right: 50%;
+        transform: translateY(-50%) rotate(-45deg) scale(0);
+        opacity: 0;
+    }
+}
+
+/* =========================
+   WINGS
+========================= */
+
+.wing {
+    position: absolute;
+    width: 80px;
+    height: 45px;
+    top: 5px;
+    z-index: -1;
+}
+
+.wing-left {
+    right: 70px;
+    transform: rotate(-25deg);
+    border-radius: 80% 20% 80% 20%;
+    background: linear-gradient(135deg, #fff, #ff76a0);
+    box-shadow: 0 0 20px #ff4d86;
+}
+
+.wing-right {
+    left: 70px;
+    transform: scaleX(-1) rotate(-25deg);
+    border-radius: 80% 20% 80% 20%;
+    background: linear-gradient(135deg, #fff, #ff76a0);
+    box-shadow: 0 0 20px #ff4d86;
+}
+
+/* =========================
+   MERGED HEART
+========================= */
+
+.merged-heart {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 110px;
+    height: 110px;
+    background: #ff2464;
+    border-radius: 15px;
+    transform: translate(-50%, -50%) rotate(-45deg) scale(0);
+    opacity: 0;
+    box-shadow:
+        0 0 30px #ff2464,
+        0 0 80px #ff2464,
+        0 0 130px rgba(255, 36, 100, .5);
+    animation: mergedHeart 2s ease forwards;
+    animation-delay: 3.2s;
+}
+
+.merged-heart::before,
+.merged-heart::after {
+    content: "";
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    background: #ff2464;
+    border-radius: 50%;
+}
+
+.merged-heart::before {
+    top: -55px;
+    left: 0;
+}
+
+.merged-heart::after {
+    top: 0;
+    left: 55px;
+}
+
+@keyframes mergedHeart {
+
+    0% {
+        transform: translate(-50%, -50%) rotate(-45deg) scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1.35);
+        opacity: 1;
+    }
+
+    70% {
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* =========================
+   SPARKLES
+========================= */
+
+.sparkles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.sparkles::before,
+.sparkles::after {
+    content: "✦   ·   ✧   ·   ✦   ·   ✧";
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: #ff5b91;
+    font-size: 22px;
+    animation: sparkle 2s infinite alternate;
+}
+
+.sparkles::before {
+    top: 32%;
+}
+
+.sparkles::after {
+    top: 65%;
+    animation-delay: .8s;
+}
+
+@keyframes sparkle {
+
+    from {
+        opacity: .15;
+        transform: scale(.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* =========================
+   FIRST CHAPTER
+========================= */
+
+.chapter {
+    min-height: 100vh;
+    width: 100%;
+    padding: 80px 25px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
 }
 
 .chapter-label {
@@ -137,8 +470,8 @@ h1 span {
 .date {
     font-size: clamp(32px, 9vw, 52px);
     font-weight: bold;
-    margin-bottom: 35px;
     line-height: 1.15;
+    margin-bottom: 35px;
 }
 
 .story-line {
@@ -152,38 +485,74 @@ h1 span {
 .continue-btn {
     margin-top: 45px;
     min-width: 180px;
-    padding: 14px 28px;
+    padding: 15px 30px;
     border: none;
-    border-radius: 30px;
-    background: #ff4f81;
+    border-radius: 40px;
+    background: #d41452;
     color: white;
     font-size: 16px;
+    box-shadow: 0 0 25px rgba(255, 30, 100, .3);
 }
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 500px) {
-    h1 {
-        font-size: 40px;
+
+    .heart-stage {
+        height: 260px;
     }
 
-    .date {
-        font-size: 34px;
+    .winged-heart {
+        width: 75px;
+        height: 75px;
     }
 
-    .story-line {
-        font-size: 22px;
+    .winged-heart::before,
+    .winged-heart::after {
+        width: 75px;
+        height: 75px;
     }
+
+    .winged-heart::before {
+        top: -38px;
+    }
+
+    .winged-heart::after {
+        left: 38px;
+    }
+
+    .wing {
+        width: 65px;
+        height: 38px;
+    }
+
+    .animation-title {
+        top: 20%;
+        font-size: 16px;
+    }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- OPENING SCREEN -->
-<section class="screen" id="opening">
 
-    <div class="glow"></div>
+<!-- =========================
+     OPENING
+========================= -->
 
-    <div class="heart">❤️</div>
+<section class="opening" id="opening">
+
+    <div class="opening-glow"></div>
+
+    <div class="top-heart">
+        ❤️
+    </div>
 
     <div class="small-title">
         A STORY WRITTEN BY TWO HEARTS
@@ -197,14 +566,60 @@ h1 span {
         Some stories are meant to be remembered forever...
     </div>
 
-    <button class="start-btn" onclick="startStory()">
+    <button class="begin-btn" onclick="beginStory()">
         Begin Our Story ❤️
     </button>
 
 </section>
 
 
-<!-- FIRST CHAPTER -->
+<!-- =========================
+     LOVE ANIMATION
+========================= -->
+
+<section class="love-animation" id="loveAnimation">
+
+    <div class="animation-title">
+        TWO HEARTS · ONE STORY
+    </div>
+
+    <div class="sparkles"></div>
+
+    <div class="heart-stage">
+
+        <!-- LEFT HEART -->
+
+        <div class="winged-heart left-heart">
+
+            <div class="wing wing-left"></div>
+
+        </div>
+
+
+        <!-- RIGHT HEART -->
+
+        <div class="winged-heart right-heart">
+
+            <div class="wing wing-right"></div>
+
+        </div>
+
+
+        <!-- ONE MERGED HEART -->
+
+        <div class="merged-heart">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FIRST CHAPTER
+========================= -->
+
 <section class="chapter" id="chapter1">
 
     <div class="chapter-label">
@@ -216,12 +631,16 @@ h1 span {
     </div>
 
     <div class="story-line">
+
         It all started on...
+
         <br><br>
+
         the day our story quietly began. ❤️
+
     </div>
 
-    <button class="continue-btn" onclick="nextChapter()">
+    <button class="continue-btn">
         Continue →
     </button>
 
@@ -230,21 +649,47 @@ h1 span {
 
 <script>
 
-function startStory() {
+/* =========================
+   BEGIN STORY
+========================= */
 
-    document.getElementById("opening").style.display = "none";
+function beginStory() {
 
-    document.getElementById("chapter1").style.display = "flex";
+    const opening = document.getElementById("opening");
 
-    window.scrollTo({
-        top: 0,
+    const animation = document.getElementById("loveAnimation");
+
+    /* Hide opening */
+
+    opening.style.display = "none";
+
+    /* Show animation */
+
+    animation.classList.add("active");
+
+    /* Move to animation */
+
+    animation.scrollIntoView({
         behavior: "smooth"
     });
-}
 
-function nextChapter() {
+    /*
+       After the hearts have:
+       appeared
+       moved closer
+       hugged
+       merged
+    */
 
-    alert("Our next chapter is coming soon... ❤️");
+    setTimeout(function() {
+
+        const chapter = document.getElementById("chapter1");
+
+        chapter.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }, 5600);
 
 }
 
