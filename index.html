@@ -1,20 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Our Story ❤️</title>
 
 <style>
-
-/* =========================
-   BASIC
-========================= */
 
 * {
     box-sizing: border-box;
@@ -34,727 +26,225 @@ body {
 
 
 /* =========================
-   OPENING SCREEN
+   OPENING
 ========================= */
 
 .opening {
-
     min-height: 100vh;
-
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     align-items: center;
-
     text-align: center;
-
-    padding: 30px 20px;
-
+    padding: 25px;
     position: relative;
-
     overflow: hidden;
 }
 
-
 .opening::before {
-
     content: "";
-
     position: absolute;
-
     width: 300px;
     height: 300px;
-
-    background: rgba(255, 30, 100, .15);
-
+    background: rgba(255, 30, 90, 0.15);
     filter: blur(90px);
-
     border-radius: 50%;
-
-    top: 35%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
 }
-
 
 .top-heart {
-
     font-size: 65px;
-
-    margin-bottom: 18px;
-
-    animation: heartbeat 1.5s infinite;
-
+    margin-bottom: 20px;
+    animation: beat 1.5s infinite;
     z-index: 2;
 }
 
-
-@keyframes heartbeat {
-
-    0%,100% {
-        transform: scale(1);
-    }
-
-    15% {
-        transform: scale(1.18);
-    }
-
-    30% {
-        transform: scale(1);
-    }
-
-    45% {
-        transform: scale(1.12);
-    }
+@keyframes beat {
+    0%,100% { transform: scale(1); }
+    15% { transform: scale(1.18); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
 }
-
 
 .small-title {
-
     font-size: 13px;
-
     letter-spacing: 4px;
-
-    color: #ff91ae;
-
-    margin-bottom: 18px;
-
+    color: #ff8ba8;
     z-index: 2;
 }
-
 
 h1 {
-
-    margin: 0;
-
-    font-size: clamp(48px, 14vw, 78px);
-
-    line-height: 1;
-
+    font-size: clamp(50px, 14vw, 80px);
+    margin: 18px 0 0;
     z-index: 2;
 }
-
 
 h1 span {
-
-    color: #ff3f78;
+    color: #ff3d72;
 }
-
 
 .subtitle {
-
     margin-top: 25px;
-
     max-width: 500px;
-
     color: #ccc;
-
     font-size: 18px;
-
     font-style: italic;
-
     line-height: 1.5;
-
     z-index: 2;
 }
-
 
 .begin-btn {
-
     margin-top: 42px;
-
     padding: 17px 35px;
-
-    border: 1px solid #ff4b82;
-
+    border: 1px solid #ff3d72;
     border-radius: 50px;
-
     background: #d41452;
-
     color: white;
-
     font-size: 17px;
-
-    box-shadow:
-        0 0 20px rgba(255,40,100,.5),
-        0 0 45px rgba(255,40,100,.2);
-
+    box-shadow: 0 0 25px rgba(255,40,100,.4);
     cursor: pointer;
-
     z-index: 2;
-
-    transition: .25s;
-}
-
-
-.begin-btn:active {
-
-    transform: scale(.94);
 }
 
 
 /* =========================
-   LOVE ANIMATION
+   HEART ANIMATION
 ========================= */
 
-.love-animation {
-
+.animation {
     min-height: 100vh;
-
     width: 100%;
-
     display: none;
-
     position: relative;
-
     align-items: center;
     justify-content: center;
-
     overflow: hidden;
 
     background:
         radial-gradient(
-            circle at center,
-            rgba(255,20,90,.14),
+            circle,
+            rgba(255,20,80,.16),
             #050505 60%
         );
 }
 
-
-.love-animation.active {
-
+.animation.show {
     display: flex;
 }
 
 
-.animation-title {
+/* =========================
+   TWO HEARTS
+========================= */
 
+.heart {
     position: absolute;
 
-    top: 16%;
-
-    width: 100%;
-
-    text-align: center;
-
-    font-size: 15px;
-
-    letter-spacing: 4px;
-
-    color: #ff7fa4;
+    font-size: 70px;
 
     opacity: 0;
-
-    animation:
-        titleIn 1.2s ease forwards;
-}
-
-
-@keyframes titleIn {
-
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* =========================
-   STAGE
-========================= */
-
-.love-stage {
-
-    position: relative;
-
-    width: 100%;
-
-    height: 360px;
-}
-
-
-/* =========================
-   HEARTS
-========================= */
-
-.heart-character {
-
-    position: absolute;
-
-    top: 50%;
-
-    width: 110px;
-    height: 110px;
 
     z-index: 5;
-}
-
-
-/* LEFT */
-
-.heart-left {
-
-    left: -150px;
-
-    animation:
-
-        leftFly 2.8s
-        cubic-bezier(.2,.8,.3,1)
-        forwards,
-
-        leftHug 1.4s
-        ease-in-out
-        forwards 2.8s;
-}
-
-
-/* RIGHT */
-
-.heart-right {
-
-    right: -150px;
-
-    animation:
-
-        rightFly 2.8s
-        cubic-bezier(.2,.8,.3,1)
-        forwards,
-
-        rightHug 1.4s
-        ease-in-out
-        forwards 2.8s;
-}
-
-
-/* =========================
-   HEART SHAPE
-========================= */
-
-.heart-shape {
-
-    position: absolute;
-
-    width: 82px;
-    height: 82px;
-
-    left: 14px;
-    top: 18px;
-
-    background:
-
-        radial-gradient(
-            circle at 30% 25%,
-            #ffb6c9,
-            #ff2d68 45%,
-            #a9003a
-        );
-
-    transform: rotate(-45deg);
-
-    border-radius: 18px;
-
-    box-shadow:
-
-        0 0 15px #ff2d68,
-
-        0 0 40px rgba(255,45,104,.8),
-
-        0 0 70px rgba(255,45,104,.35);
-}
-
-
-.heart-shape::before,
-.heart-shape::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 82px;
-    height: 82px;
-
-    background: inherit;
-
-    border-radius: 50%;
-}
-
-
-.heart-shape::before {
-
-    top: -41px;
-
-    left: 0;
-}
-
-
-.heart-shape::after {
-
-    top: 0;
-
-    left: 41px;
-}
-
-
-/* =========================
-   HEART FLIGHT
-========================= */
-
-@keyframes leftFly {
-
-    0% {
-
-        left: -150px;
-
-        transform:
-            translateY(-50%)
-            rotate(-15deg)
-            scale(.6);
-
-        opacity: 0;
-    }
-
-    12% {
-        opacity: 1;
-    }
-
-    35% {
-
-        left: 10%;
-
-        transform:
-            translateY(-50%)
-            rotate(8deg)
-            scale(.8);
-    }
-
-    60% {
-
-        left: 27%;
-
-        transform:
-            translateY(-50%)
-            rotate(-5deg)
-            scale(.95);
-    }
-
-    82% {
-
-        left: 35%;
-
-        transform:
-            translateY(-50%)
-            rotate(2deg)
-            scale(1);
-    }
-
-    100% {
-
-        left: 38%;
-
-        transform:
-            translateY(-50%)
-            rotate(0deg)
-            scale(1);
-    }
-}
-
-
-@keyframes rightFly {
-
-    0% {
-
-        right: -150px;
-
-        transform:
-            translateY(-50%)
-            rotate(15deg)
-            scale(.6);
-
-        opacity: 0;
-    }
-
-    12% {
-        opacity: 1;
-    }
-
-    35% {
-
-        right: 10%;
-
-        transform:
-            translateY(-50%)
-            rotate(-8deg)
-            scale(.8);
-    }
-
-    60% {
-
-        right: 27%;
-
-        transform:
-            translateY(-50%)
-            rotate(5deg)
-            scale(.95);
-    }
-
-    82% {
-
-        right: 35%;
-
-        transform:
-            translateY(-50%)
-            rotate(-2deg)
-            scale(1);
-    }
-
-    100% {
-
-        right: 38%;
-
-        transform:
-            translateY(-50%)
-            rotate(0deg)
-            scale(1);
-    }
-}
-
-
-/* =========================
-   HUG
-========================= */
-
-@keyframes leftHug {
-
-    0% {
-
-        left: 38%;
-
-        transform:
-            translateY(-50%)
-            rotate(0deg)
-            scale(1);
-    }
-
-    45% {
-
-        left: 42%;
-
-        transform:
-            translateY(-50%)
-            rotate(12deg)
-            scale(1.08);
-    }
-
-    75% {
-
-        left: 44%;
-
-        transform:
-            translateY(-50%)
-            rotate(18deg)
-            scale(1.03);
-    }
-
-    100% {
-
-        left: 45%;
-
-        transform:
-            translateY(-50%)
-            rotate(22deg)
-            scale(1);
-    }
-}
-
-
-@keyframes rightHug {
-
-    0% {
-
-        right: 38%;
-
-        transform:
-            translateY(-50%)
-            rotate(0deg)
-            scale(1);
-    }
-
-    45% {
-
-        right: 42%;
-
-        transform:
-            translateY(-50%)
-            rotate(-12deg)
-            scale(1.08);
-    }
-
-    75% {
-
-        right: 44%;
-
-        transform:
-            translateY(-50%)
-            rotate(-18deg)
-            scale(1.03);
-    }
-
-    100% {
-
-        right: 45%;
-
-        transform:
-            translateY(-50%)
-            rotate(-22deg)
-            scale(1);
-    }
-}
-
-
-/* =========================
-   WINGS
-========================= */
-
-.wing {
-
-    position: absolute;
-
-    width: 110px;
-    height: 70px;
-
-    top: 5px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            white,
-            #ffb1c5 55%,
-            #ff3d76
-        );
 
     filter:
-        drop-shadow(0 0 8px #ff4d82);
+        drop-shadow(0 0 12px #ff245f)
+        drop-shadow(0 0 30px rgba(255,30,90,.7));
+}
 
-    z-index: -1;
+
+/* LEFT HEART */
+
+.heart-one {
+
+    left: -100px;
 
     animation:
-        wingMove 1s
-        ease-in-out
-        infinite;
+        heartLeft 3s
+        cubic-bezier(.2,.8,.3,1)
+        forwards;
 }
 
 
-.wing-left {
+/* RIGHT HEART */
 
-    right: 60px;
+.heart-two {
 
-    border-radius:
-        100% 10%
-        80% 30%;
-
-    transform:
-        rotate(-20deg);
-}
-
-
-.wing-right {
-
-    left: 60px;
-
-    border-radius:
-        10% 100%
-        30% 80%;
-
-    transform:
-        rotate(20deg);
-}
-
-
-@keyframes wingMove {
-
-    0%,100% {
-
-        transform:
-            rotate(-20deg)
-            scaleY(1);
-    }
-
-    50% {
-
-        transform:
-            rotate(-28deg)
-            scaleY(.8);
-    }
-}
-
-
-/* =========================
-   GLOW DURING HUG
-========================= */
-
-.embrace-glow {
-
-    position: absolute;
-
-    width: 100px;
-    height: 100px;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%,-50%)
-        scale(0);
-
-    border-radius: 50%;
-
-    background: #ff2464;
-
-    filter: blur(30px);
-
-    opacity: 0;
+    right: -100px;
 
     animation:
-        embraceGlow 2s
-        ease forwards 2.7s;
+        heartRight 3s
+        cubic-bezier(.2,.8,.3,1)
+        forwards;
 }
 
 
-@keyframes embraceGlow {
+/* LEFT MOVEMENT */
+
+@keyframes heartLeft {
 
     0% {
-
-        transform:
-            translate(-50%,-50%)
-            scale(0);
-
+        left: -100px;
+        top: 43%;
         opacity: 0;
+        transform: scale(.6) rotate(-15deg);
     }
 
-    50% {
+    15% {
+        opacity: 1;
+    }
 
-        transform:
-            translate(-50%,-50%)
-            scale(3);
+    45% {
+        left: 25%;
+        top: 48%;
+        transform: scale(.8) rotate(8deg);
+    }
 
-        opacity: .75;
+    75% {
+        left: 40%;
+        top: 50%;
+        transform: scale(.95) rotate(-3deg);
     }
 
     100% {
+        left: 46%;
+        top: 50%;
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
 
-        transform:
-            translate(-50%,-50%)
-            scale(1.5);
 
-        opacity: .35;
+/* RIGHT MOVEMENT */
+
+@keyframes heartRight {
+
+    0% {
+        right: -100px;
+        top: 57%;
+        opacity: 0;
+        transform: scale(.6) rotate(15deg);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    45% {
+        right: 25%;
+        top: 52%;
+        transform: scale(.8) rotate(-8deg);
+    }
+
+    75% {
+        right: 40%;
+        top: 50%;
+        transform: scale(.95) rotate(3deg);
+    }
+
+    100% {
+        right: 46%;
+        top: 50%;
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
     }
 }
 
@@ -763,136 +253,77 @@ h1 span {
    MERGED HEART
 ========================= */
 
-.merged-love {
+.big-heart {
 
     position: absolute;
 
     left: 50%;
     top: 50%;
 
-    width: 250px;
-    height: 200px;
-
-    transform:
-        translate(-50%,-50%)
-        scale(0);
+    font-size: 0;
 
     opacity: 0;
 
-    z-index: 20;
+    transform:
+        translate(-50%, -50%)
+        scale(0);
+
+    z-index: 10;
 
     animation:
-
-        mergeIn 1.8s
+        mergeHeart 1.8s
         cubic-bezier(.17,.67,.3,1.4)
-        forwards 4s;
+        forwards 3.1s;
+
+    filter:
+        drop-shadow(0 0 15px #ff1f5d)
+        drop-shadow(0 0 40px #ff1f5d)
+        drop-shadow(0 0 80px rgba(255,20,80,.7));
 }
 
 
-.merged-heart-shape {
+.big-heart::before {
 
-    position: absolute;
+    content: "❤️";
 
-    width: 105px;
-    height: 105px;
-
-    left: 72px;
-    top: 48px;
-
-    background:
-
-        radial-gradient(
-            circle at 30% 25%,
-            #ffd0db,
-            #ff2865 45%,
-            #a50039
-        );
-
-    transform: rotate(-45deg);
-
-    border-radius: 20px;
-
-    box-shadow:
-
-        0 0 25px #ff2865,
-
-        0 0 70px #ff2865,
-
-        0 0 130px rgba(255,40,100,.6);
+    font-size: 125px;
 }
 
 
-.merged-heart-shape::before,
-.merged-heart-shape::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 105px;
-    height: 105px;
-
-    background: inherit;
-
-    border-radius: 50%;
-}
-
-
-.merged-heart-shape::before {
-
-    top: -52px;
-
-    left: 0;
-}
-
-
-.merged-heart-shape::after {
-
-    top: 0;
-
-    left: 52px;
-}
-
-
-@keyframes mergeIn {
+@keyframes mergeHeart {
 
     0% {
-
         transform:
-            translate(-50%,-50%)
+            translate(-50%, -50%)
             scale(0);
 
         opacity: 0;
     }
 
-    35% {
-
+    30% {
         transform:
-            translate(-50%,-50%)
-            scale(1.35);
+            translate(-50%, -50%)
+            scale(.7);
 
         opacity: 1;
     }
 
     55% {
-
         transform:
-            translate(-50%,-50%)
-            scale(.92);
+            translate(-50%, -50%)
+            scale(1.35);
     }
 
     75% {
-
         transform:
-            translate(-50%,-50%)
-            scale(1.08);
+            translate(-50%, -50%)
+            scale(.95);
     }
 
     100% {
-
         transform:
-            translate(-50%,-50%)
-            scale(1);
+            translate(-50%, -50%)
+            scale(1.1);
 
         opacity: 1;
     }
@@ -900,97 +331,96 @@ h1 span {
 
 
 /* =========================
-   MERGED WINGS
+   GLOW WHEN THEY MERGE
 ========================= */
 
-.merged-wing {
-
-    position: absolute;
-
-    width: 115px;
-    height: 75px;
-
-    top: 55px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            white,
-            #ffabc2,
-            #ff3b75
-        );
-
-    filter:
-        drop-shadow(0 0 12px #ff4b82);
-}
-
-
-.merged-wing-left {
-
-    left: -5px;
-
-    border-radius:
-        100% 10%
-        80% 20%;
-
-    transform:
-        rotate(-25deg);
-}
-
-
-.merged-wing-right {
-
-    right: -5px;
-
-    border-radius:
-        10% 100%
-        20% 80%;
-
-    transform:
-        rotate(25deg);
-}
-
-
-/* =========================
-   SPARKLES
-========================= */
-
-.love-particles {
+.merge-glow {
 
     position: absolute;
 
     left: 50%;
     top: 50%;
 
-    width: 100%;
+    width: 40px;
+    height: 40px;
 
-    text-align: center;
+    border-radius: 50%;
 
-    font-size: 25px;
+    background: #ff285f;
 
-    color: #ff8bab;
+    filter: blur(25px);
+
+    opacity: 0;
+
+    transform: translate(-50%, -50%);
+
+    animation:
+        glow 1.5s
+        ease-out
+        forwards 3.1s;
+}
+
+@keyframes glow {
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            scale(.2);
+
+        opacity: 0;
+    }
+
+    40% {
+        transform:
+            translate(-50%, -50%)
+            scale(5);
+
+        opacity: .8;
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(8);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   LITTLE HEARTS
+========================= */
+
+.particles {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    font-size: 20px;
+
+    color: #ff7293;
 
     opacity: 0;
 
     transform:
-        translate(-50%,-50%)
+        translate(-50%, -50%)
         scale(.2);
 
     animation:
-        particleBurst 2s
-        ease forwards 4.4s;
+        particles 2s
+        ease-out
+        forwards 3.4s;
 }
 
-
-@keyframes particleBurst {
+@keyframes particles {
 
     0% {
-
         opacity: 0;
-
         transform:
-            translate(-50%,-50%)
+            translate(-50%, -50%)
             scale(.2);
     }
 
@@ -999,60 +429,10 @@ h1 span {
     }
 
     100% {
-
         opacity: 0;
-
         transform:
-            translate(-50%,-50%)
-            scale(2.5);
-    }
-}
-
-
-/* =========================
-   LOVE MESSAGE
-========================= */
-
-.love-message {
-
-    position: absolute;
-
-    bottom: 17%;
-
-    width: 100%;
-
-    text-align: center;
-
-    color: #ddd;
-
-    font-size: 17px;
-
-    font-style: italic;
-
-    opacity: 0;
-
-    animation:
-        messageIn 1.2s
-        ease forwards 4.7s;
-}
-
-
-@keyframes messageIn {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(15px);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
+            translate(-50%, -50%)
+            scale(3);
     }
 }
 
@@ -1069,19 +449,14 @@ h1 span {
 
     padding: 80px 25px;
 
-    text-align: center;
-
     display: flex;
-
     flex-direction: column;
 
     justify-content: center;
-
     align-items: center;
 
-    position: relative;
+    text-align: center;
 }
-
 
 .chapter-label {
 
@@ -1094,11 +469,10 @@ h1 span {
     margin-bottom: 25px;
 }
 
-
 .date {
 
     font-size:
-        clamp(32px,9vw,52px);
+        clamp(32px, 9vw, 52px);
 
     font-weight: bold;
 
@@ -1107,7 +481,6 @@ h1 span {
     margin-bottom: 35px;
 }
 
-
 .story-line {
 
     width: 100%;
@@ -1115,13 +488,12 @@ h1 span {
     max-width: 500px;
 
     font-size:
-        clamp(20px,5.5vw,27px);
+        clamp(20px, 5.5vw, 27px);
 
     line-height: 1.6;
 
     color: #eee;
 }
-
 
 .continue-btn {
 
@@ -1152,76 +524,17 @@ h1 span {
 
 @media (max-width:500px) {
 
-    .love-stage {
-
-        height: 300px;
+    .heart {
+        font-size: 55px;
     }
 
-    .heart-character {
-
-        width: 90px;
-        height: 90px;
+    .big-heart::before {
+        font-size: 105px;
     }
 
-    .heart-shape {
-
-        width: 70px;
-        height: 70px;
-
-        left: 10px;
-        top: 15px;
-    }
-
-    .heart-shape::before,
-    .heart-shape::after {
-
-        width: 70px;
-        height: 70px;
-    }
-
-    .heart-shape::before {
-
-        top: -35px;
-    }
-
-    .heart-shape::after {
-
-        left: 35px;
-    }
-
-    .wing {
-
-        width: 85px;
-        height: 55px;
-    }
-
-    .wing-left {
-
-        right: 45px;
-    }
-
-    .wing-right {
-
-        left: 45px;
-    }
-
-    .animation-title {
-
-        font-size: 13px;
-
-        letter-spacing: 3px;
-    }
-
-    .love-message {
-
-        font-size: 15px;
-
-        padding: 0 20px;
-    }
 }
 
 </style>
-
 </head>
 
 
@@ -1268,83 +581,35 @@ h1 span {
 ========================= -->
 
 <section
-    class="love-animation"
-    id="loveAnimation"
+    class="animation"
+    id="animation"
 >
 
-    <div class="animation-title">
-        TWO HEARTS · ONE STORY
+    <!-- TWO SMALL HEARTS -->
+
+    <div class="heart heart-one">
+        ❤️
+    </div>
+
+    <div class="heart heart-two">
+        ❤️
     </div>
 
 
-    <div class="love-stage">
+    <!-- MERGE GLOW -->
+
+    <div class="merge-glow"></div>
 
 
-        <!-- LEFT HEART -->
+    <!-- ONE BIG HEART -->
 
-        <div
-            class="heart-character heart-left"
-        >
-
-            <div class="wing wing-left"></div>
-
-            <div class="heart-shape"></div>
-
-        </div>
+    <div class="big-heart"></div>
 
 
-        <!-- RIGHT HEART -->
+    <!-- SPARKLES -->
 
-        <div
-            class="heart-character heart-right"
-        >
-
-            <div class="wing wing-right"></div>
-
-            <div class="heart-shape"></div>
-
-        </div>
-
-
-        <!-- GLOW -->
-
-        <div class="embrace-glow"></div>
-
-
-        <!-- ONE HEART -->
-
-        <div class="merged-love">
-
-            <div
-                class="merged-wing merged-wing-left"
-            ></div>
-
-            <div
-                class="merged-heart-shape"
-            ></div>
-
-            <div
-                class="merged-wing merged-wing-right"
-            ></div>
-
-        </div>
-
-
-        <!-- SPARKLES -->
-
-        <div class="love-particles">
-
-            ✦　♡　✦　♡　✦　♡
-
-        </div>
-
-    </div>
-
-
-    <div class="love-message">
-
-        When two hearts find each other...
-
+    <div class="particles">
+        ✦　♡　✦　♡　✦　♡　✦
     </div>
 
 </section>
@@ -1360,18 +625,12 @@ h1 span {
 >
 
     <div class="chapter-label">
-
         OUR FIRST CHAPTER
-
     </div>
-
 
     <div class="date">
-
         8 October 2024
-
     </div>
-
 
     <div class="story-line">
 
@@ -1382,7 +641,6 @@ h1 span {
         the day our story quietly began. ❤️
 
     </div>
-
 
     <button
         class="continue-btn"
@@ -1399,32 +657,17 @@ h1 span {
 <script>
 
 
-/* =========================
-   BEGIN OUR STORY
-========================= */
-
 function beginStory() {
-
 
     const opening =
         document.getElementById("opening");
 
-
     const animation =
-        document.getElementById("loveAnimation");
-
-
-    /* Hide opening */
+        document.getElementById("animation");
 
     opening.style.display = "none";
 
-
-    /* Show animation */
-
-    animation.classList.add("active");
-
-
-    /* Move to animation */
+    animation.classList.add("show");
 
     animation.scrollIntoView({
         behavior: "smooth"
@@ -1432,36 +675,26 @@ function beginStory() {
 
 
     /*
-       Animation timeline:
-
        0s   hearts appear
-       1s   hearts fly
-       2.8s hearts embrace
-       4s   hearts merge
-       4.4s sparkles
-       4.7s message
-       6.3s chapter appears
+       1s   hearts move together
+       3s   hearts meet
+       3.1s big heart appears
+       3.4s sparkles
+       5.7s chapter appears
     */
-
 
     setTimeout(function() {
 
-        const chapter =
-            document.getElementById("chapter1");
+        document
+            .getElementById("chapter1")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
 
-
-        chapter.scrollIntoView({
-            behavior: "smooth"
-        });
-
-    }, 6300);
+    }, 5700);
 
 }
 
-
-/* =========================
-   CONTINUE
-========================= */
 
 function continueStory() {
 
@@ -1475,5 +708,4 @@ function continueStory() {
 
 
 </body>
-
 </html>
