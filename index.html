@@ -212,23 +212,33 @@ button:active{
 }
 
 .heart-one{
-
+.heart-one{
     left:-80px;
 
     animation:
-        leftHeart
-        3s cubic-bezier(.2,.8,.3,1)
-        forwards;
+        leftHeart 3s cubic-bezier(.2,.8,.3,1) forwards,
+        heartDisappear .5s ease forwards 3s;
 }
 
 .heart-two{
-
     right:-80px;
 
     animation:
-        rightHeart
-        3s cubic-bezier(.2,.8,.3,1)
-        forwards;
+        rightHeart 3s cubic-bezier(.2,.8,.3,1) forwards,
+        heartDisappear .5s ease forwards 3s;
+}
+
+@keyframes heartDisappear{
+
+    from{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    to{
+        opacity:0;
+        transform:scale(0);
+    }
 }
 
 
@@ -1448,6 +1458,50 @@ function beginStory(){
 
     const animation =
         document.getElementById("animation");
+
+    const music =
+        document.getElementById("music");
+
+
+    /* Start music */
+
+    music.volume = 0.7;
+
+    music.play().catch(function(){
+
+        console.log("Music was blocked by the browser.");
+
+    });
+
+
+    /* Hide opening */
+
+    opening.style.display="none";
+
+
+    /* Show heart animation */
+
+    animation.classList.add("show");
+
+
+    animation.scrollIntoView({
+
+        behavior:"smooth",
+
+        block:"start"
+
+    });
+
+
+    /* Move to first chapter */
+
+    setTimeout(function(){
+
+        go("chapter1");
+
+    },6000);
+
+}
 
 
     opening.style.display="none";
