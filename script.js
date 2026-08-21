@@ -1,1 +1,7 @@
-console.log("Our Story has started ❤️");
+const startButton = document.getElementById("startButton");
+
+startButton.addEventListener("click", function () {
+
+    alert("Our story is about to begin... ❤️");
+
+});
