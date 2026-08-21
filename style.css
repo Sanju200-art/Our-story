@@ -138,3 +138,38 @@ body{
     transform:scale(.95);
 
 }
+
+#firstStory{
+
+    min-height:100vh;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    flex-direction:column;
+
+    text-align:center;
+
+    padding:30px;
+
+    background:#050505;
+
+}
+
+#firstStory h2{
+
+    font-size:clamp(35px,9vw,60px);
+
+    color:#ff5c8a;
+
+}
+
+#firstStory p{
+
+    font-size:20px;
+
+    color:#ddd;
+
+}
