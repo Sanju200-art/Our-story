@@ -272,3 +272,43 @@ body{
 #musicButton:active{
     transform:scale(.95);
 }
+
+#startButton{
+    margin-top:45px;
+
+    padding:20px 45px;
+
+    font-size:20px;
+
+    min-width:240px;
+
+    border-radius:60px;
+
+    background:#ff2f6d;
+
+    color:white;
+
+    border:none;
+
+    box-shadow:
+        0 0 20px rgba(255,47,109,.6),
+        0 0 45px rgba(255,47,109,.25);
+
+    cursor:pointer;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+#startButton:hover{
+    transform:scale(1.08);
+
+    box-shadow:
+        0 0 30px rgba(255,47,109,.8),
+        0 0 60px rgba(255,47,109,.35);
+}
+
+#startButton:active{
+    transform:scale(.95);
+}
