@@ -426,7 +426,99 @@ h1 span{color:#ff3d72}
     box-shadow:0 0 25px rgba(255,30,100,.35);
 }
 
-/* ================= PHONE ================= */
+/* ================= STORY MEMORY ================= */
+
+.memory{
+    min-height:100vh;
+    width:100%;
+    padding:80px 20px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,30,90,.10),
+            #050505 65%
+        );
+}
+
+.memory-label{
+    font-size:12px;
+    letter-spacing:4px;
+    color:#ff6b95;
+    margin-bottom:18px;
+}
+
+.memory-date{
+    font-size:clamp(30px,8vw,48px);
+    font-weight:bold;
+    margin-bottom:30px;
+}
+
+.memory-photo{
+    width:100%;
+    max-width:420px;
+
+    border-radius:22px;
+
+    display:block;
+
+    box-shadow:
+        0 0 25px rgba(255,30,90,.25),
+        0 15px 50px rgba(0,0,0,.7);
+
+    opacity:0;
+
+    transform:
+        translateY(30px)
+        scale(.96);
+
+    animation:
+        photoIn 1.2s ease forwards;
+}
+
+@keyframes photoIn{
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+.memory-text{
+    max-width:480px;
+
+    margin-top:30px;
+
+    color:#ddd;
+
+    font-size:19px;
+
+    line-height:1.7;
+
+    font-style:italic;
+}
+
+.memory-heart{
+    margin-top:25px;
+
+    font-size:28px;
+
+    animation:
+        beat 1.5s infinite;
+}
+  
+  /* ================= PHONE ================= */
 
 @media(max-width:500px){
 
@@ -552,7 +644,7 @@ h1 span{color:#ff3d72}
 
     <button
         class="continue-btn"
-        onclick="continueStory()"
+        onclick="goToMemory('memory2nov')"
     >
         Continue →
     </button>
