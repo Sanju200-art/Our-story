@@ -90,6 +90,15 @@ continueButton.addEventListener("click", function(){
 
 });
 
+const nextChapterButton =
+    document.getElementById("nextChapterButton");
+
+
+nextChapterButton.addEventListener("click", function(){
+
+    alert("Next scene ❤️");
+
+});
 
 /* =========================================
    FLOATING HEART BUBBLES
