@@ -10,7 +10,9 @@
 
 <style>
 
-/* ================= BASIC ================= */
+/* =========================================================
+   BASIC
+========================================================= */
 
 *{
     box-sizing:border-box;
@@ -41,10 +43,14 @@ section{
     text-align:center;
 
     position:relative;
+
+    transition:opacity .8s ease;
 }
 
 
-/* ================= OPENING ================= */
+/* =========================================================
+   OPENING
+========================================================= */
 
 .opening{
     overflow:hidden;
@@ -114,8 +120,17 @@ h1 span{
     z-index:2;
 }
 
+.begin-btn{
 
-/* ================= BUTTON ================= */
+    margin-top:40px;
+
+    z-index:2;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
 
 button{
 
@@ -135,6 +150,8 @@ button{
         0 0 25px rgba(255,30,100,.4);
 
     cursor:pointer;
+
+    transition:.3s;
 }
 
 button:active{
@@ -143,15 +160,10 @@ button:active{
 
 }
 
-.begin-btn{
 
-    margin-top:40px;
-
-    z-index:2;
-}
-
-
-/* ================= HEART INTRO ================= */
+/* =========================================================
+   HEART INTRO
+========================================================= */
 
 .animation{
 
@@ -186,9 +198,6 @@ button:active{
     font-size:15px;
 }
 
-
-/* ================= SMALL HEARTS ================= */
-
 .heart{
 
     position:absolute;
@@ -207,8 +216,9 @@ button:active{
     left:-80px;
 
     animation:
-        leftHeart 3s cubic-bezier(.2,.8,.3,1) forwards,
-        heartDisappear .5s ease forwards 3s;
+        leftHeart
+        3s cubic-bezier(.2,.8,.3,1)
+        forwards;
 }
 
 .heart-two{
@@ -216,8 +226,9 @@ button:active{
     right:-80px;
 
     animation:
-        rightHeart 3s cubic-bezier(.2,.8,.3,1) forwards,
-        heartDisappear .5s ease forwards 3s;
+        rightHeart
+        3s cubic-bezier(.2,.8,.3,1)
+        forwards;
 }
 
 
@@ -227,30 +238,18 @@ button:active{
         left:-80px;
         top:44%;
         opacity:0;
-        transform:scale(.65) rotate(-15deg);
+        transform:scale(.65);
     }
 
-    15%{
+    20%{
         opacity:1;
-    }
-
-    45%{
-        left:25%;
-        top:48%;
-        transform:scale(.8) rotate(8deg);
-    }
-
-    75%{
-        left:39%;
-        top:50%;
-        transform:scale(.95) rotate(-3deg);
     }
 
     100%{
-        left:46%;
+        left:44%;
         top:50%;
-        transform:scale(1) rotate(0);
         opacity:1;
+        transform:scale(1.05);
     }
 }
 
@@ -261,58 +260,29 @@ button:active{
         right:-80px;
         top:56%;
         opacity:0;
-        transform:scale(.65) rotate(15deg);
+        transform:scale(.65);
     }
 
-    15%{
+    20%{
         opacity:1;
-    }
-
-    45%{
-        right:25%;
-        top:52%;
-        transform:scale(.8) rotate(-8deg);
-    }
-
-    75%{
-        right:39%;
-        top:50%;
-        transform:scale(.95) rotate(3deg);
     }
 
     100%{
-        right:46%;
+        right:44%;
         top:50%;
-        transform:scale(1) rotate(0);
         opacity:1;
+        transform:scale(1.05);
     }
 }
 
 
-/* SMALL HEARTS DISAPPEAR */
-
-@keyframes heartDisappear{
-
-    0%{
-        opacity:1;
-        transform:scale(1);
-    }
-
-    100%{
-        opacity:0;
-        transform:scale(0);
-    }
-}
-
-
-/* ================= MERGE GLOW ================= */
+/* =========================================================
+   MERGE
+========================================================= */
 
 .merge-glow{
 
     position:absolute;
-
-    left:50%;
-    top:50%;
 
     width:50px;
     height:50px;
@@ -325,62 +295,40 @@ button:active{
 
     opacity:0;
 
-    transform:translate(-50%,-50%);
-
     animation:
-        glow 1.5s ease-out forwards 3s;
+        glow
+        1.5s forwards 3s;
 }
 
 
 @keyframes glow{
 
     0%{
-        transform:
-            translate(-50%,-50%)
-            scale(.2);
-
+        transform:scale(.2);
         opacity:0;
     }
 
     40%{
-        transform:
-            translate(-50%,-50%)
-            scale(5);
-
+        transform:scale(5);
         opacity:.8;
     }
 
     100%{
-        transform:
-            translate(-50%,-50%)
-            scale(8);
-
+        transform:scale(8);
         opacity:0;
     }
 }
 
 
-/* ================= BIG HEART ================= */
-
 .big-heart{
 
     position:absolute;
 
-    left:50%;
-    top:50%;
-
     opacity:0;
 
-    transform:
-        translate(-50%,-50%)
-        scale(0);
-
-    z-index:10;
-
     animation:
-        mergeHeart
-        1.7s cubic-bezier(.17,.67,.3,1.4)
-        forwards 3.05s;
+        bigHeart
+        1.7s forwards 3.05s;
 
     filter:
         drop-shadow(0 0 15px #ff1f5d)
@@ -392,51 +340,32 @@ button:active{
 
     content:"❤️";
 
-    font-size:125px;
+    font-size:120px;
 }
 
 
-@keyframes mergeHeart{
+@keyframes bigHeart{
 
     0%{
-        transform:
-            translate(-50%,-50%)
-            scale(0);
-
+        transform:scale(0);
         opacity:0;
     }
 
-    30%{
-        transform:
-            translate(-50%,-50%)
-            scale(.65);
-
+    40%{
+        transform:scale(1.3);
         opacity:1;
     }
 
-    55%{
-        transform:
-            translate(-50%,-50%)
-            scale(1.3);
-    }
-
-    75%{
-        transform:
-            translate(-50%,-50%)
-            scale(.95);
+    70%{
+        transform:scale(.95);
     }
 
     100%{
-        transform:
-            translate(-50%,-50%)
-            scale(1.08);
-
+        transform:scale(1.08);
         opacity:1;
     }
 }
 
-
-/* ================= MESSAGE ================= */
 
 .love-message{
 
@@ -444,39 +373,23 @@ button:active{
 
     bottom:18%;
 
-    width:100%;
-
-    padding:0 20px;
-
-    color:#ddd;
-
     font-size:18px;
 
     font-style:italic;
 
+    color:#ddd;
+
     opacity:0;
 
     animation:
-        messageIn
-        1.2s ease forwards 4s;
+        fade
+        1.2s forwards 4s;
 }
 
 
-@keyframes messageIn{
-
-    from{
-        opacity:0;
-        transform:translateY(15px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-
-/* ================= CHAPTER ================= */
+/* =========================================================
+   COMMON CHAPTER
+========================================================= */
 
 .chapter-label{
 
@@ -493,8 +406,6 @@ button:active{
 
     font-weight:bold;
 
-    line-height:1.15;
-
     margin:25px 0 35px;
 }
 
@@ -509,20 +420,17 @@ button:active{
     color:#eee;
 }
 
-.continue-btn{
 
-    margin-top:40px;
-}
-
-
-/* ================= 2 NOV MEMORY ================= */
+/* =========================================================
+   2 NOVEMBER MEMORY
+========================================================= */
 
 .memory{
 
     background:
         radial-gradient(
             circle,
-            rgba(255,30,90,.10),
+            rgba(255,30,90,.1),
             #050505 65%
         );
 }
@@ -571,7 +479,9 @@ button:active{
 }
 
 
-/* ================= JOURNEY ================= */
+/* =========================================================
+   EVERYDAY JOURNEY
+========================================================= */
 
 .journey{
 
@@ -640,7 +550,9 @@ button:active{
 }
 
 
-/* ================= TIMELINE ================= */
+/* =========================================================
+   TIMELINE
+========================================================= */
 
 .timeline{
 
@@ -694,6 +606,7 @@ button:active{
     position:absolute;
 
     left:8%;
+
     right:8%;
 
     height:1px;
@@ -725,7 +638,9 @@ button:active{
 }
 
 
-/* ================= 2025 / 2026 ================= */
+/* =========================================================
+   YEAR CHAPTERS
+========================================================= */
 
 .year{
 
@@ -738,7 +653,9 @@ button:active{
 }
 
 
-/* ================= FUTURE ================= */
+/* =========================================================
+   FUTURE
+========================================================= */
 
 .future{
 
@@ -780,7 +697,9 @@ button:active{
 }
 
 
-/* ================= FLOATING HEARTS ================= */
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
 
 #floatingHearts{
 
@@ -811,7 +730,6 @@ button:active{
         forwards;
 }
 
-
 @keyframes floatUp{
 
     0%{
@@ -840,7 +758,9 @@ button:active{
 }
 
 
-/* ================= MUSIC BUTTON ================= */
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
 
 #musicBtn{
 
@@ -867,7 +787,36 @@ button:active{
 }
 
 
-/* ================= ANIMATIONS ================= */
+/* =========================================================
+   MEMORY CARD
+========================================================= */
+
+.memory-card{
+
+    width:100%;
+
+    max-width:500px;
+
+    padding:30px 22px;
+
+    margin-top:35px;
+
+    border:1px solid rgba(255,70,120,.2);
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.025);
+
+    box-shadow:
+        0 0 35px rgba(255,20,80,.08);
+
+    backdrop-filter:blur(8px);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
 
 @keyframes beat{
 
@@ -885,6 +834,19 @@ button:active{
 
     45%{
         transform:scale(1.1);
+    }
+}
+
+@keyframes fade{
+
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
 }
 
@@ -906,7 +868,9 @@ button:active{
 }
 
 
-/* ================= MOBILE ================= */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:500px){
 
@@ -915,7 +879,7 @@ button:active{
     }
 
     .big-heart:before{
-        font-size:105px;
+        font-size:100px;
     }
 
     .animation-title{
@@ -924,6 +888,10 @@ button:active{
 
     .love-message{
         font-size:16px;
+    }
+
+    .timeline-line{
+        width:95%;
     }
 
     .dot{
@@ -945,10 +913,7 @@ button:active{
      OPENING
 ===================================================== -->
 
-<section
-    class="opening"
-    id="opening"
->
+<section class="opening" id="opening">
 
     <div class="top-heart">
         ❤️
@@ -980,10 +945,7 @@ button:active{
      HEART ANIMATION
 ===================================================== -->
 
-<section
-    class="animation"
-    id="animation"
->
+<section class="animation" id="animation">
 
     <div class="animation-title">
         TWO HEARTS · ONE STORY
@@ -1009,13 +971,10 @@ button:active{
 
 
 <!-- =====================================================
-     8 OCTOBER
+     8 OCTOBER 2024
 ===================================================== -->
 
-<section
-    class="chapter"
-    id="chapter1"
->
+<section class="chapter" id="chapter1">
 
     <div class="chapter-label">
         OUR FIRST CHAPTER
@@ -1046,13 +1005,10 @@ button:active{
 
 
 <!-- =====================================================
-     2 NOVEMBER
+     2 NOVEMBER 2024
 ===================================================== -->
 
-<section
-    class="memory"
-    id="memory2nov"
->
+<section class="memory" id="memory2nov">
 
     <div class="chapter-label">
         A MOMENT TO REMEMBER
@@ -1064,7 +1020,7 @@ button:active{
 
     <img
         src="images/2-nov-2024.jpg"
-        alt="Our memory"
+        alt="Our memory from 2 November 2024"
         class="memory-photo"
     >
 
@@ -1090,13 +1046,10 @@ button:active{
 
 
 <!-- =====================================================
-     EVERYDAY
+     EVERYDAY JOURNEY
 ===================================================== -->
 
-<section
-    class="journey"
-    id="journey"
->
+<section class="journey" id="journey">
 
     <div class="chapter-label">
         THE DAYS BETWEEN
@@ -1170,13 +1123,10 @@ button:active{
 
 
 <!-- =====================================================
-     7 DECEMBER
+     7 DECEMBER 2024
 ===================================================== -->
 
-<section
-    class="chapter"
-    id="december7"
->
+<section class="chapter" id="december7">
 
     <div class="chapter-label">
         A SPECIAL DAY
@@ -1201,12 +1151,10 @@ button:active{
     </div>
 
 
-    <div
-        style="
-            font-size:45px;
-            margin-top:35px;
-        "
-    >
+    <div style="
+        font-size:45px;
+        margin-top:35px;
+    ">
         👨‍👩‍👦 ❤️
     </div>
 
@@ -1243,10 +1191,7 @@ button:active{
      TIMELINE
 ===================================================== -->
 
-<section
-    class="timeline"
-    id="timeline"
->
+<section class="timeline" id="timeline">
 
     <div class="chapter-label">
         OUR JOURNEY
@@ -1309,10 +1254,7 @@ button:active{
      2025
 ===================================================== -->
 
-<section
-    class="chapter year"
-    id="year2025"
->
+<section class="chapter year" id="year2025">
 
     <div class="chapter-label">
         THE NEXT CHAPTER
@@ -1349,12 +1291,10 @@ button:active{
     </div>
 
 
-    <div
-        style="
-            font-size:50px;
-            margin-top:30px;
-        "
-    >
+    <div style="
+        font-size:50px;
+        margin-top:30px;
+    ">
         🌙 ❤️ ✨
     </div>
 
@@ -1373,10 +1313,7 @@ button:active{
      2026
 ===================================================== -->
 
-<section
-    class="chapter year"
-    id="year2026"
->
+<section class="chapter year" id="year2026">
 
     <div class="chapter-label">
         AND HERE WE ARE
@@ -1417,10 +1354,7 @@ button:active{
      FUTURE
 ===================================================== -->
 
-<section
-    class="future"
-    id="future"
->
+<section class="future" id="future">
 
     <div class="chapter-label">
         THE PART I LOVE MOST
@@ -1478,10 +1412,7 @@ button:active{
      MUSIC
 ===================================================== -->
 
-<audio
-    id="music"
-    loop
->
+<audio id="music" loop>
 
     <source
         src="music.mp3"
@@ -1491,15 +1422,11 @@ button:active{
 </audio>
 
 
-<!-- =====================================================
-     MUSIC BUTTON
-===================================================== -->
-
 <button
     id="musicBtn"
     onclick="toggleMusic()"
 >
-    🔊
+    🎵
 </button>
 
 
@@ -1510,7 +1437,9 @@ button:active{
 <script>
 
 
-/* ================= BEGIN STORY ================= */
+/* =====================================================
+   BEGIN STORY
+===================================================== */
 
 function beginStory(){
 
@@ -1520,37 +1449,9 @@ function beginStory(){
     const animation =
         document.getElementById("animation");
 
-    const music =
-        document.getElementById("music");
-
-
-    /* START MUSIC AFTER USER TAP */
-
-    music.volume = 0.7;
-
-    music.play()
-    .then(function(){
-
-        document
-            .getElementById("musicBtn")
-            .innerHTML="🔊";
-
-    })
-    .catch(function(){
-
-        console.log(
-            "Music could not start."
-        );
-
-    });
-
-
-    /* HIDE OPENING */
 
     opening.style.display="none";
 
-
-    /* SHOW HEART ANIMATION */
 
     animation.classList.add("show");
 
@@ -1564,7 +1465,14 @@ function beginStory(){
     });
 
 
-    /* AFTER HEART ANIMATION */
+    /*
+       Heart animation:
+       0-3 sec = hearts move together
+       3 sec   = glow
+       3.05    = big heart
+       4 sec   = message
+       6 sec   = next chapter
+    */
 
     setTimeout(function(){
 
@@ -1575,7 +1483,9 @@ function beginStory(){
 }
 
 
-/* ================= GO TO SECTION ================= */
+/* =====================================================
+   GO TO CHAPTER
+===================================================== */
 
 function go(id){
 
@@ -1584,10 +1494,11 @@ function go(id){
 
 
     if(!section){
-
         return;
-
     }
+
+
+    section.style.opacity="0";
 
 
     section.scrollIntoView({
@@ -1598,12 +1509,21 @@ function go(id){
 
     });
 
+
+    setTimeout(function(){
+
+        section.style.opacity="1";
+
+    },300);
+
 }
 
 
-/* ================= MUSIC CONTROL ================= */
+/* =====================================================
+   MUSIC
+===================================================== */
 
-let musicPlaying = true;
+let musicPlaying=false;
 
 
 function toggleMusic(){
@@ -1615,30 +1535,44 @@ function toggleMusic(){
         document.getElementById("musicBtn");
 
 
-    if(music.paused){
+    if(musicPlaying){
 
-        music.play();
+        music.pause();
 
-        button.innerHTML="🔊";
+        button.innerHTML="🎵";
 
-        musicPlaying=true;
+        musicPlaying=false;
 
     }
 
     else{
 
-        music.pause();
+        music.play()
 
-        button.innerHTML="🔇";
+        .then(function(){
 
-        musicPlaying=false;
+            button.innerHTML="🔊";
+
+            musicPlaying=true;
+
+        })
+
+        .catch(function(){
+
+            alert(
+                "Add your music file as music.mp3 in the same folder as index.html."
+            );
+
+        });
 
     }
 
 }
 
 
-/* ================= FLOATING HEARTS ================= */
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
 
 function createHeart(){
 
@@ -1660,11 +1594,8 @@ function createHeart(){
 
 
     heart.style.setProperty(
-
         "--drift",
-
         (Math.random()*120-60) + "px"
-
     );
 
 
@@ -1686,20 +1617,10 @@ function createHeart(){
 }
 
 
-/* CREATE HEART EVERY 1.8 SECONDS */
-
-setInterval(
-
-    createHeart,
-
-    1800
-
-);
+setInterval(createHeart,1800);
 
 
 </script>
 
-
 </body>
-
 </html>
