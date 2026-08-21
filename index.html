@@ -731,11 +731,13 @@ function beginStory(){
 }
 
 
-function continueStory(){
+function goToMemory(id){
 
-    alert(
-        "Our next chapter is coming soon... ❤️"
-    );
+    document
+    .getElementById(id)
+    .scrollIntoView({
+        behavior:"smooth"
+    });
 
 }
 
