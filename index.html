@@ -517,7 +517,115 @@ h1 span{color:#ff3d72}
     animation:
         beat 1.5s infinite;
 }
-  
+
+/* ================= STORY TIMELINE ================= */
+
+.timeline{
+    min-height:100vh;
+    width:100%;
+    padding:80px 25px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,30,90,.08),
+            #050505 65%
+        );
+}
+
+.timeline-label{
+    font-size:12px;
+    letter-spacing:4px;
+    color:#ff6b95;
+    margin-bottom:20px;
+}
+
+.timeline-title{
+    font-size:clamp(38px,10vw,60px);
+    font-weight:bold;
+    margin-bottom:25px;
+}
+
+.timeline-text{
+    max-width:500px;
+    color:#ccc;
+    font-size:18px;
+    line-height:1.7;
+    font-style:italic;
+}
+
+.timeline-line{
+    width:90%;
+    max-width:500px;
+    margin:55px auto 35px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    position:relative;
+}
+
+.timeline-line:before{
+    content:"";
+    position:absolute;
+
+    left:8%;
+    right:8%;
+    top:50%;
+
+    height:1px;
+
+    background:rgba(255,80,120,.4);
+
+    z-index:0;
+}
+
+.timeline-dot{
+    width:58px;
+    height:58px;
+
+    border-radius:50%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    background:#10070b;
+
+    border:1px solid rgba(255,80,120,.35);
+
+    z-index:1;
+
+    box-shadow:
+        0 0 15px rgba(255,30,90,.15);
+}
+
+.timeline-dot span{
+    font-size:20px;
+}
+
+.timeline-dot small{
+    margin-top:4px;
+    font-size:7px;
+    color:#999;
+}
+
+.timeline-dot.active{
+    border-color:#ff3d72;
+
+    box-shadow:
+        0 0 20px rgba(255,30,90,.45);
+}
+    
   /* ================= PHONE ================= */
 
 @media(max-width:500px){
@@ -574,7 +682,6 @@ h1 span{color:#ff3d72}
 
 </section>
 
-
 <!-- ================= HEART ANIMATION ================= -->
 
 <section class="animation" id="animation">
@@ -623,7 +730,114 @@ h1 span{color:#ff3d72}
 
 </section>
 
+<!-- ================= STORY TIMELINE ================= -->
 
+<section class="timeline" id="timeline">
+
+    <div class="timeline-label">
+        OUR JOURNEY
+    </div>
+
+    <div class="timeline-title">
+        And then...
+    </div>
+
+    <div class="timeline-text">
+        Life started filling our story with
+        little moments, long conversations,
+        laughter, arguments, meetings,
+        and memories we never knew
+        would become so important. ❤️
+    </div>
+
+    <div class="timeline-line">
+
+        <div class="timeline-dot active">
+            <span>❤️</span>
+            <small>8 OCT</small>
+        </div>
+
+        <div class="timeline-dot">
+            <span>📸</span>
+            <small>2 NOV</small>
+        </div>
+
+        <div class="timeline-dot">
+            <span>💞</span>
+            <small>7 DEC</small>
+        </div>
+
+        <div class="timeline-dot">
+            <span>✨</span>
+            <small>MORE</small>
+        </div>
+
+    </div>
+
+    <button
+        class="continue-btn"
+        onclick="goToChapter('december7')"
+    >
+        Continue →
+    </button>
+
+</section>
+
+
+<!-- ================= DECEMBER 7 ================= -->
+
+<section class="chapter" id="december7">
+
+    <div class="chapter-label">
+        A SPECIAL DAY
+    </div>
+
+    <div class="date">
+        7 December 2024
+    </div>
+
+    <div class="story-line">
+        After all the meetings,
+        <br>
+        calls, texts, laughter and fights...
+        <br><br>
+
+        I finally told my Mom & Dad
+        <br>
+        about you.
+        ❤️
+    </div>
+
+    <button
+        class="continue-btn"
+        onclick="goToChapter('nextChapter')"
+    >
+        Continue →
+    </button>
+
+</section>
+
+
+<!-- ================= NEXT CHAPTER PLACEHOLDER ================= -->
+
+<section class="chapter" id="nextChapter">
+
+    <div class="chapter-label">
+        OUR STORY CONTINUES
+    </div>
+
+    <div class="date">
+        More memories...
+    </div>
+
+    <div class="story-line">
+        This chapter is waiting
+        for everything we haven't
+        added yet. ❤️
+    </div>
+
+</section>
+    
 <!-- ================= FIRST CHAPTER ================= -->
 
 <section class="chapter" id="chapter1">
