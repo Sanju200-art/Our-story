@@ -1,7 +1,21 @@
-const startButton = document.getElementById("startButton");
+const startButton =
+    document.getElementById("startButton");
 
-startButton.addEventListener("click", function () {
+const opening =
+    document.querySelector(".opening");
 
-    alert("Our story is about to begin... ❤️");
+const firstStory =
+    document.getElementById("firstStory");
+
+
+startButton.addEventListener("click", function(){
+
+    opening.style.display = "none";
+
+    firstStory.style.display = "flex";
+
+    firstStory.scrollIntoView({
+        behavior: "smooth"
+    });
 
 });
