@@ -40,3 +40,54 @@ musicButton.addEventListener("click", function(){
     musicButton.innerHTML = "🎵 Music Playing ❤️";
 
 });
+
+/* FLOATING HEART BUBBLES */
+
+function createHeartBubble(){
+
+    const bubble =
+        document.createElement("div");
+
+    bubble.className = "heart-bubble";
+
+    bubble.innerHTML =
+        Math.random() > 0.5
+        ? "♡"
+        : "♥";
+
+    bubble.style.left =
+        Math.random() * 100 + "vw";
+
+    bubble.style.fontSize =
+        (12 + Math.random() * 22) + "px";
+
+    bubble.style.setProperty(
+        "--side",
+        (Math.random() * 100 - 50) + "px"
+    );
+
+    const duration =
+        5 + Math.random() * 5;
+
+    bubble.style.animationDuration =
+        duration + "s";
+
+    document
+        .getElementById("heartBubbles")
+        .appendChild(bubble);
+
+    setTimeout(function(){
+
+        bubble.remove();
+
+    }, duration * 1000);
+
+}
+
+
+/* Create new hearts continuously */
+
+setInterval(
+    createHeartBubble,
+    450
+);
