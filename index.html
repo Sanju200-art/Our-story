@@ -642,12 +642,12 @@ h1 span{color:#ff3d72}
         the day our story quietly began. ❤️
     </div>
 
-    <button
-        class="continue-btn"
-        onclick="goToMemory('memory2nov')"
-    >
-        Continue →
-    </button>
+<button
+    class="continue-btn"
+    onclick="goToMemory2Nov()"
+>
+    Continue →
+</button>
 
 </section>
 
@@ -731,13 +731,19 @@ function beginStory(){
 }
 
 
-function goToMemory(id){
+function goToMemory2Nov(){
 
-    document
-    .getElementById(id)
-    .scrollIntoView({
-        behavior:"smooth"
-    });
+    const memory =
+        document.getElementById("memory2nov");
+
+    if(memory){
+
+        memory.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    }
 
 }
 
