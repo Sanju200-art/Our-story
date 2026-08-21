@@ -212,25 +212,21 @@ button:active{
 }
 
 .heart-one{
-
+.heart-one{
     left:-80px;
 
     animation:
-        leftHeart
-        3s cubic-bezier(.2,.8,.3,1)
-        forwards;
+        leftHeart 3s cubic-bezier(.2,.8,.3,1) forwards,
+        heartDisappear .5s ease forwards 3s;
 }
 
 .heart-two{
-
     right:-80px;
 
     animation:
-        rightHeart
-        3s cubic-bezier(.2,.8,.3,1)
-        forwards;
+        rightHeart 3s cubic-bezier(.2,.8,.3,1) forwards,
+        heartDisappear .5s ease forwards 3s;
 }
-
 
 @keyframes leftHeart{
 
