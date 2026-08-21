@@ -91,3 +91,13 @@ setInterval(
     createHeartBubble,
     450
 );
+
+const continueButton =
+    document.getElementById("continueButton");
+
+continueButton.addEventListener("click", function(){
+
+    alert("Next chapter ❤️");
+
+});
+
