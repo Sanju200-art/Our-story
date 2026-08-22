@@ -1,7 +1,7 @@
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html,
@@ -11,85 +11,176 @@ body {
 }
 
 body {
-    overflow: hidden;
     background: #000;
     color: white;
     font-family: Georgia, "Times New Roman", serif;
-}
-
-/* Background */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-        linear-gradient(
-            rgba(0,0,0,0.45),
-            rgba(0,0,0,0.65)
-        ),
-        url("background.jpg") center/cover no-repeat;
-    z-index: -2;
-}
-
-/* Floating hearts */
-.hearts-background {
-    position: fixed;
-    inset: 0;
     overflow: hidden;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.hearts-background span {
-    position: absolute;
-    bottom: -50px;
-    font-size: 28px;
-    opacity: 0.35;
-    animation: floatHeart 9s linear infinite;
-}
-
-.hearts-background span:nth-child(1) { left: 5%; }
-.hearts-background span:nth-child(2) { left: 15%; animation-delay: 1s; }
-.hearts-background span:nth-child(3) { left: 25%; animation-delay: 3s; }
-.hearts-background span:nth-child(4) { left: 35%; animation-delay: 2s; }
-.hearts-background span:nth-child(5) { left: 45%; animation-delay: 4s; }
-.hearts-background span:nth-child(6) { left: 55%; animation-delay: 1s; }
-.hearts-background span:nth-child(7) { left: 65%; animation-delay: 5s; }
-.hearts-background span:nth-child(8) { left: 75%; animation-delay: 2s; }
-.hearts-background span:nth-child(9) { left: 85%; animation-delay: 4s; }
-.hearts-background span:nth-child(10) { left: 95%; animation-delay: 3s; }
-
-@keyframes floatHeart {
-    from {
-        transform: translateY(0);
-        opacity: 0;
-    }
-
-    20% {
-        opacity: 0.4;
-    }
-
-    to {
-        transform: translateY(-110vh);
-        opacity: 0;
-    }
 }
 
 
 /* =========================
-   ALL SCREENS
+   BACKGROUND
+========================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.45),
+            rgba(0,0,0,.65)
+        ),
+        url("background.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    z-index: -2;
+}
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.hearts-background {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.hearts-background span {
+
+    position: absolute;
+
+    bottom: -60px;
+
+    font-size: 28px;
+
+    opacity: .3;
+
+    animation:
+        floatingHeart
+        10s
+        linear
+        infinite;
+}
+
+.hearts-background span:nth-child(1) {
+    left: 5%;
+}
+
+.hearts-background span:nth-child(2) {
+    left: 15%;
+    animation-delay: 2s;
+}
+
+.hearts-background span:nth-child(3) {
+    left: 25%;
+    animation-delay: 4s;
+}
+
+.hearts-background span:nth-child(4) {
+    left: 35%;
+    animation-delay: 1s;
+}
+
+.hearts-background span:nth-child(5) {
+    left: 45%;
+    animation-delay: 3s;
+}
+
+.hearts-background span:nth-child(6) {
+    left: 55%;
+    animation-delay: 5s;
+}
+
+.hearts-background span:nth-child(7) {
+    left: 65%;
+    animation-delay: 2s;
+}
+
+.hearts-background span:nth-child(8) {
+    left: 75%;
+    animation-delay: 4s;
+}
+
+.hearts-background span:nth-child(9) {
+    left: 85%;
+    animation-delay: 1s;
+}
+
+.hearts-background span:nth-child(10) {
+    left: 95%;
+    animation-delay: 6s;
+}
+
+
+@keyframes floatingHeart {
+
+    0% {
+
+        transform:
+            translateY(0)
+            scale(.7);
+
+        opacity: 0;
+
+    }
+
+    20% {
+
+        opacity: .4;
+
+    }
+
+    100% {
+
+        transform:
+            translateY(-110vh)
+            scale(1.3)
+            rotate(25deg);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================
+   SCREENS
 ========================= */
 
 .screen {
+
     position: fixed;
+
     inset: 0;
 
     width: 100%;
+
     height: 100vh;
 
     display: none;
 
     align-items: center;
+
     justify-content: center;
 
     flex-direction: column;
@@ -104,51 +195,105 @@ body::before {
 }
 
 .screen.active {
+
     display: flex;
+
 }
 
 
 /* =========================
-   FIRST PAGE
+   OPENING
 ========================= */
 
 .opening-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
     width: 100%;
+
+    max-width: 600px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
 }
+
 
 .main-heart {
-    font-size: 75px;
+
+    font-size: 80px;
+
     margin-bottom: 15px;
-    animation: heartbeat 1.5s infinite;
+
+    animation:
+        heartBeat
+        1.5s
+        infinite;
+
 }
 
-@keyframes heartbeat {
-    50% {
-        transform: scale(1.15);
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+
+        transform: scale(1);
+
     }
+
+    50% {
+
+        transform: scale(1.15);
+
+    }
+
 }
+
 
 .small-heading {
-    font-size: 14px;
-    letter-spacing: 3px;
-    color: #ff9ac5;
+
+    font-size: 15px;
+
+    letter-spacing: 4px;
+
+    color: #ff9bc5;
+
     margin-bottom: 15px;
+
 }
+
 
 h1 {
-    font-size: clamp(45px, 12vw, 75px);
+
+    font-size:
+        clamp(
+            45px,
+            12vw,
+            75px
+        );
+
+    margin-bottom: 15px;
+
 }
+
 
 h1 span {
-    color: #ff6fa8;
+
+    color: #ff69a8;
+
 }
 
+
 .tagline {
-    font-size: 21px;
-    margin: 15px 0 25px;
+
+    font-size: 22px;
+
+    line-height: 1.5;
+
+    margin-bottom: 30px;
+
 }
 
 
@@ -157,43 +302,72 @@ h1 span {
 ========================= */
 
 button {
-    position: relative;
-    z-index: 20;
 
     cursor: pointer;
 
-    border: none;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
     color: white;
 
-    font-family: Georgia, serif;
+    border: none;
 
-    -webkit-tap-highlight-color: transparent;
 }
 
+
 .big-button {
+
     width: min(90%, 380px);
 
-    padding: 18px;
+    padding: 18px 25px;
 
-    margin: 7px;
+    margin: 8px;
 
     border-radius: 40px;
 
-    font-size: 20px;
+    font-size: 21px;
 
-    background: #e90068;
+    font-weight: bold;
 
-    box-shadow: 0 8px 25px rgba(255,0,100,0.35);
+    background:
+        linear-gradient(
+            135deg,
+            #ff0066,
+            #e60073
+        );
+
+    box-shadow:
+        0 8px 30px
+        rgba(255,0,100,.35);
+
 }
+
 
 .music-button {
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(255,255,255,0.4);
+
+    background:
+        rgba(255,255,255,.18);
+
+    border:
+        1px solid
+        rgba(255,255,255,.4);
+
 }
 
+
 .ready-button {
-    background: #e90068;
+
+    font-size: 23px;
+
+}
+
+
+.big-button:active {
+
+    transform: scale(.96);
+
 }
 
 
@@ -202,131 +376,231 @@ button {
 ========================= */
 
 .chapter-content {
+
     width: 100%;
+
     max-width: 700px;
+
 }
+
 
 .chapter-label,
 .memory-label {
-    color: #ff91bb;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
+
+    font-size: 17px;
+
+    letter-spacing: 4px;
+
+    color: #ff8fbd;
+
+    margin-bottom: 25px;
+
 }
+
 
 .chapter-content h2 {
-    font-size: clamp(42px, 10vw, 70px);
-    color: #ff72ad;
-    margin-bottom: 20px;
+
+    font-size:
+        clamp(
+            45px,
+            11vw,
+            75px
+        );
+
+    color: #ff75ae;
+
+    margin-bottom: 25px;
+
 }
+
 
 .chapter-text {
-    font-size: 23px;
+
+    font-size: 25px;
+
+    line-height: 1.5;
+
 }
 
+
 .chapter-heart {
+
     font-size: 55px;
+
     margin: 25px;
+
 }
+
 
 .continue-button,
 .continue-btn {
+
+    min-width: 230px;
+
     padding: 16px 35px;
-    min-width: 220px;
+
     border-radius: 40px;
-    background: #e90068;
-    font-size: 20px;
-    margin-top: 20px;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    margin-top: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff0066,
+            #e60073
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(255,0,100,.35);
+
 }
 
 
 /* =========================
-   PHOTO PAGE
+   PHOTO SCREENS
 ========================= */
 
 .photo-content {
+
     width: 100%;
+
     max-width: 700px;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
 }
+
 
 .photo-content h3 {
-    font-size: 45px;
-    margin-bottom: 20px;
+
+    font-size:
+        clamp(
+            35px,
+            9vw,
+            60px
+        );
+
+    margin-bottom: 25px;
+
 }
 
-.photo-frame {
-    width: min(90vw, 600px);
-    max-height: 50vh;
 
-    border-radius: 18px;
+.photo-frame {
+
+    width: min(90vw, 600px);
+
+    max-height: 52vh;
 
     overflow: hidden;
 
-    box-shadow: 0 0 30px rgba(255,50,150,0.35);
+    border-radius: 22px;
+
+    background: #111;
+
+    box-shadow:
+        0 0 30px
+        rgba(255,50,150,.35);
+
 }
 
+
 .photo-frame img {
+
     display: block;
 
     width: 100%;
-    max-height: 50vh;
+
+    height: 100%;
+
+    max-height: 52vh;
 
     object-fit: contain;
+
 }
 
+
 .photo-story {
+
     max-width: 650px;
 
-    margin-top: 18px;
+    margin-top: 20px;
 
-    font-size: 18px;
+    font-size: 20px;
 
-    line-height: 1.5;
+    line-height: 1.6;
+
+}
+
+
+.photo-story p {
+
+    margin-bottom: 12px;
+
 }
 
 
 /* =========================
-   MEMORY BOOK
+   PHOTO BOOK
 ========================= */
 
 .memory-book {
-    position: fixed;
-    inset: 0;
 
     display: none;
 
-    align-items: center;
-    justify-content: center;
-
-    flex-direction: column;
-
-    text-align: center;
-
-    z-index: 10;
 }
+
 
 .memory-book.active {
+
     display: flex;
+
 }
+
 
 .book-title {
-    font-size: 35px;
-    color: #ff83b6;
+
+    font-size:
+        clamp(
+            32px,
+            8vw,
+            55px
+        );
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    color: #ff8abc;
+
     margin-bottom: 15px;
+
 }
+
 
 .book {
+
     width: min(88vw, 600px);
-    height: min(58vh, 600px);
+
+    height: min(62vh, 650px);
+
 }
 
+
 .book-page {
+
     position: relative;
 
     width: 100%;
+
     height: 100%;
 
     overflow: hidden;
@@ -335,52 +609,152 @@ button {
 
     background: #111;
 
-    border: 2px solid rgba(255,120,180,0.5);
+    border:
+        3px solid
+        rgba(255,120,180,.5);
+
+    box-shadow:
+        0 0 35px
+        rgba(255,50,150,.35);
+
 }
 
+
 .book-page img {
+
+    position: absolute;
+
+    inset: 0;
+
     width: 100%;
+
     height: 100%;
 
     object-fit: cover;
+
 }
 
-.photo-caption {
+
+.book-page::after {
+
+    content: "";
+
     position: absolute;
 
-    bottom: 20px;
-    left: 10px;
-    right: 10px;
+    inset: 0;
 
-    font-size: 21px;
+    background:
+        linear-gradient(
+            transparent 55%,
+            rgba(0,0,0,.85)
+        );
+
+    pointer-events: none;
+
+}
+
+
+.photo-caption {
+
+    position: absolute;
+
+    left: 15px;
+
+    right: 15px;
+
+    bottom: 25px;
+
+    z-index: 5;
+
+    font-size:
+        clamp(
+            20px,
+            5vw,
+            30px
+        );
+
+    font-style: italic;
 
     font-weight: bold;
 
-    text-shadow: 0 2px 5px black;
+    text-shadow:
+        0 2px 5px black;
+
 }
+
+
+/* =========================
+   BOOK CONTROLS
+========================= */
 
 .book-counter {
-    margin: 10px;
+
+    margin-top: 10px;
+
+    font-size: 18px;
+
+    background:
+        rgba(0,0,0,.45);
+
+    padding: 5px 15px;
+
+    border-radius: 20px;
+
 }
+
 
 .book-buttons {
+
     display: flex;
-    gap: 40px;
+
+    justify-content: center;
+
+    gap: 45px;
+
+    margin-top: 10px;
+
 }
 
+
 .book-buttons button {
-    width: 60px;
-    height: 60px;
+
+    width: 65px;
+
+    height: 65px;
 
     border-radius: 50%;
 
-    background: #e90068;
+    background: #ed0064;
 
-    font-size: 28px;
+    color: white;
+
+    font-size: 32px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 5px 25px
+        rgba(255,0,100,.4);
+
 }
 
+
+.book-buttons button:active {
+
+    transform: scale(.9);
+
+}
+
+
 .swipe-text {
-    margin: 10px;
+
+    font-size: 16px;
+
+    margin: 8px 0;
+
+    color:
+        rgba(255,255,255,.85);
+
 }
 
 
@@ -390,15 +764,56 @@ button {
 
 @media (max-width: 600px) {
 
+    .screen {
+
+        padding: 18px;
+
+    }
+
+    .main-heart {
+
+        font-size: 65px;
+
+    }
+
+    .tagline {
+
+        font-size: 19px;
+
+    }
+
     .chapter-text {
-        font-size: 20px;
+
+        font-size: 21px;
+
     }
 
     .photo-story {
-        font-size: 16px;
+
+        font-size: 17px;
+
     }
 
     .book {
-        height: 52vh;
+
+        height: 55vh;
+
     }
+
+    .book-buttons {
+
+        gap: 35px;
+
+    }
+
+    .book-buttons button {
+
+        width: 58px;
+
+        height: 58px;
+
+        font-size: 28px;
+
+    }
+
 }
