@@ -179,3 +179,167 @@ continue3.addEventListener(
 
     }
 );
+
+/* ============================= */
+/*         PHOTO BOOK            */
+/* ============================= */
+
+const memories = [
+
+    {
+        image: "memory1.jpg",
+        text: "The beginning of another beautiful memory ❤️"
+    },
+
+    {
+        image: "memory2.jpg",
+        text: "Another moment I will always remember ❤️"
+    },
+
+    {
+        image: "memory3.jpg",
+        text: "Every picture has a story behind it..."
+    },
+
+    {
+        image: "memory4.jpg",
+        text: "And every story became a part of us ❤️"
+    },
+
+    {
+        image: "memory5.jpg",
+        text: "More memories, more reasons to smile ❤️"
+    }
+
+];
+
+let currentMemory = 0;
+
+const memoryPhoto = document.getElementById("memoryPhoto");
+const photoCaption = document.getElementById("photoCaption");
+const bookPage = document.getElementById("bookPage");
+const bookCounter = document.getElementById("bookCounter");
+
+
+function showMemory(animation) {
+
+    bookPage.classList.remove("flip-next", "flip-prev");
+
+    void bookPage.offsetWidth;
+
+    bookPage.classList.add(animation);
+
+    setTimeout(() => {
+
+        memoryPhoto.src = memories[currentMemory].image;
+
+        photoCaption.textContent =
+            memories[currentMemory].text;
+
+        bookCounter.textContent =
+            `${currentMemory + 1} / ${memories.length}`;
+
+    }, 300);
+}
+
+
+function nextMemory() {
+
+    if (currentMemory >= memories.length - 1) {
+
+        return;
+
+    }
+
+    currentMemory++;
+
+    showMemory("flip-next");
+}
+
+
+function previousMemory() {
+
+    if (currentMemory <= 0) {
+
+        return;
+
+    }
+
+    currentMemory--;
+
+    showMemory("flip-prev");
+}
+
+
+/* CONTINUE BUTTON */
+
+function continueFromBook() {
+
+    // Change this to whatever screen comes next
+    const nextScreen =
+        document.getElementById("next-screen");
+
+    if (nextScreen) {
+
+        document.querySelectorAll(".screen")
+            .forEach(screen => {
+                screen.style.display = "none";
+            });
+
+        nextScreen.style.display = "flex";
+    }
+
+}
+
+
+/* ============================= */
+/*          SWIPE SUPPORT        */
+/* ============================= */
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+bookPage.addEventListener("touchstart", function(e) {
+
+    touchStartX = e.changedTouches[0].screenX;
+
+});
+
+
+bookPage.addEventListener("touchend", function(e) {
+
+    touchEndX = e.changedTouches[0].screenX;
+
+    const distance =
+        touchEndX - touchStartX;
+
+    if (Math.abs(distance) < 50) {
+        return;
+    }
+
+    if (distance < 0) {
+
+        nextMemory();
+
+    } else {
+
+        previousMemory();
+
+    }
+
+});
+
+
+/* LOAD FIRST PHOTO */
+
+if (memories.length > 0) {
+
+    memoryPhoto.src = memories[0].image;
+
+    photoCaption.textContent =
+        memories[0].text;
+
+    bookCounter.textContent =
+        `1 / ${memories.length}`;
+
+}
