@@ -404,19 +404,54 @@ function updateMemory() {
 
 function nextMemory() {
 
-    if (
-        currentMemory <
-        memories.length - 1
-    ) {
+    if (currentMemory >= memories.length - 1) {
+        return;
+    }
+
+    const page = document.getElementById("bookPage");
+
+    page.classList.remove("flip-next", "flip-prev");
+
+    void page.offsetWidth;
+
+    page.classList.add("flip-next");
+
+    setTimeout(function () {
 
         currentMemory++;
 
         updateMemory();
 
-    }
+        page.classList.remove("flip-next");
 
+    }, 400);
 }
 
+
+function previousMemory() {
+
+    if (currentMemory <= 0) {
+        return;
+    }
+
+    const page = document.getElementById("bookPage");
+
+    page.classList.remove("flip-next", "flip-prev");
+
+    void page.offsetWidth;
+
+    page.classList.add("flip-prev");
+
+    setTimeout(function () {
+
+        currentMemory--;
+
+        updateMemory();
+
+        page.classList.remove("flip-prev");
+
+    }, 400);
+}
 
 /* =========================
    PREVIOUS PHOTO
