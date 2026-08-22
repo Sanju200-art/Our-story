@@ -13,58 +13,56 @@ let currentMemory = 0;
 
 const memories = [
 
-    {
+{
         image: "memory1.jpg",
-        text: "Our beautiful memory ❤️"
+        text: "13 Oct 2024 - 2nd Date 🥰"
     },
 
     {
         image: "memory2.jpg",
-        text: "Another beautiful moment together ❤️"
+        text: "3 Nov 2024 -Private date 😘"
     },
 
     {
         image: "memory3.jpg",
-        text: "Every picture has a story behind it 💕"
+        text: "18 Nov 2024 -Church time 😇"
     },
 
     {
         image: "memory4.jpg",
-        text: "A moment I will always remember ❤️"
+        text: "22 Dec 2024 -First christmas Together😚"
     },
 
     {
         image: "memory5.jpg",
-        text: "Another little piece of our journey 💗"
-    },
+        text: "25 Dec 2024 -Holiday Special 🤗"
+    }
 
     {
         image: "memory6.jpg",
-        text: "Every moment with you became special ❤️"
+        text: "19 Jan 2025 -New Year Chapter 🥳"
     },
 
     {
         image: "memory7.jpg",
-        text: "Memories that will stay in my heart forever 💕"
+        text: "1 Mar 2025 -Jebel Jais Moments 🤩"
     },
 
     {
         image: "memory8.jpg",
-        text: "And our story kept growing ❤️"
+        text: "31 Mar 2025 -Global Village Special 💝"
     },
 
     {
         image: "memory9.jpg",
-        text: "Another chapter of us 💗"
+        text: "18 May 2025 -Gathering Special 😊"
     },
 
     {
         image: "memory10.jpg",
-        text: "And this is still only the beginning... ❤️"
+        text: "16 Jun 2025 -That Last Touch of her 🥺"
     }
-
 ];
-
 
 /* =========================================================
    SCREEN CONTROL
