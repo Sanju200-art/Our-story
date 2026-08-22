@@ -588,10 +588,9 @@ button {
 
 
 .book {
-
-    width: min(88vw, 600px);
-
-    height: min(62vh, 650px);
+    width: min(78vw, 480px);
+    height: min(50vh, 500px);
+}
 
 }
 
