@@ -817,8 +817,6 @@ button {
 
     }
 
-}
-
 @media (max-height: 750px) {
 
     .photo-content {
@@ -849,4 +847,57 @@ button {
         margin-top: 10px;
         padding: 13px 30px;
     }
+
+    /* =========================
+   BOOK PAGE FLIP
+========================= */
+
+.book-page {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+
+/* Normal page */
+.book-page.flip-next {
+    animation: pageFlipNext 0.8s ease-in-out;
+}
+
+.book-page.flip-prev {
+    animation: pageFlipPrev 0.8s ease-in-out;
+}
+
+
+/* Next page: flips from right to left */
+@keyframes pageFlipNext {
+
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    45% {
+        transform: rotateY(-90deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+
+}
+
+
+/* Previous page: flips from left to right */
+@keyframes pageFlipPrev {
+
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    45% {
+        transform: rotateY(90deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+
 }
