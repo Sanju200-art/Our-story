@@ -2,171 +2,257 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Our Story ❤️</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-
-<!-- =========================================
-     OPENING SCREEN
-========================================= -->
-
-<section class="opening">
-
-    <div class="opening-content">
-
-        <h1>
-            OUR💞STORY
-        </h1>
-
-        <p>
-            Journey of two heart & one soul
-        </p>
-
-        <button id="startButton">
-            Ready for Surprise 🤩
-        </button>
-
-    </div>
-
-</section>
+    <!-- MUSIC -->
+    <audio id="music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
 
-<!-- =========================================
-     FIRST STORY SCREEN
-========================================= -->
+    <!-- =========================
+         BUBBLES
+    ========================== -->
 
-<section id="firstStory">
+    <div class="hearts-background">
 
-    <div class="first-story-content">
-
-        <div class="story-label">
-            ✨ OUR STORY BEGINS ✨
-        </div>
-
-        <h2>
-            8 October 2024
-        </h2>
-
-        <p class="story-line">
-            This is how we both started 
-            our Journey Together...
-        </p>
-
-        <div class="story-heart">
-            ❤️
-        </div>
-
-        <button id="musicButton">
-            🎵 Click for Music
-        </button>
-
-        <button id="continueButton">
-            Continue →
-        </button>
+        <span>♡</span>
+        <span>♥</span>
+        <span>♡</span>
+        <span>♥</span>
+        <span>♡</span>
+        <span>♥</span>
+        <span>♡</span>
+        <span>♥</span>
+        <span>♡</span>
+        <span>♥</span>
 
     </div>
 
-</section>
-
-<section id="chapter2november">
-
-    <div class="november-content">
-
-        <div class="november-label">
-            ✨ ANOTHER CHAPTER ✨
-        </div>
-
-        <div class="november-date">
-            2 November 2024
-        </div>
 
 
-        <!-- PHOTO FRAME -->
+    <!-- =========================
+         SCREEN 1
+    ========================== -->
 
-        <div class="november-photo-frame">
+    <section id="screen1" class="screen active">
 
-            <img
-                src="2-november.jpg"
-                alt="2 November 2024"
-            >
+        <div class="opening-content">
 
-        </div>
+            <div class="main-heart">
+                ❤️
+            </div>
 
+            <div class="small-heading">
+                A STORY WRITTEN BY TWO HEARTS
+            </div>
 
-        <!-- STORY -->
+            <h1>
+                💕 OUR <span>STORY</span> 💕
+            </h1>
 
-        <div class="november-text">
-
-            <p>
-                Another beautiful memory
-                we created together. ❤️
+            <p class="tagline">
+                Journey of two hearts & one soul
             </p>
 
-            <p>
-                <!-- ADD YOUR OWN WORDS HERE -->
+            <button id="musicButton"
+                    class="big-button music-button">
+                🎵 Click for Music
+            </button>
+
+            <button id="readyButton"
+                    class="big-button ready-button">
+                😏 Are you ready? 🤩
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SCREEN 2
+         FIRST CHAPTER
+    ========================== -->
+
+    <section id="screen2" class="screen">
+
+        <div class="chapter-content">
+
+            <div class="chapter-label">
+                ✨ OUR STORY BEGINS ✨
+            </div>
+
+            <h2>
+                8 October 2024
+            </h2>
+
+            <p class="chapter-text">
+                This is how we both started our
+                Journey Together...
+            </p>
+
+            <div class="chapter-heart">
+                💗
+            </div>
+
+            <button id="continue1"
+                    class="continue-button">
+                Continue →
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SCREEN 3
+         FIRST DATE PHOTO
+    ========================== -->
+
+    <section id="screen3" class="screen photo-screen">
+
+        <div class="photo-content">
+
+            <div class="memory-label">
+                OUR FIRST MEMORY ❤️
+            </div>
+
+            <div class="photo-frame">
+
+                <img src="first-date.jpg"
+                     alt="Our first date">
+
+            </div>
+
+            <div class="photo-story">
+
+                <p>
+                    The day we finally met,
+                    talked, smiled and created
+                    our first memory together. ❤️
+                </p>
+
+                <p>
+                    Some moments become memories...
+                    and some memories become our story.
+                </p>
+
+            </div>
+
+            <button id="continue2"
+                    class="continue-button">
+                Continue →
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SCREEN 4
+         2 NOVEMBER
+    ========================== -->
+
+    <section id="screen4" class="screen photo-screen">
+
+        <div class="photo-content">
+
+            <div class="memory-label">
+                ✨ ANOTHER BEAUTIFUL MEMORY ✨
+            </div>
+
+            <h3>
+                2 November 2024
+            </h3>
+
+            <div class="photo-frame november-frame">
+
+                <img src="2-nov-2024.jpg"
+                     alt="2 November 2024">
+
+            </div>
+
+            <div class="photo-story">
+
+                <p>
+                    Another little memory from the
+                    beginning of our story. ❤️
+                </p>
+
+                <p>
+                    Every picture has a moment behind it,
+                    and every moment became a part of us.
+                </p>
+
+            </div>
+
+            <button id="continue3"
+                    class="continue-button">
+                Continue →
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SCREEN 5
+         NEXT PHASE
+    ========================== -->
+
+    <section id="screen5" class="screen">
+
+        <div class="chapter-content">
+
+            <div class="chapter-label">
+                ❤️ THE JOURNEY CONTINUES ❤️
+            </div>
+
+            <h2>
+                More memories...
+            </h2>
+
+            <p class="chapter-text">
+                We met.
+                We talked.
+                We called.
+                We fought.
+                We laughed.
+                And somehow...
+                we kept choosing each other.
+            </p>
+
+            <div class="chapter-heart">
+                ❤️
+            </div>
+
+            <p class="small-message">
+                This is only the beginning...
             </p>
 
         </div>
 
-
-        <!-- NEXT BUTTON -->
-
-        <button id="next2NovemberButton">
-            Continue →
-        </button>
-
-    </div>
-
-</section>
-    
-<!-- =========================================
-     MUSIC
-========================================= -->
-
-<audio
-    id="storyMusic"
-    loop
->
-
-    <source
-        src="music.mp3"
-        type="audio/mpeg"
-    >
-
-</audio>
+    </section>
 
 
-<!-- =========================================
-     FLOATING HEART BUBBLES
-========================================= -->
-
-<div id="heartBubbles"></div>
-
-
-<!-- =========================================
-     JAVASCRIPT
-========================================= -->
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 
 </body>
-
 </html>
