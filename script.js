@@ -1,53 +1,121 @@
 /* =========================================
-   OUR STORY ❤️
-   COMPLETE SCRIPT
+   OUR STORY ❤️ — COMPLETE SCRIPT
 ========================================= */
+
+const memories = [
+    ["memory1.jpg", "Our beautiful memory ❤️"],
+    ["memory2.jpg", "Another beautiful moment together ❤️"],
+    ["memory3.jpg", "Every picture has a story behind it 💕"],
+    ["memory4.jpg", "A moment I will always remember ❤️"],
+    ["memory5.jpg", "Another little piece of our journey 💗"],
+    ["memory6.jpg", "Every moment with you became special ❤️"],
+    ["memory7.jpg", "Memories that will stay in my heart forever 💕"],
+    ["memory8.jpg", "And our story kept growing ❤️"],
+    ["memory9.jpg", "Another chapter of us 💗"],
+    ["memory10.jpg", "And this is still only the beginning... ❤️"]
+];
+
+let currentMemory = 0;
+let musicPlaying = false;
 
 
 /* =========================================
-   SCREEN FUNCTION
+   SHOW SCREEN — CINEMATIC
 ========================================= */
 
 function showScreen(id) {
 
-    const screens = document.querySelectorAll(".screen");
+    const nextScreen = document.getElementById(id);
+    const currentScreen = document.querySelector(".screen.active");
 
-    screens.forEach(function(screen) {
-        screen.classList.remove("active");
-        screen.style.display = "none";
-    });
+    if (!nextScreen) return;
 
-    const target = document.getElementById(id);
+    /* If already on this screen */
+    if (currentScreen === nextScreen) return;
 
-    if (target) {
-        target.classList.add("active");
-        target.style.display = "flex";
+    document.body.classList.add("transitioning");
+
+    /* Fade current screen out */
+    if (currentScreen) {
+
+        currentScreen.classList.add("cinematic-exit");
+
     }
+
+    setTimeout(function() {
+
+        /* Hide every screen */
+        document.querySelectorAll(".screen").forEach(function(screen) {
+
+            screen.classList.remove(
+                "active",
+                "cinematic-exit",
+                "cinematic-enter"
+            );
+
+            screen.style.display = "none";
+
+        });
+
+        /* Show new screen */
+        nextScreen.style.display = "flex";
+        nextScreen.classList.add("active");
+
+        /* Force animation restart */
+        void nextScreen.offsetWidth;
+
+        nextScreen.classList.add("cinematic-enter");
+
+        setTimeout(function() {
+
+            document.body.classList.remove("transitioning");
+
+        }, 1800);
+
+    }, currentScreen ? 850 : 0);
 }
 
 
 /* =========================================
-   START APP
+   PAGE LOADED
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    /* Start on first page */
-    showScreen("screen1");
+    /* IMPORTANT:
+       First page is immediately active.
+       No animation or delay here.
+    */
+
+    document.querySelectorAll(".screen").forEach(function(screen) {
+
+        screen.style.display = "none";
+
+    });
+
+    const firstScreen = document.getElementById("screen1");
+
+    if (firstScreen) {
+
+        firstScreen.style.display = "flex";
+        firstScreen.classList.add("active");
+
+    }
 
 
     /* =====================================
-       MUSIC BUTTON
+       MUSIC
     ===================================== */
 
     const music = document.getElementById("music");
     const musicButton = document.getElementById("musicButton");
 
-    let musicPlaying = false;
-
     if (musicButton && music) {
 
-        musicButton.addEventListener("click", function() {
+        musicButton.addEventListener("click", function(event) {
+
+            event.preventDefault();
+            event.stopPropagation();
 
             if (!musicPlaying) {
 
@@ -56,16 +124,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
                         musicPlaying = true;
 
-                        musicButton.innerHTML =
+                        musicButton.textContent =
                             "🎵 Music Playing ❤️";
 
                     })
                     .catch(function(error) {
 
-                        console.log("Music error:", error);
+                        console.log("Music needs another tap:", error);
 
-                        musicButton.innerHTML =
-                            "🎵 Tap Again for Music";
+                        musicButton.textContent =
+                            "🎵 Click for Music";
 
                     });
 
@@ -75,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 musicPlaying = false;
 
-                musicButton.innerHTML =
+                musicButton.textContent =
                     "🎵 Click for Music";
 
             }
@@ -86,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     /* =====================================
-       FIRST PAGE → 8 OCTOBER
+       FIRST PAGE → SCREEN 2
     ===================================== */
 
     const readyButton =
@@ -94,7 +162,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (readyButton) {
 
-        readyButton.addEventListener("click", function() {
+        readyButton.addEventListener("click", function(event) {
+
+            event.preventDefault();
 
             showScreen("screen2");
 
@@ -104,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     /* =====================================
-       8 OCTOBER → FIRST DATE
+       SCREEN 2 → SCREEN 3
     ===================================== */
 
     const continue1 =
@@ -112,7 +182,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (continue1) {
 
-        continue1.addEventListener("click", function() {
+        continue1.addEventListener("click", function(event) {
+
+            event.preventDefault();
 
             showScreen("screen3");
 
@@ -122,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     /* =====================================
-       FIRST DATE → 2 NOVEMBER
+       SCREEN 3 → SCREEN 4
     ===================================== */
 
     const continue2 =
@@ -130,7 +202,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (continue2) {
 
-        continue2.addEventListener("click", function() {
+        continue2.addEventListener("click", function(event) {
+
+            event.preventDefault();
 
             showScreen("screen4");
 
@@ -140,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     /* =====================================
-       2 NOVEMBER → PHOTO BOOK
+       SCREEN 4 → PHOTO BOOK
     ===================================== */
 
     const continue3 =
@@ -148,7 +222,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (continue3) {
 
-        continue3.addEventListener("click", function() {
+        continue3.addEventListener("click", function(event) {
+
+            event.preventDefault();
 
             openMemoryBook();
 
@@ -158,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     /* =====================================
-       BOOK ARROWS
+       BOOK BUTTONS
     ===================================== */
 
     const previousButton =
@@ -169,19 +245,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (previousButton) {
 
-        previousButton.addEventListener(
-            "click",
-            previousMemory
-        );
+        previousButton.addEventListener("click", function() {
+
+            previousMemory();
+
+        });
 
     }
 
     if (nextButton) {
 
-        nextButton.addEventListener(
-            "click",
-            nextMemory
-        );
+        nextButton.addEventListener("click", function() {
+
+            nextMemory();
+
+        });
 
     }
 
@@ -195,182 +273,85 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (bookContinue) {
 
-        bookContinue.addEventListener(
-            "click",
-            continueFromBook
-        );
+        bookContinue.addEventListener("click", function() {
+
+            continueFromBook();
+
+        });
 
     }
 
 
     /* =====================================
-       PHOTO BOOK
+       BOOK SWIPE
     ===================================== */
 
-    setupMemoryBook();
+    setupSwipe();
+
+    updateMemory();
 
 });
 
 
 /* =========================================
-   MEMORY PHOTOS
-========================================= */
-
-const memories = [
-
-    {
-        image: "memory1.jpg",
-        text: "Our beautiful memory ❤️"
-    },
-
-    {
-        image: "memory2.jpg",
-        text: "Another beautiful moment together ❤️"
-    },
-
-    {
-        image: "memory3.jpg",
-        text: "Every picture has a story behind it 💕"
-    },
-
-    {
-        image: "memory4.jpg",
-        text: "A moment I will always remember ❤️"
-    },
-
-    {
-        image: "memory5.jpg",
-        text: "Another little piece of our journey 💗"
-    },
-
-    {
-        image: "memory6.jpg",
-        text: "Every moment with you became special ❤️"
-    },
-
-    {
-        image: "memory7.jpg",
-        text: "Memories that will stay in my heart forever 💕"
-    },
-
-    {
-        image: "memory8.jpg",
-        text: "And our story kept growing ❤️"
-    },
-
-    {
-        image: "memory9.jpg",
-        text: "Another chapter of us 💗"
-    },
-
-    {
-        image: "memory10.jpg",
-        text: "And this is still only the beginning... ❤️"
-    }
-
-];
-
-
-let currentMemory = 0;
-
-
-/* =========================================
-   SETUP BOOK
-========================================= */
-
-function setupMemoryBook() {
-
-    const bookPage =
-        document.getElementById("bookPage");
-
-    if (!bookPage) {
-        return;
-    }
-
-
-    let startX = 0;
-
-
-    bookPage.addEventListener(
-        "touchstart",
-        function(event) {
-
-            startX =
-                event.changedTouches[0].screenX;
-
-        },
-        { passive: true }
-    );
-
-
-    bookPage.addEventListener(
-        "touchend",
-        function(event) {
-
-            const endX =
-                event.changedTouches[0].screenX;
-
-            const distance =
-                startX - endX;
-
-
-            if (distance > 50) {
-
-                nextMemory();
-
-            }
-
-            else if (distance < -50) {
-
-                previousMemory();
-
-            }
-
-        },
-        { passive: true }
-    );
-
-
-    updateMemory();
-
-}
-
-
-/* =========================================
-   OPEN BOOK
+   OPEN MEMORY BOOK
 ========================================= */
 
 function openMemoryBook() {
 
-    currentMemory = 0;
-
-    updateMemory();
-
-    document.querySelectorAll(".screen")
-        .forEach(function(screen) {
-
-            screen.classList.remove("active");
-            screen.style.display = "none";
-
-        });
-
+    const currentScreen =
+        document.querySelector(".screen.active");
 
     const book =
         document.getElementById("memoryBook");
 
+    if (!book) return;
 
-    if (book) {
+    document.body.classList.add("transitioning");
 
-        book.classList.add("active");
-        book.style.display = "flex";
+    if (currentScreen) {
+
+        currentScreen.classList.add("cinematic-exit");
 
     }
 
+    setTimeout(function() {
+
+        document.querySelectorAll(".screen").forEach(function(screen) {
+
+            screen.style.display = "none";
+
+            screen.classList.remove(
+                "active",
+                "cinematic-exit",
+                "cinematic-enter"
+            );
+
+        });
+
+        currentMemory = 0;
+
+        updateMemory();
+
+        book.style.display = "flex";
+        book.classList.add("active");
+
+        void book.offsetWidth;
+
+        book.classList.add("cinematic-enter");
+
+        setTimeout(function() {
+
+            document.body.classList.remove("transitioning");
+
+        }, 1800);
+
+    }, 850);
 }
 
 
 /* =========================================
-   UPDATE PHOTO
+   UPDATE MEMORY
 ========================================= */
 
 function updateMemory(direction) {
@@ -387,11 +368,10 @@ function updateMemory(direction) {
     const page =
         document.getElementById("bookPage");
 
+    if (!photo || !caption || !counter) return;
 
-    if (!photo || !caption || !counter) {
-        return;
-    }
 
+    /* Flip animation */
 
     if (direction && page) {
 
@@ -401,7 +381,6 @@ function updateMemory(direction) {
         );
 
         void page.offsetWidth;
-
 
         if (direction === "next") {
 
@@ -416,54 +395,94 @@ function updateMemory(direction) {
     }
 
 
-    photo.src =
-        memories[currentMemory].image;
+    photo.src = memories[currentMemory][0];
 
     caption.textContent =
-        memories[currentMemory].text;
+        memories[currentMemory][1];
 
     counter.textContent =
         (currentMemory + 1) +
         " / " +
         memories.length;
-
 }
 
 
 /* =========================================
-   NEXT PHOTO
+   NEXT MEMORY
 ========================================= */
 
 function nextMemory() {
 
-    if (
-        currentMemory <
-        memories.length - 1
-    ) {
+    if (currentMemory >= memories.length - 1) {
 
-        currentMemory++;
-
-        updateMemory("next");
+        return;
 
     }
 
+    currentMemory++;
+
+    updateMemory("next");
 }
 
 
 /* =========================================
-   PREVIOUS PHOTO
+   PREVIOUS MEMORY
 ========================================= */
 
 function previousMemory() {
 
-    if (currentMemory > 0) {
+    if (currentMemory <= 0) {
 
-        currentMemory--;
-
-        updateMemory("prev");
+        return;
 
     }
 
+    currentMemory--;
+
+    updateMemory("prev");
+}
+
+
+/* =========================================
+   SWIPE
+========================================= */
+
+function setupSwipe() {
+
+    const page =
+        document.getElementById("bookPage");
+
+    if (!page) return;
+
+    let startX = 0;
+
+    page.addEventListener("touchstart", function(event) {
+
+        startX =
+            event.changedTouches[0].screenX;
+
+    }, { passive: true });
+
+
+    page.addEventListener("touchend", function(event) {
+
+        const endX =
+            event.changedTouches[0].screenX;
+
+        const difference =
+            startX - endX;
+
+        if (difference > 50) {
+
+            nextMemory();
+
+        } else if (difference < -50) {
+
+            previousMemory();
+
+        }
+
+    }, { passive: true });
 }
 
 
@@ -473,24 +492,12 @@ function previousMemory() {
 
 function continueFromBook() {
 
-    const book =
-        document.getElementById("memoryBook");
-
-
-    if (book) {
-
-        book.classList.remove("active");
-        book.style.display = "none";
-
-    }
-
-
-    /* If we create screen5 later,
-       it will automatically open here. */
+    /* For now there is no Screen 5 yet.
+       When we create it, we will connect
+       it here. */
 
     const screen5 =
         document.getElementById("screen5");
-
 
     if (screen5) {
 
@@ -498,23 +505,22 @@ function continueFromBook() {
 
     } else {
 
-        /* For now return to screen 4 */
-
-        showScreen("screen4");
+        alert(
+            "Next chapter is coming ❤️"
+        );
 
     }
-
 }
 
 
 /* =========================================
-   PRELOAD ALL PHOTOS
+   PRELOAD PHOTOS
 ========================================= */
 
 memories.forEach(function(memory) {
 
-    const img = new Image();
+    const image = new Image();
 
-    img.src = memory.image;
+    image.src = memory[0];
 
 });
