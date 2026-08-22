@@ -367,3 +367,56 @@ if (memories.length > 0) {
         `1 / ${memories.length}`;
 
 }
+
+/* =========================
+   OPEN PHOTO BOOK
+========================= */
+
+function openMemoryBook() {
+
+    // Hide all normal screens
+    document.querySelectorAll(".screen").forEach(function(screen) {
+        screen.style.display = "none";
+    });
+
+    // Find the photo book
+    const book = document.getElementById("memoryBook");
+
+    // Open the photo book
+    if (book) {
+        book.classList.add("active");
+    }
+
+    // Tell CSS that the book is open
+    document.body.classList.add("book-open");
+}
+
+
+/* =========================
+   CLOSE PHOTO BOOK
+========================= */
+
+function continueFromBook() {
+
+    // Close the book
+    const book = document.getElementById("memoryBook");
+
+    if (book) {
+        book.classList.remove("active");
+    }
+
+    // Remove book mode
+    document.body.classList.remove("book-open");
+
+    // Find the next chapter
+    const nextScreen = document.getElementById("next-screen");
+
+    if (nextScreen) {
+
+        document.querySelectorAll(".screen").forEach(function(screen) {
+            screen.style.display = "none";
+        });
+
+        nextScreen.style.display = "flex";
+    }
+}
