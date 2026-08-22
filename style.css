@@ -51,12 +51,7 @@ body {
 
     overflow-y: auto;
 
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(255, 30, 90, .12),
-            #050505 65%
-        );
+background: transparent;
 }
 
 
