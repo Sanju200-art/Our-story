@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Our Story ❤️</title>
 
@@ -13,14 +12,17 @@
 
 <body>
 
-    <!-- MUSIC -->
+    <!-- =========================
+         MUSIC
+    ========================== -->
+
     <audio id="music" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
 
     <!-- =========================
-         BUBBLES
+         FLOATING HEARTS
     ========================== -->
 
     <div class="hearts-background">
@@ -39,9 +41,9 @@
     </div>
 
 
-
     <!-- =========================
          SCREEN 1
+         OPENING
     ========================== -->
 
     <section id="screen1" class="screen active">
@@ -79,10 +81,9 @@
     </section>
 
 
-
     <!-- =========================
          SCREEN 2
-         FIRST CHAPTER
+         OUR STORY BEGINS
     ========================== -->
 
     <section id="screen2" class="screen">
@@ -98,7 +99,7 @@
             </h2>
 
             <p class="chapter-text">
-                The day were it all started...
+                The day where it all started...
             </p>
 
             <div class="chapter-heart">
@@ -115,13 +116,13 @@
     </section>
 
 
-
     <!-- =========================
          SCREEN 3
-         FIRST DATE PHOTO
+         FIRST DATE
     ========================== -->
 
-    <section id="screen3" class="screen photo-screen">
+    <section id="screen3"
+             class="screen photo-screen">
 
         <div class="photo-content">
 
@@ -160,107 +161,137 @@
 
     </section>
 
-<!-- =========================
-     SCREEN 4
-     2 NOVEMBER
-========================= -->
 
-<section id="screen4" class="screen photo-screen">
+    <!-- =========================
+         SCREEN 4
+         2 NOVEMBER 2024
+    ========================== -->
 
-    <div class="photo-content">
+    <section id="screen4"
+             class="screen photo-screen">
 
-        <div class="memory-label">
-            ✨ ANOTHER BEAUTIFUL MEMORY ✨
+        <div class="photo-content">
+
+            <div class="memory-label">
+                ✨ ANOTHER BEAUTIFUL MEMORY ✨
+            </div>
+
+            <h3>
+                2 November 2024
+            </h3>
+
+            <div class="photo-frame">
+
+                <img src="2-nov-2024.jpg"
+                     alt="2 November 2024">
+
+            </div>
+
+            <div class="photo-story">
+
+                <p>
+                    Every picture has a moment behind it,
+                    and every moment became a part of us.
+                </p>
+
+            </div>
+
+            <button id="continue3"
+                    class="continue-button">
+                Continue →
+            </button>
+
         </div>
 
-        <h3>
-            2 November 2024
-        </h3>
+    </section>
 
-        <div class="photo-frame">
 
-            <img src="2-nov-2024.jpg"
-                 alt="2 November 2024">
+    <!-- =========================
+         SCREEN 5
+         OUR MEMORIES PHOTO BOOK
+    ========================== -->
 
+    <section id="memoryBook"
+             class="screen memory-book">
+
+        <div class="book-title">
+            💕 OUR MEMORIES 💕
         </div>
 
-        <div class="photo-story">
 
-            <p>
-                Every picture has a moment behind it,
-                and every moment became a part of us.
-            </p>
+        <!-- PHOTO BOOK -->
 
-        </div>
+        <div class="book">
 
-        <button id="continue3"
-                class="continue-button"
-                onclick="openMemoryBook()">
-            Continue →
-        </button>
+            <div id="bookPage"
+                 class="book-page">
 
-    </div>
+                <img id="memoryPhoto"
+                     src="memory1.jpg"
+                     alt="Our memory">
 
-</section>
+                <div id="photoCaption"
+                     class="photo-caption">
 
+                    Our beautiful memory ❤️
 
-<!-- =========================
-     PHOTO BOOK CHAPTER
-========================= -->
+                </div>
 
-<section id="memoryBook" class="memory-book">
-
-    <div class="book-title">
-        💕 OUR MEMORIES 💕
-    </div>
-
-    <div class="book">
-
-        <div id="bookPage" class="book-page">
-
-            <img id="memoryPhoto"
-                 src="memory1.jpg"
-                 alt="Our memory">
-
-            <div class="photo-caption"
-                 id="photoCaption">
-                Our beautiful memory ❤️
             </div>
 
         </div>
 
-    </div>
 
-    <div class="book-counter"
-         id="bookCounter">
-        1 / 1
-    </div>
+        <!-- PAGE NUMBER -->
 
-    <div class="book-buttons">
+        <div id="bookCounter"
+             class="book-counter">
 
-        <button onclick="previousMemory()">
-            ←
+            1 / 10
+
+        </div>
+
+
+        <!-- LEFT / RIGHT -->
+
+        <div class="book-buttons">
+
+            <button id="previousButton"
+                    type="button">
+                ←
+            </button>
+
+            <button id="nextButton"
+                    type="button">
+                →
+            </button>
+
+        </div>
+
+
+        <p class="swipe-text">
+            Swipe or tap the arrows to turn the pages ❤️
+        </p>
+
+
+        <!-- CONTINUE AFTER ALL MEMORIES -->
+
+        <button id="bookContinue"
+                class="continue-btn"
+                type="button">
+
+            Continue →
+
         </button>
 
-        <button onclick="nextMemory()">
-            →
-        </button>
-
-    </div>
-
-    <p class="swipe-text">
-        Swipe or tap the arrows to turn the pages ❤️
-    </p>
-
-    <button class="continue-btn"
-            onclick="continueFromBook()">
-        Continue →
-    </button>
-
-</section>
+    </section>
 
 
-<script src="script.js"></script>
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
 
 </body>
 </html>
