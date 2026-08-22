@@ -188,29 +188,53 @@ const memories = [
 
     {
         image: "memory1.jpg",
-        text: "The beginning of another beautiful memory ❤️"
+        text: "13 Oct 2024 - 2nd Date 🥰"
     },
 
     {
         image: "memory2.jpg",
-        text: "Another moment I will always remember ❤️"
+        text: "3 Nov 2024 -Private date 😘"
     },
 
     {
         image: "memory3.jpg",
-        text: "Every picture has a story behind it..."
+        text: "18 Nov 2024 -Church time 😇"
     },
 
     {
         image: "memory4.jpg",
-        text: "And every story became a part of us ❤️"
+        text: "22 Dec 2024 -First christmas Together😚"
     },
 
     {
         image: "memory5.jpg",
-        text: "More memories, more reasons to smile ❤️"
+        text: "25 Dec 2024 -Holiday Special 🤗"
     }
 
+    {
+        image: "memory6.jpg",
+        text: "19 Jan 2025 -New Year Chapter 🥳"
+    },
+
+    {
+        image: "memory7.jpg",
+        text: "1 Mar 2025 -Jebel Jais Moments 🤩"
+    },
+
+    {
+        image: "memory8.jpg",
+        text: "31 Mar 2025 -Global Village Special 💝"
+    },
+
+    {
+        image: "memory9.jpg",
+        text: "18 May 2025 -Gathering Special 😊"
+    },
+
+    {
+        image: "memory10.jpg",
+        text: "16 Jun 2025 -That Last Touch of her 🥺"
+    }
 ];
 
 let currentMemory = 0;
