@@ -93,7 +93,6 @@ continueButton.addEventListener("click", function(){
 const nextChapterButton =
     document.getElementById("nextChapterButton");
 
-
 const chapter2november =
     document.getElementById("chapter2november");
 
@@ -102,11 +101,11 @@ nextChapterButton.addEventListener("click", function(){
 
     chapter8october.style.display = "none";
 
-    chapter2november.style.display = "block";
+    chapter2november.style.display = "flex";
 
-    chapter2november.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
     });
 
 });
