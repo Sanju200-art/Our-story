@@ -852,3 +852,36 @@ h1 span {
 
     box-shadow: 0 5px 20px rgba(255,0,100,.4);
 }
+
+/* =========================
+   PHOTO BOOK
+========================= */
+
+.memory-book {
+    display: none;
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    box-sizing: border-box;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 9999;
+}
+
+/* ONLY SHOW WHEN OPENED */
+.memory-book.active {
+    display: flex;
+}
+
+/* Hide the normal app screens while book is open */
+body.book-open .screen {
+    display: none !important;
+}
