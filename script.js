@@ -94,9 +94,20 @@ const nextChapterButton =
     document.getElementById("nextChapterButton");
 
 
+const chapter2november =
+    document.getElementById("chapter2november");
+
+
 nextChapterButton.addEventListener("click", function(){
 
-    alert("Next scene ❤️");
+    chapter8october.style.display = "none";
+
+    chapter2november.style.display = "block";
+
+    chapter2november.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
 
 });
 
