@@ -1,6 +1,6 @@
 /* =========================================
    OUR STORY ❤️
-   COMPLETE SCRIPT.JS
+   COMPLETE SCRIPT
 ========================================= */
 
 
@@ -8,183 +8,174 @@
    GET ELEMENTS
 ========================================= */
 
-const startButton =
-    document.getElementById("startButton");
-
-const opening =
-    document.querySelector(".opening");
-
-const firstStory =
-    document.getElementById("firstStory");
-
 const music =
-    document.getElementById("storyMusic");
+    document.getElementById("music");
 
 const musicButton =
     document.getElementById("musicButton");
 
-const continueButton =
-    document.getElementById("continueButton");
+const readyButton =
+    document.getElementById("readyButton");
+
+const continue1 =
+    document.getElementById("continue1");
+
+const continue2 =
+    document.getElementById("continue2");
+
+const continue3 =
+    document.getElementById("continue3");
+
+
+const screen1 =
+    document.getElementById("screen1");
+
+const screen2 =
+    document.getElementById("screen2");
+
+const screen3 =
+    document.getElementById("screen3");
+
+const screen4 =
+    document.getElementById("screen4");
+
+const screen5 =
+    document.getElementById("screen5");
 
 
 /* =========================================
-   START STORY
+   CHANGE SCREEN
 ========================================= */
 
-startButton.addEventListener("click", function(){
+function showScreen(screen) {
 
-    /* Hide opening screen */
+    document
+        .querySelectorAll(".screen")
+        .forEach(function(item) {
 
-    opening.style.display = "none";
-
-
-    /* Show first story screen */
-
-    firstStory.style.display = "flex";
-
-
-    /* Move automatically */
-
-    firstStory.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-
-});
-
-
-/* =========================================
-   MUSIC BUTTON
-========================================= */
-
-musicButton.addEventListener("click", function(){
-
-    music.volume = 0.7;
-
-    music.play()
-        .then(function(){
-
-            musicButton.innerHTML =
-                "🎵 Music Playing ❤️";
-
-        })
-        .catch(function(error){
-
-            console.log(
-                "Music could not start:",
-                error
-            );
+            item.classList.remove("active");
 
         });
 
-});
 
+    screen.classList.add("active");
 
-/* =========================================
-   CONTINUE BUTTON
-========================================= */
-
-continueButton.addEventListener("click", function(){
-
-    alert("Next chapter ❤️");
-
-});
-
-const nextChapterButton =
-    document.getElementById("nextChapterButton");
-
-const chapter2november =
-    document.getElementById("chapter2november");
-
-
-nextChapterButton.addEventListener("click", function(){
-
-    chapter8october.style.display = "none";
-
-    chapter2november.style.display = "flex";
 
     window.scrollTo({
         top: 0,
-        behavior: "smooth"
+        behavior: "instant"
     });
-
-});
-
-/* =========================================
-   FLOATING HEART BUBBLES
-========================================= */
-
-function createHeartBubble(){
-
-    const bubble =
-        document.createElement("div");
-
-
-    bubble.className =
-        "heart-bubble";
-
-
-    /* Random heart */
-
-    bubble.innerHTML =
-        Math.random() > 0.5
-        ? "♡"
-        : "♥";
-
-
-    /* Random horizontal position */
-
-    bubble.style.left =
-        Math.random() * 100 + "vw";
-
-
-    /* Random size */
-
-    bubble.style.fontSize =
-        (12 + Math.random() * 22) + "px";
-
-
-    /* Side-to-side movement */
-
-    bubble.style.setProperty(
-        "--side",
-        (Math.random() * 100 - 50) + "px"
-    );
-
-
-    /* Random speed */
-
-    const duration =
-        5 + Math.random() * 5;
-
-
-    bubble.style.animationDuration =
-        duration + "s";
-
-
-    /* Add to page */
-
-    document
-        .getElementById("heartBubbles")
-        .appendChild(bubble);
-
-
-    /* Remove after animation */
-
-    setTimeout(function(){
-
-        bubble.remove();
-
-    }, duration * 1000);
 
 }
 
 
 /* =========================================
-   CREATE HEARTS CONTINUOUSLY
+   MUSIC
 ========================================= */
 
-setInterval(
-    createHeartBubble,
-    450
+let musicStarted = false;
+
+
+function startMusic() {
+
+    music.play()
+        .then(function() {
+
+            musicStarted = true;
+
+            musicButton.innerHTML =
+                "🎵 Music Playing ❤️";
+
+        })
+        .catch(function() {
+
+            musicButton.innerHTML =
+                "🎵 Tap Again for Music";
+
+        });
+
+}
+
+
+/* MUSIC BUTTON */
+
+musicButton.addEventListener(
+    "click",
+    function() {
+
+        startMusic();
+
+    }
+);
+
+
+/* =========================================
+   ARE YOU READY
+========================================= */
+
+readyButton.addEventListener(
+    "click",
+    function() {
+
+        /*
+           The browser allows music
+           after this user interaction.
+        */
+
+        startMusic();
+
+        showScreen(screen2);
+
+    }
+);
+
+
+/* =========================================
+   8 OCTOBER
+   → FIRST DATE
+========================================= */
+
+continue1.addEventListener(
+    "click",
+    function() {
+
+        startMusic();
+
+        showScreen(screen3);
+
+    }
+);
+
+
+/* =========================================
+   FIRST DATE
+   → 2 NOVEMBER
+========================================= */
+
+continue2.addEventListener(
+    "click",
+    function() {
+
+        startMusic();
+
+        showScreen(screen4);
+
+    }
+);
+
+
+/* =========================================
+   2 NOVEMBER
+   → NEXT PHASE
+========================================= */
+
+continue3.addEventListener(
+    "click",
+    function() {
+
+        startMusic();
+
+        showScreen(screen5);
+
+    }
 );
