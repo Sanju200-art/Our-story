@@ -1,6 +1,6 @@
-/* =====================================================
+/* =========================================
    RESET
-===================================================== */
+========================================= */
 
 * {
     box-sizing: border-box;
@@ -8,1372 +8,1340 @@
     padding: 0;
 }
 
+
 html,
 body {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    min-height: 100%;
 }
+
 
 body {
-    font-family: Georgia, "Times New Roman", serif;
+
     background: #000;
+
     color: white;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    overflow-x: hidden;
+
 }
 
 
-/* =====================================================
+/* =========================================
    COMMON SCREEN
-===================================================== */
+========================================= */
 
-.screen {
-    position: fixed;
-    inset: 0;
+.screen,
+.memory-book {
+
+    position: relative;
+
     width: 100%;
-    height: 100svh;
+
+    min-height: 100dvh;
 
     display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
     overflow: hidden;
 
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.60),
-            rgba(0, 0, 0, 0.72)
-        ),
-        url("background.jpg") center / cover no-repeat;
 }
 
-.screen.active {
+
+/* ACTIVE SCREEN */
+
+.screen.active,
+.memory-book.active {
+
     display: flex;
+
 }
 
 
-/* =====================================================
-   FLOATING HEART BACKGROUND
-===================================================== */
+/* =========================================
+   BACKGROUND
+========================================= */
+
+/*
+   YOUR COMMON BACKGROUND IMAGE
+
+   Keep your background image outside
+   the HTML if you are using CSS.
+
+   Change this filename if needed.
+*/
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -5;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.58),
+            rgba(0,0,0,0.72)
+        ),
+        url("background.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+}
+
+
+/* =========================================
+   HEART BACKGROUND
+========================================= */
 
 .hearts-background {
+
     position: fixed;
+
     inset: 0;
-    z-index: 1;
 
     pointer-events: none;
+
     overflow: hidden;
+
+    z-index: -1;
+
 }
+
 
 .hearts-background span {
-    position: absolute;
-    bottom: -60px;
 
-    color: rgba(255, 105, 180, 0.45);
+    position: absolute;
+
+    color: rgba(255,105,180,0.35);
+
     font-size: 28px;
 
-    animation: floatHeart linear infinite;
+    animation: floatHeart 8s linear infinite;
+
 }
+
 
 .hearts-background span:nth-child(1) {
     left: 5%;
-    animation-duration: 10s;
+    top: 20%;
 }
 
 .hearts-background span:nth-child(2) {
-    left: 15%;
-    animation-duration: 13s;
+    left: 80%;
+    top: 15%;
+    animation-delay: 1s;
 }
 
 .hearts-background span:nth-child(3) {
-    left: 28%;
-    animation-duration: 9s;
+    left: 20%;
+    top: 60%;
+    animation-delay: 2s;
 }
 
 .hearts-background span:nth-child(4) {
-    left: 40%;
-    animation-duration: 12s;
+    left: 90%;
+    top: 70%;
+    animation-delay: 3s;
 }
 
 .hearts-background span:nth-child(5) {
-    left: 52%;
-    animation-duration: 11s;
+    left: 45%;
+    top: 30%;
+    animation-delay: 1.5s;
 }
 
 .hearts-background span:nth-child(6) {
-    left: 65%;
-    animation-duration: 14s;
+    left: 70%;
+    top: 50%;
+    animation-delay: 4s;
 }
 
 .hearts-background span:nth-child(7) {
-    left: 75%;
-    animation-duration: 10s;
+    left: 10%;
+    top: 80%;
+    animation-delay: 2.5s;
 }
 
 .hearts-background span:nth-child(8) {
-    left: 84%;
-    animation-duration: 12s;
+    left: 60%;
+    top: 85%;
+    animation-delay: 3.5s;
 }
 
 .hearts-background span:nth-child(9) {
-    left: 92%;
-    animation-duration: 15s;
+    left: 35%;
+    top: 10%;
+    animation-delay: 5s;
 }
 
 .hearts-background span:nth-child(10) {
-    left: 35%;
-    animation-duration: 16s;
+    left: 85%;
+    top: 90%;
+    animation-delay: 4.5s;
 }
 
+
 @keyframes floatHeart {
+
     0% {
-        transform: translateY(0) scale(0.7);
-        opacity: 0;
+        transform: translateY(30px);
+        opacity: 0.1;
     }
 
-    15% {
-        opacity: 0.8;
+    50% {
+        opacity: 0.5;
     }
 
     100% {
-        transform: translateY(-110vh) scale(1.3);
-        opacity: 0;
+        transform: translateY(-40px);
+        opacity: 0.1;
     }
+
 }
 
 
-/* =====================================================
+/* =========================================
    SCREEN 1
-===================================================== */
+========================================= */
 
 .opening-content {
-    position: relative;
-    z-index: 5;
 
-    width: 100%;
-    height: 100%;
+    width: min(90%, 600px);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 30px 20px;
 
-    text-align: center;
-    padding: 25px;
 }
+
 
 .main-heart {
-    font-size: 70px;
-    margin-bottom: 15px;
 
-    animation: heartbeat 1.4s infinite;
+    font-size: 65px;
+
+    animation: heartbeat 1.5s infinite;
+
 }
 
+
 @keyframes heartbeat {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
 
     50% {
         transform: scale(1.15);
     }
+
 }
+
 
 .small-heading {
-    color: #ffd0e5;
-    letter-spacing: 3px;
-    font-size: 14px;
-    margin-bottom: 15px;
+
+    margin-top: 20px;
+
+    font-size: 15px;
+
+    letter-spacing: 4px;
+
+    color: #ff8bc7;
+
 }
+
 
 h1 {
-    font-size: clamp(40px, 12vw, 70px);
-    color: white;
+
+    margin-top: 18px;
+
+    font-size: clamp(40px, 11vw, 75px);
+
 }
+
 
 h1 span {
-    color: #ff6fae;
+
+    color: #ff69b4;
+
 }
+
 
 .tagline {
-    font-size: 20px;
+
     margin: 15px 0 30px;
-    color: #eee;
+
+    font-size: 20px;
+
+    font-style: italic;
+
 }
 
-.big-button,
-.continue-button,
-.continue-btn {
-    border: none;
-    cursor: pointer;
 
-    background: linear-gradient(
-        135deg,
-        #ff0a68,
-        #d90055
-    );
+.big-button,
+.continue-button {
+
+    display: block;
+
+    width: min(80vw, 330px);
+
+    margin: 15px auto;
+
+    padding: 15px 20px;
+
+    border: none;
+
+    border-radius: 40px;
+
+    background: #ec006c;
 
     color: white;
 
     font-family: Georgia, serif;
+
+    font-size: 20px;
+
     font-weight: bold;
 
-    border-radius: 50px;
+    cursor: pointer;
 
     box-shadow:
-        0 8px 25px rgba(255, 0, 100, 0.45);
+        0 0 15px rgba(255,20,147,0.7);
 
-    transition: transform 0.2s;
 }
+
 
 .big-button:active,
 .continue-button:active,
 .continue-btn:active {
+
     transform: scale(0.95);
-}
 
-.music-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
-.ready-button {
-    padding: 17px 35px;
-    font-size: 20px;
 }
 
 
-/* =====================================================
+/* =========================================
    SCREEN 2
-===================================================== */
+========================================= */
 
 .chapter-content {
-    position: relative;
-    z-index: 5;
 
-    width: 100%;
-    height: 100%;
+    width: min(90%, 650px);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-    padding: 25px;
 }
 
-.chapter-label {
+
+.chapter-label,
+.memory-label {
+
+    color: #ff8bc7;
+
+    letter-spacing: 4px;
+
     font-size: 18px;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
+
 }
+
 
 .chapter-content h2 {
+
+    margin: 25px 0;
+
+    color: #ff69b4;
+
     font-size: clamp(42px, 11vw, 70px);
-    color: #ff6fae;
-    margin-bottom: 30px;
+
 }
+
 
 .chapter-text {
+
     font-size: 24px;
-    max-width: 700px;
-    line-height: 1.5;
+
 }
+
 
 .chapter-heart {
-    font-size: 55px;
-    margin: 25px 0;
+
+    margin: 25px;
+
+    font-size: 50px;
+
 }
 
-.continue-button {
-    padding: 16px 38px;
-    font-size: 20px;
-}
 
-
-/* =====================================================
+/* =========================================
    PHOTO SCREENS
-===================================================== */
-
-.photo-screen {
-    align-items: center;
-    justify-content: center;
-}
+========================================= */
 
 .photo-content {
-    position: relative;
-    z-index: 5;
 
-    width: min(92%, 700px);
-    height: 100%;
+    width: min(92%, 650px);
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    padding: 20px 10px;
 
-    text-align: center;
-
-    padding: 20px 15px;
 }
 
-.memory-label {
-    color: #ff8cbd;
-    font-size: clamp(16px, 4vw, 24px);
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-}
 
 .photo-content h3 {
-    font-size: clamp(32px, 9vw, 55px);
-    margin-bottom: 15px;
-    color: white;
+
+    margin: 15px 0;
+
+    font-size: clamp(35px, 9vw, 60px);
+
 }
 
-
-/* =====================================================
-   NORMAL PHOTO FRAME
-===================================================== */
 
 .photo-frame {
-    width: min(88vw, 600px);
-    height: min(48vh, 500px);
 
-    border-radius: 18px;
+    width: 100%;
+
+    max-height: 62vh;
+
     overflow: hidden;
 
-    border: 3px solid rgba(255, 105, 180, 0.35);
+    border-radius: 20px;
+
+    background: #050505;
+
+    border: 2px solid rgba(255,20,147,0.5);
 
     box-shadow:
-        0 0 30px rgba(255, 0, 120, 0.35);
+        0 0 20px rgba(255,20,147,0.4);
 
-    background: #111;
-
-    flex-shrink: 1;
 }
+
 
 .photo-frame img {
-    width: 100%;
-    height: 100%;
 
-    object-fit: cover;
     display: block;
+
+    width: 100%;
+
+    max-height: 62vh;
+
+    object-fit: contain;
+
+    object-position: center;
+
 }
+
 
 .photo-story {
-    max-width: 650px;
 
-    margin-top: 15px;
+    margin: 20px auto;
 
-    font-size: clamp(15px, 4vw, 21px);
-    line-height: 1.45;
+    width: min(90%, 600px);
 
-    color: #fff;
 }
+
 
 .photo-story p {
-    margin-bottom: 8px;
+
+    margin: 12px 0;
+
+    font-size: clamp(17px, 4.5vw, 23px);
+
+    line-height: 1.5;
+
+    font-style: italic;
+
 }
 
-.photo-screen .continue-button {
-    margin-top: 12px;
-    flex-shrink: 0;
-}
 
-/* =====================================================
-   MEMORY BOOK — FINAL PHONE LAYOUT
-===================================================== */
+/* =========================================
+   MEMORY BOOK
+========================================= */
 
 .memory-book {
-    position: fixed !important;
-    inset: 0 !important;
 
-    width: 100vw !important;
-    height: 100dvh !important;
-
-    display: none;
     flex-direction: column;
 
-    align-items: center;
     justify-content: flex-start;
 
-    overflow: hidden !important;
+    padding: 18px 12px 22px;
 
-    padding: 10px 12px 12px !important;
-
-    z-index: 999 !important;
-
-    background:
-        linear-gradient(
-            rgba(0,0,0,0.55),
-            rgba(0,0,0,0.78)
-        ),
-        url("background.jpg") center center / cover no-repeat;
-}
-
-.memory-book.active {
-    display: flex !important;
 }
 
 
-/* =====================================================
-   TITLE
-===================================================== */
+/* TITLE */
 
-.memory-book .book-title {
-    width: 100%;
-
-    height: 8vh;
-    min-height: 45px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.book-title {
 
     flex-shrink: 0;
 
-    font-size: clamp(22px, 7vw, 38px);
+    margin-bottom: 12px;
 
-    color: #ff7eb5;
+    color: #ff69b4;
+
+    font-size: clamp(28px, 8vw, 46px);
 
     font-weight: bold;
 
-    text-align: center;
+    text-shadow:
+        0 0 8px #ff1493,
+        0 0 18px #ff1493;
 
-    margin: 0 !important;
 }
 
 
-/* =====================================================
-   BOOK CONTAINER
-===================================================== */
+/* =========================================
+   BOOK FRAME
+========================================= */
 
-.memory-book .book {
-    width: 86vw !important;
-    max-width: 430px !important;
+.book {
 
-    height: 55vh !important;
-    max-height: 500px !important;
+    width: min(88vw, 500px);
 
-    min-height: 0 !important;
+    /*
+       This is deliberately limited so
+       Continue remains visible.
+    */
 
-    flex-shrink: 0 !important;
+    height: min(54vh, 560px);
 
-    margin: 0 auto !important;
+    min-height: 300px;
+
+    flex-shrink: 1;
+
+    perspective: 1200px;
+
+}
+
+
+/* PAGE */
+
+.book-page {
 
     position: relative;
 
-    perspective: 1200px;
-}
+    width: 100%;
 
+    height: 100%;
 
-/* =====================================================
-   BOOK PAGE
-===================================================== */
+    overflow: hidden;
 
-.memory-book .book-page {
-    position: relative !important;
-
-    width: 100% !important;
-    height: 100% !important;
-
-    min-height: 0 !important;
-
-    overflow: hidden !important;
-
-    border-radius: 16px;
+    border-radius: 22px;
 
     background: #050505;
 
-    border: 2px solid rgba(255,105,180,0.45);
+    border: 3px solid #a50060;
 
     box-shadow:
-        0 0 25px rgba(255,0,120,0.35);
+        0 0 15px #ff1493,
+        0 0 30px rgba(255,20,147,0.4);
 
-    display: block !important;
+    touch-action: pan-y;
+
 }
 
 
-/* =====================================================
-   MEMORY IMAGE
-===================================================== */
+/* =========================================
+   MEMORY PHOTO
+========================================= */
 
-.memory-book #memoryPhoto {
+.book-page img {
 
-    position: absolute !important;
+    position: absolute;
 
-    top: 0 !important;
-    left: 0 !important;
+    top: 0;
+    left: 0;
 
-    width: 100% !important;
-    height: 100% !important;
+    width: 100%;
+    height: 100%;
 
-    max-width: none !important;
-    max-height: none !important;
+    /*
+       IMPORTANT:
+       Every image stays completely
+       inside the same frame.
+    */
 
-    object-fit: contain !important;
+    object-fit: cover;
 
-    background: #050505;
+    object-position: center;
 
     display: block;
 
-    margin: 0 !important;
-
-    padding: 0 !important;
 }
 
 
-/* =====================================================
-   CAPTION
-===================================================== */
+/* =========================================
+   DARK BOTTOM FOR CAPTION
+========================================= */
 
-.memory-book .photo-caption {
+.book-page::after {
 
-    position: absolute !important;
+    content: "";
 
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
+    position: absolute;
 
-    width: 100% !important;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-    padding: 45px 12px 14px !important;
+    height: 32%;
+
+    pointer-events: none;
 
     background:
         linear-gradient(
-            transparent,
-            rgba(0,0,0,0.9)
+            to top,
+            rgba(0,0,0,0.95),
+            rgba(0,0,0,0)
         );
 
-    color: white;
+}
 
-    font-size: clamp(16px, 4.5vw, 23px);
 
-    line-height: 1.25;
+/* =========================================
+   CAPTION
+========================================= */
 
-    text-align: center;
+.photo-caption {
+
+    position: absolute;
+
+    left: 10px;
+    right: 10px;
+
+    bottom: 18px;
 
     z-index: 5;
-}
-
-
-/* =====================================================
-   COUNTER
-===================================================== */
-
-.memory-book .book-counter {
-
-    height: 7vh;
-    min-height: 38px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
-
-    margin: 0 !important;
-
-    padding: 5px 18px;
 
     color: white;
 
-    background: rgba(0,0,0,0.75);
+    font-size: clamp(18px, 5vw, 28px);
 
-    border-radius: 25px;
+    font-style: italic;
+
+    text-shadow:
+        0 2px 6px #000,
+        0 0 10px #000;
+
+}
+
+
+/* =========================================
+   PAGE FLIP
+========================================= */
+
+.book-page.page-changing {
+
+    animation: pageFlip 0.55s ease;
+
+}
+
+
+@keyframes pageFlip {
+
+    0% {
+
+        opacity: 0.5;
+
+        transform:
+            perspective(1200px)
+            rotateY(-15deg)
+            scale(0.98);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            perspective(1200px)
+            rotateY(0deg)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================
+   COUNTER
+========================================= */
+
+.book-counter {
+
+    flex-shrink: 0;
+
+    margin-top: 9px;
+
+    padding: 7px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(0,0,0,0.7);
+
+    color: white;
 
     font-size: 18px;
+
 }
 
 
-/* =====================================================
-   ARROWS
-===================================================== */
+/* =========================================
+   SWIPE MESSAGE
+========================================= */
 
-.memory-book .book-buttons {
-
-    height: 10vh;
-    min-height: 55px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 55px;
+.swipe-text {
 
     flex-shrink: 0;
 
-    margin: 0 !important;
-}
-
-
-.memory-book .book-buttons button {
-
-    width: 58px !important;
-    height: 58px !important;
-
-    min-width: 58px;
-    min-height: 58px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: #ff0068;
+    margin: 9px 0 11px;
 
     color: white;
 
-    font-size: 30px;
+    font-size: clamp(15px, 4vw, 20px);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-style: italic;
 
-    box-shadow:
-        0 5px 20px rgba(255,0,100,0.45);
 }
 
 
-/* =====================================================
-   SWIPE TEXT
-===================================================== */
+/* =========================================
+   ONLY CONTINUE BUTTON
+========================================= */
 
-.memory-book .swipe-text {
-
-    width: 100%;
-
-    height: 7vh;
-    min-height: 35px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.continue-btn {
 
     flex-shrink: 0;
 
-    margin: 0 !important;
+    width: min(72vw, 330px);
 
-    padding: 0 5px;
+    min-height: 52px;
 
-    color: white;
-
-    text-align: center;
-
-    font-size: clamp(13px, 3.8vw, 18px);
-}
-
-
-/* =====================================================
-   CONTINUE
-===================================================== */
-
-.memory-book .continue-btn {
-
-    width: min(78vw, 350px) !important;
-
-    height: 9vh !important;
-    max-height: 62px !important;
-
-    min-height: 48px !important;
-
-    flex-shrink: 0 !important;
-
-    margin: 0 !important;
-
-    padding: 0 !important;
+    padding: 10px 20px;
 
     border: none;
 
-    border-radius: 50px;
+    border-radius: 40px;
 
-    background: linear-gradient(
-        135deg,
-        #ff0068,
-        #d90055
-    );
+    background: #ec006c;
 
     color: white;
 
     font-family: Georgia, serif;
 
-    font-size: clamp(18px, 5vw, 25px);
+    font-size: 21px;
 
     font-weight: bold;
 
+    cursor: pointer;
+
     box-shadow:
-        0 7px 25px rgba(255,0,100,0.45);
+        0 0 15px rgba(255,20,147,0.7);
+
 }
 
 
-/* =====================================================
-   BOOK FLIP
-===================================================== */
+/* =========================================
+   MOBILE
+========================================= */
 
-.memory-book .book-page.flip-next {
+@media (max-width: 600px) {
 
-    animation:
-        pageFlipNext 0.65s ease;
+    .memory-book {
+
+        padding:
+            14px
+            10px
+            18px;
+
+    }
+
+
+    .book-title {
+
+        font-size: 29px;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .book {
+
+        width: 88vw;
+
+        height: 53vh;
+
+        min-height: 280px;
+
+        max-height: 500px;
+
+    }
+
+
+    .photo-caption {
+
+        bottom: 16px;
+
+        font-size: 19px;
+
+    }
+
+
+    .book-counter {
+
+        font-size: 17px;
+
+        margin-top: 7px;
+
+    }
+
+
+    .swipe-text {
+
+        margin:
+            7px 0
+            9px;
+
+        font-size: 15px;
+
+    }
+
+
+    .continue-btn {
+
+        width: 72vw;
+
+        min-height: 50px;
+
+        font-size: 20px;
+
+    }
+
 }
 
-.memory-book .book-page.flip-prev {
 
-    animation:
-        pageFlipPrev 0.65s ease;
-}
-
-
-@keyframes pageFlipNext {
-
-    0% {
-        transform:
-            perspective(1200px)
-            rotateY(0deg);
-    }
-
-    45% {
-        transform:
-            perspective(1200px)
-            rotateY(-90deg);
-    }
-
-    100% {
-        transform:
-            perspective(1200px)
-            rotateY(0deg);
-    }
-}
-
-
-@keyframes pageFlipPrev {
-
-    0% {
-        transform:
-            perspective(1200px)
-            rotateY(0deg);
-    }
-
-    45% {
-        transform:
-            perspective(1200px)
-            rotateY(90deg);
-    }
-
-    100% {
-        transform:
-            perspective(1200px)
-            rotateY(0deg);
-    }
-}
-
-
-/* =====================================================
-   SMALL PHONES
-===================================================== */
+/* =========================================
+   SHORT MOBILE SCREENS
+========================================= */
 
 @media (max-height: 700px) {
 
     .memory-book {
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+
+        padding-top: 8px;
+
+        padding-bottom: 12px;
+
     }
 
-    .memory-book .book-title {
-        height: 7vh;
-        font-size: 22px;
+
+    .book-title {
+
+        font-size: 25px;
+
+        margin-bottom: 5px;
+
     }
 
-    .memory-book .book {
-        height: 50vh !important;
+
+    .book {
+
+        height: 48vh;
+
+        min-height: 250px;
+
     }
 
-    .memory-book .book-counter {
-        height: 6vh;
-        font-size: 16px;
+
+    .swipe-text {
+
+        margin:
+            5px 0
+            7px;
+
+        font-size: 14px;
+
     }
 
-    .memory-book .book-buttons {
-        height: 9vh;
-    }
 
-    .memory-book .book-buttons button {
-        width: 50px !important;
-        height: 50px !important;
-        min-width: 50px;
-        min-height: 50px;
-    }
+    .continue-btn {
 
-    .memory-book .swipe-text {
-        height: 6vh;
-        font-size: 13px;
-    }
+        min-height: 46px;
 
-    .memory-book .continue-btn {
-        height: 8vh !important;
-        max-height: 55px !important;
-    }
-}
-
-
-/* =====================================================
-   VERY SMALL SCREEN
-===================================================== */
-
-@media (max-height: 600px) {
-
-    .memory-book .book-title {
-        height: 6vh;
-        font-size: 20px;
-    }
-
-    .memory-book .book {
-        height: 45vh !important;
-    }
-
-    .memory-book .book-buttons {
-        height: 8vh;
-    }
-
-    .memory-book .book-buttons button {
-        width: 45px !important;
-        height: 45px !important;
-        min-width: 45px;
-        min-height: 45px;
-        font-size: 24px;
-    }
-
-    .memory-book .swipe-text {
-        height: 5vh;
-        font-size: 12px;
-    }
-
-    .memory-book .continue-btn {
-        height: 8vh !important;
-        max-height: 48px !important;
         font-size: 18px;
-    }
-}
-    
-/* =========================================================
-   🧩 OUR STORY — LARGE SQUARE PUZZLE
-   ADD THIS AT THE VERY BOTTOM OF style.css
-========================================================= */
 
-.puzzle-screen {
-    min-height: 100vh;
+    }
+
+}
+/* =========================================
+   PUZZLE CHAPTER
+========================================= */
+
+.puzzle-chapter {
+
+    position: relative;
+
     width: 100%;
-    padding: 35px 15px 70px;
+
+    min-height: 100dvh;
+
+    padding: 20px 12px 30px;
+
+    display: none;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
 
     text-align: center;
 
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.72),
-            rgba(0, 0, 0, 0.88)
-        ),
-        url("memory10.jpg");
+    overflow: hidden;
 
-    background-size: cover;
-    background-position: center;
-
-    overflow-x: hidden;
 }
 
 
-/* =========================================================
-   PUZZLE HEADER
-========================================================= */
+/* SHOW PUZZLE */
 
-.puzzle-header {
-    position: relative;
-    z-index: 5;
+.puzzle-chapter.active {
 
-    margin-bottom: 25px;
+    display: flex;
+
 }
+
+
+/* TITLE */
 
 .puzzle-title {
-    color: #ff73c7;
 
-    font-size: clamp(
-        30px,
-        8vw,
-        50px
-    );
+    margin-top: 10px;
+
+    color: #ff69b4;
+
+    font-size: clamp(27px, 7vw, 45px);
 
     font-weight: bold;
 
-    line-height: 1.1;
-
     text-shadow:
-        0 0 5px #ff1493,
-        0 0 15px #ff1493,
-        0 0 30px #ff1493;
+        0 0 8px #ff1493,
+        0 0 18px #ff1493;
+
 }
 
-.puzzle-title span {
-    display: inline-block;
 
-    animation:
-        puzzleHeartBeat 1.3s infinite;
-}
+.puzzle-intro {
 
-@keyframes puzzleHeartBeat {
+    width: min(90%, 500px);
 
-    0%,
-    100% {
-        transform: scale(1);
-    }
+    margin: 10px auto 16px;
 
-    50% {
-        transform: scale(1.18);
-    }
-}
-
-.puzzle-subtitle {
-    margin: 15px auto 0;
-
-    max-width: 600px;
-
-    color: white;
-
-    font-size: clamp(
-        17px,
-        4.5vw,
-        24px
-    );
+    font-size: clamp(17px, 4.5vw, 22px);
 
     font-style: italic;
 
     line-height: 1.4;
 
-    text-shadow:
-        0 2px 6px #000;
 }
 
 
-/* =========================================================
-   🧩 LARGE SQUARE BOARD
-========================================================= */
+/* =========================================
+   PUZZLE BOARD
+========================================= */
 
 .puzzle-board {
 
-    width: min(
-        90vw,
-        500px
-    );
+    width: min(88vw, 480px);
 
-    aspect-ratio: 1 / 1;
-
-    margin: 0 auto;
+    aspect-ratio: 3 / 2;
 
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
-    grid-template-rows:
-        repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    gap: 2px;
+
+    padding: 3px;
+
+    border-radius: 16px;
 
     overflow: hidden;
 
-    border:
-        4px solid #ff1493;
+    background: rgba(255,20,147,0.5);
 
-    border-radius: 22px;
-
-    background:
-        rgba(45, 0, 25, 0.8);
+    border: 3px solid #ff1493;
 
     box-shadow:
-        0 0 10px #ff1493,
-        0 0 25px #ff1493,
-        0 0 50px rgba(255, 20, 147, 0.55);
+        0 0 15px rgba(255,20,147,0.6);
 
-    position: relative;
-
-    z-index: 10;
 }
 
 
-/* =========================================================
-   PUZZLE TARGET SLOTS
-========================================================= */
+/* EMPTY SLOTS */
 
 .puzzle-slot {
 
     position: relative;
 
-    width: 100%;
-    height: 100%;
+    border: 1px dashed rgba(255,255,255,0.45);
 
-    border:
-        1px dashed
-        rgba(255, 150, 220, 0.55);
+    background: rgba(0,0,0,0.35);
 
-    background:
-        rgba(70, 0, 40, 0.35);
+    border-radius: 3px;
 
-    transition:
-        background 0.2s,
-        box-shadow 0.2s;
 }
 
 
-/* Correctly placed */
+/* =========================================
+   PUZZLE PIECES
+========================================= */
 
-.puzzle-slot.correct {
+.puzzle-pieces {
 
-    background:
-        rgba(255, 20, 147, 0.12);
+    width: min(90vw, 500px);
 
-    box-shadow:
-        inset 0 0 18px
-        rgba(255, 20, 147, 0.8);
-}
-
-
-/* =========================================================
-   INSTRUCTION
-========================================================= */
-
-.drag-text {
-
-    margin:
-        20px auto 18px;
-
-    color: white;
-
-    font-size:
-        clamp(
-            17px,
-            4.5vw,
-            23px
-        );
-
-    font-style: italic;
-
-    text-shadow:
-        0 2px 5px black;
-}
-
-
-/* =========================================================
-   PIECES AREA
-========================================================= */
-
-.pieces-container {
-
-    width: min(
-        94vw,
-        500px
-    );
-
-    margin: 0 auto;
+    margin-top: 18px;
 
     display: grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 10px;
-
-    position: relative;
-
-    z-index: 100;
-}
-
-
-/* =========================================================
-   INDIVIDUAL PUZZLE PIECE
-========================================================= */
-
-.puzzle-piece {
-
-    width: 100%;
-
-    aspect-ratio: 1 / 1;
-
-    border:
-        2px solid
-        rgba(255, 255, 255, 0.45);
-
-    border-radius: 12px;
-
-    background-image:
-        var(--piece-image);
-
-    background-size:
-        300% 300%;
-
-    background-position:
-        var(--piece-position);
-
-    background-repeat: no-repeat;
-
-    box-shadow:
-        0 0 8px
-        rgba(255, 20, 147, 0.65);
-
-    cursor: grab;
-
-    /*
-       VERY IMPORTANT FOR PHONE DRAGGING
-    */
+    gap: 8px;
 
     touch-action: none;
 
-    user-select: none;
-
-    -webkit-user-select: none;
-
-    -webkit-touch-callout: none;
-
-    transition:
-        transform 0.15s,
-        box-shadow 0.15s;
 }
 
 
-/* =========================================================
-   PIECE WHILE FINGER IS HOLDING IT
-========================================================= */
+/* EACH PIECE */
+
+.puzzle-piece {
+
+    aspect-ratio: 3 / 2;
+
+    border-radius: 8px;
+
+    border: 2px solid rgba(255,255,255,0.7);
+
+    background-image: url("puzzle-photo.jpg");
+
+    background-size: 300% 200%;
+
+    cursor: grab;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,0.45);
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+
+    touch-action: none;
+
+}
+
+
+/* PIECE POSITIONS */
+
+.puzzle-piece[data-position="0"] {
+    background-position: 0% 0%;
+}
+
+.puzzle-piece[data-position="1"] {
+    background-position: 50% 0%;
+}
+
+.puzzle-piece[data-position="2"] {
+    background-position: 100% 0%;
+}
+
+.puzzle-piece[data-position="3"] {
+    background-position: 0% 100%;
+}
+
+.puzzle-piece[data-position="4"] {
+    background-position: 50% 100%;
+}
+
+.puzzle-piece[data-position="5"] {
+    background-position: 100% 100%;
+}
+
+
+/* DRAGGING */
 
 .puzzle-piece.dragging {
 
-    transform:
-        scale(1.08);
+    opacity: 0.65;
 
-    box-shadow:
-        0 0 15px #ff1493,
-        0 0 35px #ff1493;
+    transform: scale(1.08);
 
-    z-index: 9999;
+    z-index: 20;
 
-    cursor: grabbing;
-
-    opacity: 0.95;
 }
 
 
-/* =========================================================
-   PIECE INSIDE CORRECT BOARD SLOT
-========================================================= */
+/* CORRECT PIECE */
 
-.puzzle-slot .puzzle-piece {
+.puzzle-piece.correct {
 
-    width: 100%;
-    height: 100%;
+    opacity: 0;
 
-    border: none;
+    pointer-events: none;
 
-    border-radius: 0;
-
-    box-shadow: none;
-
-    cursor: default;
-
-    transform: none;
 }
 
 
-/* =========================================================
-   SUCCESS MESSAGE
-========================================================= */
+/* =========================================
+   HINT
+========================================= */
 
-.success-message {
+.puzzle-hint {
+
+    margin: 12px 0 0;
+
+    font-size: 16px;
+
+    color: #ffd2e9;
+
+    font-style: italic;
+
+}
+
+
+/* =========================================
+   COMPLETION MESSAGE
+========================================= */
+
+.puzzle-message {
 
     display: none;
 
-    max-width: 500px;
+    width: min(90%, 550px);
 
-    margin:
-        30px auto 10px;
+    margin: 15px auto;
 
-    animation:
-        puzzleSuccess 0.8s ease;
+    color: #ffb6dc;
+
+    font-size: clamp(20px, 5vw, 29px);
+
+    font-style: italic;
+
+    line-height: 1.4;
+
+    animation: puzzleReveal 1s ease;
+
 }
 
-.success-message.show {
+
+.puzzle-message.show {
+
     display: block;
+
 }
 
-.success-heart {
 
-    font-size: 65px;
+@keyframes puzzleReveal {
 
-    animation:
-        puzzleHeartBeat 1s infinite;
+    0% {
 
-    filter:
-        drop-shadow(
-            0 0 15px #ff1493
-        );
-}
-
-.success-message h2 {
-
-    margin-top: 10px;
-
-    color: #ff73c7;
-
-    font-size: 28px;
-
-    text-shadow:
-        0 0 15px #ff1493;
-}
-
-.success-message p {
-
-    margin-top: 10px;
-
-    color: white;
-
-    font-size: 19px;
-
-    line-height: 1.6;
-}
-
-@keyframes puzzleSuccess {
-
-    from {
         opacity: 0;
-        transform: scale(0.7);
+
+        transform: scale(0.8);
+
     }
 
-    to {
+    100% {
+
         opacity: 1;
+
         transform: scale(1);
+
     }
+
 }
 
 
-/* =========================================================
-   CONTINUE BUTTON
-========================================================= */
+/* =========================================
+   CONTINUE
+========================================= */
 
 .puzzle-continue {
 
     display: none;
 
-    margin:
-        25px auto 0;
+    margin-top: 5px;
 
-    padding:
-        14px 28px;
-
-    border: none;
-
-    border-radius: 35px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ff1493,
-            #ff69b4
-        );
-
-    color: white;
-
-    font-family: Georgia, serif;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    box-shadow:
-        0 0 10px #ff1493,
-        0 0 30px #ff1493;
-
-    cursor: pointer;
-
-    animation:
-        puzzleButtonGlow 1.5s infinite;
 }
+
 
 .puzzle-continue.show {
+
     display: block;
-}
 
-@keyframes puzzleButtonGlow {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.04);
-    }
 }
 
 
-/* =========================================================
+/* =========================================
+   COMPLETED BOARD
+========================================= */
+
+.puzzle-board.completed {
+
+    animation:
+        puzzleGlow 1.5s ease-in-out infinite alternate;
+
+}
+
+
+@keyframes puzzleGlow {
+
+    from {
+
+        box-shadow:
+            0 0 10px #ff1493;
+
+    }
+
+    to {
+
+        box-shadow:
+            0 0 30px #ff1493,
+            0 0 50px rgba(255,20,147,0.6);
+
+    }
+
+}
+
+
+/* =========================================
    MOBILE
-========================================================= */
+========================================= */
 
 @media (max-width: 600px) {
 
-    .puzzle-screen {
+    .puzzle-chapter {
+
         padding:
-            30px 10px 60px;
+            12px
+            10px
+            20px;
+
     }
 
-    .puzzle-board {
-
-        width: 91vw;
-
-        border-width: 3px;
-
-        border-radius: 18px;
-    }
-
-    .pieces-container {
-
-        width: 94vw;
-
-        gap: 7px;
-    }
-
-    .puzzle-piece {
-
-        border-radius: 8px;
-
-        border-width: 1.5px;
-    }
-
-    .puzzle-subtitle {
-
-        padding: 0 10px;
-
-        font-size: 17px;
-    }
-
-    .drag-text {
-
-        font-size: 17px;
-
-        padding: 0 8px;
-    }
-}
-
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
-@media (max-width: 380px) {
 
     .puzzle-title {
-        font-size: 28px;
+
+        font-size: 27px;
+
     }
+
+
+    .puzzle-intro {
+
+        margin:
+            7px auto
+            12px;
+
+        font-size: 17px;
+
+    }
+
 
     .puzzle-board {
-        width: 92vw;
+
+        width: 88vw;
+
     }
 
-    .pieces-container {
-        width: 95vw;
+
+    .puzzle-pieces {
+
+        width: 90vw;
+
+        margin-top: 12px;
+
+        gap: 6px;
+
     }
 
-    .puzzle-piece {
-        border-radius: 6px;
+
+    .puzzle-hint {
+
+        margin-top: 8px;
+
+        font-size: 14px;
+
     }
+
+
+    .puzzle-message {
+
+        margin: 10px auto;
+
+        font-size: 20px;
+
+    }
+
 }
+
+
+/* SMALL HEIGHT PHONES */
+
+@media (max-height: 700px) {
+
+    .puzzle-chapter {
+
+        padding-top: 8px;
+
+    }
+
+
+    .puzzle-title {
+
+        font-size: 24px;
+
+    }
+
+
+    .puzzle-intro {
+
+        margin:
+            5px auto
+            8px;
+
+        font-size: 15px;
+
+    }
+
+
+    .puzzle-pieces {
+
+        margin-top: 8px;
+
+    }
+
+
+    .puzzle-hint {
+
+        margin:
+            5px 0;
+
+        font-size: 13px;
+
+    }
+
+   }
