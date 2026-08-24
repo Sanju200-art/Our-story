@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Our Story ❤️</title>
 
@@ -12,16 +13,20 @@
 
 <body>
 
-    <!-- MUSIC -->
+    <!-- =========================
+         MUSIC
+    ========================== -->
+
     <audio id="music" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
 
-    <!-- FLOATING HEARTS -->
+    <!-- =========================
+         FLOATING HEARTS
+    ========================== -->
 
     <div class="hearts-background">
-
         <span>♡</span>
         <span>♥</span>
         <span>♡</span>
@@ -32,12 +37,12 @@
         <span>♥</span>
         <span>♡</span>
         <span>♥</span>
-
     </div>
 
 
     <!-- =========================
          SCREEN 1
+         OPENING
     ========================== -->
 
     <section id="screen1" class="screen active">
@@ -77,6 +82,7 @@
 
     <!-- =========================
          SCREEN 2
+         OUR STORY BEGINS
     ========================== -->
 
     <section id="screen2" class="screen">
@@ -120,8 +126,12 @@
         <div class="photo-content">
 
             <div class="memory-label">
-                OUR FIRST DATE ❤️
+                ❤️ OUR FIRST DATE ❤️
             </div>
+
+            <h3>
+                Our First Beautiful Memory
+            </h3>
 
             <div class="photo-frame">
 
@@ -183,6 +193,11 @@
             <div class="photo-story">
 
                 <p>
+                    Another little memory from
+                    the beginning of our story. ❤️
+                </p>
+
+                <p>
                     Every picture has a moment behind it,
                     and every moment became a part of us.
                 </p>
@@ -200,16 +215,21 @@
 
 
     <!-- =========================
+         SCREEN 5
          PHOTO BOOK
     ========================== -->
 
     <section id="memoryBook"
-             class="screen memory-book">
+             class="memory-book">
+
+        <!-- TITLE -->
 
         <div class="book-title">
             💕 OUR MEMORIES 💕
         </div>
 
+
+        <!-- BOOK -->
 
         <div class="book">
 
@@ -218,13 +238,11 @@
 
                 <img id="memoryPhoto"
                      src="memory1.jpg"
-                     alt="Our memory">
+                     alt="Our beautiful memory">
 
                 <div id="photoCaption"
                      class="photo-caption">
-
                     Our beautiful memory ❤️
-
                 </div>
 
             </div>
@@ -232,46 +250,52 @@
         </div>
 
 
+        <!-- COUNTER -->
+
         <div id="bookCounter"
              class="book-counter">
-
             1 / 10
-
         </div>
 
 
+        <!-- ARROWS -->
+
         <div class="book-buttons">
 
-            <button id="previousButton"
-                    type="button">
+            <button type="button"
+                    id="previousButton">
                 ←
             </button>
 
-            <button id="nextButton"
-                    type="button">
+            <button type="button"
+                    id="nextButton">
                 →
             </button>
 
         </div>
 
 
+        <!-- INSTRUCTION -->
+
         <p class="swipe-text">
             Swipe or tap the arrows to turn the pages ❤️
         </p>
 
 
-        <button id="bookContinue"
-                class="continue-btn"
-                type="button">
+        <!-- CONTINUE -->
 
+        <button type="button"
+                id="bookContinue"
+                class="continue-btn">
             Continue →
-
         </button>
 
     </section>
 
 
-    <!-- JAVASCRIPT -->
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
 
     <script src="script.js"></script>
 
