@@ -1,6 +1,6 @@
-/* =====================================================
-   RESET
-===================================================== */
+/* =========================
+   BASIC RESET
+========================= */
 
 * {
     box-sizing: border-box;
@@ -11,124 +11,120 @@
 html,
 body {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    min-height: 100%;
 }
 
 body {
     font-family: Georgia, "Times New Roman", serif;
     background: #000;
     color: white;
+    overflow-x: hidden;
 }
 
 
-/* =====================================================
-   COMMON SCREEN
-===================================================== */
+/* =========================
+   YOUR BACKGROUND
+========================= */
 
-.screen {
+body::before {
+    content: "";
     position: fixed;
     inset: 0;
-    width: 100%;
-    height: 100svh;
 
-    display: none;
-    overflow: hidden;
-
-    background:
+    background-image:
         linear-gradient(
-            rgba(0, 0, 0, 0.60),
+            rgba(0, 0, 0, 0.62),
             rgba(0, 0, 0, 0.72)
         ),
-        url("background.jpg") center / cover no-repeat;
+        url("background.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -10;
 }
 
-.screen.active {
-    display: flex;
-}
 
-
-/* =====================================================
-   FLOATING HEART BACKGROUND
-===================================================== */
+/* =========================
+   HEART BACKGROUND
+========================= */
 
 .hearts-background {
     position: fixed;
     inset: 0;
-    z-index: 1;
-
-    pointer-events: none;
     overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .hearts-background span {
     position: absolute;
-    bottom: -60px;
-
-    color: rgba(255, 105, 180, 0.45);
-    font-size: 28px;
-
-    animation: floatHeart linear infinite;
+    bottom: -50px;
+    color: rgba(255, 105, 180, 0.35);
+    font-size: 25px;
+    animation: floatingHearts 12s linear infinite;
 }
 
 .hearts-background span:nth-child(1) {
-    left: 5%;
-    animation-duration: 10s;
+    left: 8%;
+    animation-delay: 0s;
 }
 
 .hearts-background span:nth-child(2) {
-    left: 15%;
-    animation-duration: 13s;
+    left: 18%;
+    animation-delay: 2s;
 }
 
 .hearts-background span:nth-child(3) {
-    left: 28%;
-    animation-duration: 9s;
+    left: 30%;
+    animation-delay: 4s;
 }
 
 .hearts-background span:nth-child(4) {
-    left: 40%;
-    animation-duration: 12s;
+    left: 42%;
+    animation-delay: 1s;
 }
 
 .hearts-background span:nth-child(5) {
-    left: 52%;
-    animation-duration: 11s;
+    left: 55%;
+    animation-delay: 5s;
 }
 
 .hearts-background span:nth-child(6) {
     left: 65%;
-    animation-duration: 14s;
+    animation-delay: 3s;
 }
 
 .hearts-background span:nth-child(7) {
     left: 75%;
-    animation-duration: 10s;
+    animation-delay: 6s;
 }
 
 .hearts-background span:nth-child(8) {
     left: 84%;
-    animation-duration: 12s;
+    animation-delay: 2s;
 }
 
 .hearts-background span:nth-child(9) {
     left: 92%;
-    animation-duration: 15s;
+    animation-delay: 7s;
 }
 
 .hearts-background span:nth-child(10) {
-    left: 35%;
-    animation-duration: 16s;
+    left: 50%;
+    animation-delay: 8s;
 }
 
-@keyframes floatHeart {
+@keyframes floatingHearts {
+
     0% {
         transform: translateY(0) scale(0.7);
         opacity: 0;
     }
 
     15% {
-        opacity: 0.8;
+        opacity: 1;
     }
 
     100% {
@@ -138,35 +134,54 @@ body {
 }
 
 
-/* =====================================================
-   SCREEN 1
-===================================================== */
+/* =========================
+   NORMAL SCREENS
+========================= */
 
-.opening-content {
-    position: relative;
-    z-index: 5;
+.screen {
+    display: none;
 
     width: 100%;
-    height: 100%;
+    min-height: 100svh;
 
-    display: flex;
-    flex-direction: column;
+    position: relative;
+    z-index: 2;
+
+    padding:
+        max(25px, env(safe-area-inset-top))
+        18px
+        max(25px, env(safe-area-inset-bottom))
+        18px;
+
     justify-content: center;
     align-items: center;
 
     text-align: center;
-    padding: 25px;
+}
+
+.screen.active {
+    display: flex;
+}
+
+
+/* =========================
+   OPENING PAGE
+========================= */
+
+.opening-content {
+    width: 100%;
+    max-width: 600px;
 }
 
 .main-heart {
     font-size: 70px;
-    margin-bottom: 15px;
-
     animation: heartbeat 1.4s infinite;
 }
 
 @keyframes heartbeat {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
 
@@ -176,105 +191,79 @@ body {
 }
 
 .small-heading {
-    color: #ffd0e5;
+    margin-top: 15px;
     letter-spacing: 3px;
-    font-size: 14px;
-    margin-bottom: 15px;
 }
 
 h1 {
-    font-size: clamp(40px, 12vw, 70px);
-    color: white;
+    font-size: clamp(42px, 11vw, 80px);
+    margin: 20px 0;
 }
 
 h1 span {
-    color: #ff6fae;
+    color: #ff69b4;
 }
 
 .tagline {
-    font-size: 20px;
-    margin: 15px 0 30px;
-    color: #eee;
+    font-size: 22px;
+    margin-bottom: 30px;
 }
 
 .big-button,
 .continue-button,
 .continue-btn {
     border: none;
-    cursor: pointer;
+    border-radius: 50px;
+    padding: 15px 28px;
 
-    background: linear-gradient(
-        135deg,
-        #ff0a68,
-        #d90055
-    );
-
+    background: #ff0066;
     color: white;
 
-    font-family: Georgia, serif;
+    font-family: inherit;
+    font-size: 18px;
     font-weight: bold;
 
-    border-radius: 50px;
+    box-shadow: 0 0 25px rgba(255, 0, 102, 0.55);
 
-    box-shadow:
-        0 8px 25px rgba(255, 0, 100, 0.45);
+    cursor: pointer;
+}
 
-    transition: transform 0.2s;
+.big-button {
+    display: block;
+    width: min(90%, 400px);
+    margin: 15px auto;
 }
 
 .big-button:active,
 .continue-button:active,
-.continue-btn:active {
-    transform: scale(0.95);
-}
-
-.music-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
-.ready-button {
-    padding: 17px 35px;
-    font-size: 20px;
+.continue-btn:active,
+.book-buttons button:active {
+    transform: scale(0.94);
 }
 
 
-/* =====================================================
-   SCREEN 2
-===================================================== */
+/* =========================
+   CHAPTER PAGE
+========================= */
 
 .chapter-content {
-    position: relative;
-    z-index: 5;
-
     width: 100%;
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-    padding: 25px;
+    max-width: 650px;
 }
 
 .chapter-label {
-    font-size: 18px;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
+    font-size: 22px;
+    margin-bottom: 25px;
 }
 
 .chapter-content h2 {
-    font-size: clamp(42px, 11vw, 70px);
-    color: #ff6fae;
-    margin-bottom: 30px;
+    color: #ff69b4;
+    font-size: clamp(40px, 10vw, 70px);
+    margin-bottom: 25px;
 }
 
 .chapter-text {
     font-size: 24px;
-    max-width: 700px;
     line-height: 1.5;
 }
 
@@ -283,69 +272,53 @@ h1 span {
     margin: 25px 0;
 }
 
-.continue-button {
-    padding: 16px 38px;
-    font-size: 20px;
-}
 
-
-/* =====================================================
+/* =========================
    PHOTO SCREENS
-===================================================== */
-
-.photo-screen {
-    align-items: center;
-    justify-content: center;
-}
+========================= */
 
 .photo-content {
-    position: relative;
-    z-index: 5;
-
-    width: min(92%, 700px);
-    height: 100%;
+    width: 100%;
+    max-width: 650px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 
-    text-align: center;
-
-    padding: 20px 15px;
+    max-height: calc(100svh - 30px);
 }
 
 .memory-label {
-    color: #ff8cbd;
-    font-size: clamp(16px, 4vw, 24px);
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+    color: #ff69b4;
+    font-size: clamp(18px, 5vw, 30px);
+    letter-spacing: 3px;
+    margin-bottom: 15px;
 }
 
 .photo-content h3 {
-    font-size: clamp(32px, 9vw, 55px);
-    margin-bottom: 15px;
     color: white;
+    font-size: clamp(35px, 9vw, 60px);
+    margin-bottom: 15px;
 }
 
 
-/* =====================================================
-   NORMAL PHOTO FRAME
-===================================================== */
+/* =========================
+   PHOTO FRAME
+========================= */
 
 .photo-frame {
-    width: min(88vw, 600px);
-    height: min(48vh, 500px);
+    width: min(92vw, 600px);
 
-    border-radius: 18px;
+    height: min(55vh, 520px);
+
+    border-radius: 25px;
     overflow: hidden;
 
-    border: 3px solid rgba(255, 105, 180, 0.35);
+    background: #000;
 
     box-shadow:
-        0 0 30px rgba(255, 0, 120, 0.35);
-
-    background: #111;
+        0 0 15px rgba(255, 0, 120, 0.6),
+        0 0 35px rgba(255, 0, 120, 0.25);
 
     flex-shrink: 1;
 }
@@ -354,501 +327,378 @@ h1 span {
     width: 100%;
     height: 100%;
 
-    object-fit: cover;
     display: block;
+
+    object-fit: cover;
+    object-position: center;
 }
 
 .photo-story {
-    max-width: 650px;
+    width: min(92vw, 600px);
 
-    margin-top: 15px;
-
-    font-size: clamp(15px, 4vw, 21px);
+    font-size: clamp(16px, 4vw, 22px);
     line-height: 1.45;
 
-    color: #fff;
+    margin: 12px 0;
 }
 
 .photo-story p {
-    margin-bottom: 8px;
+    margin: 7px 0;
 }
 
-.photo-screen .continue-button {
-    margin-top: 12px;
+.continue-button {
+    margin-top: 8px;
     flex-shrink: 0;
 }
 
-/* =====================================================
-   MEMORY BOOK — FINAL PHONE LAYOUT
-===================================================== */
+
+/* =========================
+   PHOTO BOOK
+========================= */
 
 .memory-book {
-    position: fixed !important;
-    inset: 0 !important;
-
-    width: 100vw !important;
-    height: 100dvh !important;
-
     display: none;
-    flex-direction: column;
 
-    align-items: center;
-    justify-content: flex-start;
-
-    overflow: hidden !important;
-
-    padding: 10px 12px 12px !important;
-
-    z-index: 999 !important;
-
-    background:
-        linear-gradient(
-            rgba(0,0,0,0.55),
-            rgba(0,0,0,0.78)
-        ),
-        url("background.jpg") center center / cover no-repeat;
-}
-
-.memory-book.active {
-    display: flex !important;
-}
-
-
-/* =====================================================
-   TITLE
-===================================================== */
-
-.memory-book .book-title {
     width: 100%;
+    min-height: 100svh;
 
-    height: 8vh;
-    min-height: 45px;
+    position: relative;
+    z-index: 5;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
-
-    font-size: clamp(22px, 7vw, 38px);
-
-    color: #ff7eb5;
-
-    font-weight: bold;
+    padding:
+        max(15px, env(safe-area-inset-top))
+        14px
+        max(15px, env(safe-area-inset-bottom))
+        14px;
 
     text-align: center;
 
-    margin: 0 !important;
+    flex-direction: column;
+    align-items: center;
+}
+
+.memory-book.active-book {
+    display: flex;
 }
 
 
-/* =====================================================
-   BOOK CONTAINER
-===================================================== */
+/* =========================
+   BOOK TITLE
+========================= */
 
-.memory-book .book {
-    width: 86vw !important;
-    max-width: 430px !important;
+.book-title {
+    color: #ff69b4;
 
-    height: 55vh !important;
-    max-height: 500px !important;
+    font-size: clamp(30px, 8vw, 48px);
+    font-weight: bold;
 
-    min-height: 0 !important;
+    margin: 5px 0 12px;
 
-    flex-shrink: 0 !important;
+    flex-shrink: 0;
 
-    margin: 0 auto !important;
+    text-shadow:
+        0 0 12px rgba(255, 20, 147, 0.8);
+}
 
+
+/* =========================
+   BOOK FRAME
+========================= */
+
+.book {
+    width: min(90vw, 610px);
+
+    /*
+       This is the important part.
+       The book has a controlled height so
+       everything fits on a phone screen.
+    */
+
+    height: min(60vh, 570px);
+
+    min-height: 0;
+
+    flex-shrink: 1;
+
+    perspective: 1600px;
+}
+
+
+/* =========================
+   BOOK PAGE
+========================= */
+
+.book-page {
     position: relative;
 
-    perspective: 1200px;
-}
+    width: 100%;
+    height: 100%;
 
+    border-radius: 24px;
 
-/* =====================================================
-   BOOK PAGE
-===================================================== */
-
-.memory-book .book-page {
-    position: relative !important;
-
-    width: 100% !important;
-    height: 100% !important;
-
-    min-height: 0 !important;
-
-    overflow: hidden !important;
-
-    border-radius: 16px;
+    overflow: hidden;
 
     background: #050505;
 
-    border: 2px solid rgba(255,105,180,0.45);
+    border: 3px solid rgba(255, 20, 147, 0.55);
 
     box-shadow:
-        0 0 25px rgba(255,0,120,0.35);
+        0 0 12px rgba(255, 20, 147, 0.7),
+        0 0 35px rgba(255, 20, 147, 0.35);
 
-    display: block !important;
+    transform-style: preserve-3d;
 }
 
 
-/* =====================================================
-   MEMORY IMAGE
-===================================================== */
+/* =========================
+   BOOK IMAGE
+========================= */
 
-.memory-book #memoryPhoto {
+#memoryPhoto {
+    position: absolute;
 
-    position: absolute !important;
+    inset: 0;
 
-    top: 0 !important;
-    left: 0 !important;
-
-    width: 100% !important;
-    height: 100% !important;
-
-    max-width: none !important;
-    max-height: none !important;
-
-    object-fit: contain !important;
-
-    background: #050505;
+    width: 100%;
+    height: 100%;
 
     display: block;
 
-    margin: 0 !important;
+    /*
+       COVER = fills the frame exactly.
+       No white/black gaps.
+    */
 
-    padding: 0 !important;
+    object-fit: cover;
+
+    object-position: center;
+
+    z-index: 1;
 }
 
 
-/* =====================================================
-   CAPTION
-===================================================== */
+/* =========================
+   PHOTO CAPTION
+========================= */
 
-.memory-book .photo-caption {
+.photo-caption {
+    position: absolute;
 
-    position: absolute !important;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
+    z-index: 3;
 
-    width: 100% !important;
+    padding: 25px 15px 20px;
 
-    padding: 45px 12px 14px !important;
+    color: white;
+
+    font-size: clamp(18px, 5vw, 28px);
+    font-style: italic;
+    font-weight: bold;
 
     background:
         linear-gradient(
             transparent,
-            rgba(0,0,0,0.9)
+            rgba(0, 0, 0, 0.9)
         );
-
-    color: white;
-
-    font-size: clamp(16px, 4.5vw, 23px);
-
-    line-height: 1.25;
-
-    text-align: center;
-
-    z-index: 5;
 }
 
 
-/* =====================================================
+/* =========================
+   PAGE FLIP
+========================= */
+
+.page-flip {
+    animation: pageFlip 0.65s ease;
+}
+
+@keyframes pageFlip {
+
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    50% {
+        transform: rotateY(-90deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+.page-flip-back {
+    animation: pageFlipBack 0.65s ease;
+}
+
+@keyframes pageFlipBack {
+
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    50% {
+        transform: rotateY(90deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+
+/* =========================
    COUNTER
-===================================================== */
+========================= */
 
-.memory-book .book-counter {
+.book-counter {
+    margin-top: 8px;
 
-    height: 7vh;
-    min-height: 38px;
+    padding: 9px 20px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 30px;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    font-size: 20px;
 
     flex-shrink: 0;
-
-    margin: 0 !important;
-
-    padding: 5px 18px;
-
-    color: white;
-
-    background: rgba(0,0,0,0.75);
-
-    border-radius: 25px;
-
-    font-size: 18px;
 }
 
 
-/* =====================================================
+/* =========================
    ARROWS
-===================================================== */
+========================= */
 
-.memory-book .book-buttons {
-
-    height: 10vh;
-    min-height: 55px;
-
+.book-buttons {
     display: flex;
 
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
-    gap: 55px;
+    gap: 45px;
+
+    margin: 8px 0;
 
     flex-shrink: 0;
-
-    margin: 0 !important;
 }
 
-
-.memory-book .book-buttons button {
-
-    width: 58px !important;
-    height: 58px !important;
-
-    min-width: 58px;
-    min-height: 58px;
+.book-buttons button {
+    width: 62px;
+    height: 62px;
 
     border: none;
-
     border-radius: 50%;
 
-    background: #ff0068;
-
+    background: #ff0066;
     color: white;
 
-    font-size: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 32px;
 
     box-shadow:
-        0 5px 20px rgba(255,0,100,0.45);
+        0 0 20px rgba(255, 0, 102, 0.65);
+
+    cursor: pointer;
 }
 
 
-/* =====================================================
+/* =========================
    SWIPE TEXT
-===================================================== */
+========================= */
 
-.memory-book .swipe-text {
+.swipe-text {
+    font-size: clamp(14px, 4vw, 20px);
 
-    width: 100%;
-
-    height: 7vh;
-    min-height: 35px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 2px 0 7px;
 
     flex-shrink: 0;
-
-    margin: 0 !important;
-
-    padding: 0 5px;
-
-    color: white;
-
-    text-align: center;
-
-    font-size: clamp(13px, 3.8vw, 18px);
 }
 
 
-/* =====================================================
-   CONTINUE
-===================================================== */
+/* =========================
+   BOOK CONTINUE
+========================= */
 
 .memory-book .continue-btn {
 
-    width: min(78vw, 350px) !important;
+    width: min(85vw, 420px);
 
-    height: 9vh !important;
-    max-height: 62px !important;
+    padding: 13px 20px;
 
-    min-height: 48px !important;
+    margin: 0;
 
-    flex-shrink: 0 !important;
+    font-size: 20px;
 
-    margin: 0 !important;
-
-    padding: 0 !important;
-
-    border: none;
-
-    border-radius: 50px;
-
-    background: linear-gradient(
-        135deg,
-        #ff0068,
-        #d90055
-    );
-
-    color: white;
-
-    font-family: Georgia, serif;
-
-    font-size: clamp(18px, 5vw, 25px);
-
-    font-weight: bold;
-
-    box-shadow:
-        0 7px 25px rgba(255,0,100,0.45);
+    flex-shrink: 0;
 }
 
 
-/* =====================================================
-   BOOK FLIP
-===================================================== */
-
-.memory-book .book-page.flip-next {
-
-    animation:
-        pageFlipNext 0.65s ease;
-}
-
-.memory-book .book-page.flip-prev {
-
-    animation:
-        pageFlipPrev 0.65s ease;
-}
-
-
-@keyframes pageFlipNext {
-
-    0% {
-        transform:
-            perspective(1200px)
-            rotateY(0deg);
-    }
-
-    45% {
-        transform:
-            perspective(1200px)
-            rotateY(-90deg);
-    }
-
-    100% {
-        transform:
-            perspective(1200px)
-            rotateY(0deg);
-    }
-}
-
-
-@keyframes pageFlipPrev {
-
-    0% {
-        transform:
-            perspective(1200px)
-            rotateY(0deg);
-    }
-
-    45% {
-        transform:
-            perspective(1200px)
-            rotateY(90deg);
-    }
-
-    100% {
-        transform:
-            perspective(1200px)
-            rotateY(0deg);
-    }
-}
-
-
-/* =====================================================
-   SMALL PHONES
-===================================================== */
+/* =========================
+   SMALL PHONE FIX
+========================= */
 
 @media (max-height: 700px) {
 
-    .memory-book {
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
+    .book-title {
+        font-size: 28px;
+        margin-bottom: 6px;
     }
 
-    .memory-book .book-title {
-        height: 7vh;
-        font-size: 22px;
+    .book {
+        height: 48vh;
     }
 
-    .memory-book .book {
-        height: 50vh !important;
-    }
-
-    .memory-book .book-counter {
-        height: 6vh;
+    .book-counter {
+        padding: 5px 15px;
         font-size: 16px;
     }
 
-    .memory-book .book-buttons {
-        height: 9vh;
+    .book-buttons {
+        gap: 25px;
+        margin: 5px 0;
     }
 
-    .memory-book .book-buttons button {
-        width: 50px !important;
-        height: 50px !important;
-        min-width: 50px;
-        min-height: 50px;
+    .book-buttons button {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
     }
 
-    .memory-book .swipe-text {
-        height: 6vh;
-        font-size: 13px;
-    }
-
-    .memory-book .continue-btn {
-        height: 8vh !important;
-        max-height: 55px !important;
-    }
-}
-
-
-/* =====================================================
-   VERY SMALL SCREEN
-===================================================== */
-
-@media (max-height: 600px) {
-
-    .memory-book .book-title {
-        height: 6vh;
-        font-size: 20px;
-    }
-
-    .memory-book .book {
-        height: 45vh !important;
-    }
-
-    .memory-book .book-buttons {
-        height: 8vh;
-    }
-
-    .memory-book .book-buttons button {
-        width: 45px !important;
-        height: 45px !important;
-        min-width: 45px;
-        min-height: 45px;
-        font-size: 24px;
-    }
-
-    .memory-book .swipe-text {
-        height: 5vh;
-        font-size: 12px;
+    .swipe-text {
+        font-size: 14px;
+        margin: 1px 0 5px;
     }
 
     .memory-book .continue-btn {
-        height: 8vh !important;
-        max-height: 48px !important;
+        padding: 10px 18px;
         font-size: 18px;
     }
 }
-    
+
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media (max-height: 600px) {
+
+    .book {
+        height: 42vh;
+    }
+
+    .book-title {
+        font-size: 25px;
+    }
+
+    .book-buttons button {
+        width: 45px;
+        height: 45px;
+    }
+
+    .memory-book .continue-btn {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+   }
