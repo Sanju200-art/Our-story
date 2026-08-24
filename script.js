@@ -412,19 +412,18 @@ function nextMemory() {
 
     page.classList.remove("flip-next", "flip-prev");
 
+    currentMemory++;
+
+    updateMemory();
+
     void page.offsetWidth;
 
     page.classList.add("flip-next");
 
-    setTimeout(function () {
-
-        currentMemory++;
-
-        updateMemory();
-
+    setTimeout(() => {
         page.classList.remove("flip-next");
-
-    }, 400);
+        page.style.transform = "none";
+    }, 800);
 }
 
 
@@ -438,21 +437,19 @@ function previousMemory() {
 
     page.classList.remove("flip-next", "flip-prev");
 
+    currentMemory--;
+
+    updateMemory();
+
     void page.offsetWidth;
 
     page.classList.add("flip-prev");
 
-    setTimeout(function () {
-
-        currentMemory--;
-
-        updateMemory();
-
+    setTimeout(() => {
         page.classList.remove("flip-prev");
-
-    }, 400);
+        page.style.transform = "none";
+    }, 800);
 }
-
 /* =========================
    PREVIOUS PHOTO
 ========================= */
