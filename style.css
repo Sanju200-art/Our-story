@@ -883,3 +883,465 @@ h1 span {
     }
 
 }
+/* =========================================
+   PUZZLE CHAPTER
+========================================= */
+
+.puzzle-chapter {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 100dvh;
+
+    padding: 20px 12px 30px;
+
+    display: none;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    text-align: center;
+
+    overflow: hidden;
+
+}
+
+
+/* SHOW PUZZLE */
+
+.puzzle-chapter.active {
+
+    display: flex;
+
+}
+
+
+/* TITLE */
+
+.puzzle-title {
+
+    margin-top: 10px;
+
+    color: #ff69b4;
+
+    font-size: clamp(27px, 7vw, 45px);
+
+    font-weight: bold;
+
+    text-shadow:
+        0 0 8px #ff1493,
+        0 0 18px #ff1493;
+
+}
+
+
+.puzzle-intro {
+
+    width: min(90%, 500px);
+
+    margin: 10px auto 16px;
+
+    font-size: clamp(17px, 4.5vw, 22px);
+
+    font-style: italic;
+
+    line-height: 1.4;
+
+}
+
+
+/* =========================================
+   PUZZLE BOARD
+========================================= */
+
+.puzzle-board {
+
+    width: min(88vw, 480px);
+
+    aspect-ratio: 3 / 2;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-rows: repeat(2, 1fr);
+
+    gap: 2px;
+
+    padding: 3px;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    background: rgba(255,20,147,0.5);
+
+    border: 3px solid #ff1493;
+
+    box-shadow:
+        0 0 15px rgba(255,20,147,0.6);
+
+}
+
+
+/* EMPTY SLOTS */
+
+.puzzle-slot {
+
+    position: relative;
+
+    border: 1px dashed rgba(255,255,255,0.45);
+
+    background: rgba(0,0,0,0.35);
+
+    border-radius: 3px;
+
+}
+
+
+/* =========================================
+   PUZZLE PIECES
+========================================= */
+
+.puzzle-pieces {
+
+    width: min(90vw, 500px);
+
+    margin-top: 18px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    touch-action: none;
+
+}
+
+
+/* EACH PIECE */
+
+.puzzle-piece {
+
+    aspect-ratio: 3 / 2;
+
+    border-radius: 8px;
+
+    border: 2px solid rgba(255,255,255,0.7);
+
+    background-image: url("puzzle-photo.jpg");
+
+    background-size: 300% 200%;
+
+    cursor: grab;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,0.45);
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+
+    touch-action: none;
+
+}
+
+
+/* PIECE POSITIONS */
+
+.puzzle-piece[data-position="0"] {
+    background-position: 0% 0%;
+}
+
+.puzzle-piece[data-position="1"] {
+    background-position: 50% 0%;
+}
+
+.puzzle-piece[data-position="2"] {
+    background-position: 100% 0%;
+}
+
+.puzzle-piece[data-position="3"] {
+    background-position: 0% 100%;
+}
+
+.puzzle-piece[data-position="4"] {
+    background-position: 50% 100%;
+}
+
+.puzzle-piece[data-position="5"] {
+    background-position: 100% 100%;
+}
+
+
+/* DRAGGING */
+
+.puzzle-piece.dragging {
+
+    opacity: 0.65;
+
+    transform: scale(1.08);
+
+    z-index: 20;
+
+}
+
+
+/* CORRECT PIECE */
+
+.puzzle-piece.correct {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================
+   HINT
+========================================= */
+
+.puzzle-hint {
+
+    margin: 12px 0 0;
+
+    font-size: 16px;
+
+    color: #ffd2e9;
+
+    font-style: italic;
+
+}
+
+
+/* =========================================
+   COMPLETION MESSAGE
+========================================= */
+
+.puzzle-message {
+
+    display: none;
+
+    width: min(90%, 550px);
+
+    margin: 15px auto;
+
+    color: #ffb6dc;
+
+    font-size: clamp(20px, 5vw, 29px);
+
+    font-style: italic;
+
+    line-height: 1.4;
+
+    animation: puzzleReveal 1s ease;
+
+}
+
+
+.puzzle-message.show {
+
+    display: block;
+
+}
+
+
+@keyframes puzzleReveal {
+
+    0% {
+
+        opacity: 0;
+
+        transform: scale(0.8);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+
+/* =========================================
+   CONTINUE
+========================================= */
+
+.puzzle-continue {
+
+    display: none;
+
+    margin-top: 5px;
+
+}
+
+
+.puzzle-continue.show {
+
+    display: block;
+
+}
+
+
+/* =========================================
+   COMPLETED BOARD
+========================================= */
+
+.puzzle-board.completed {
+
+    animation:
+        puzzleGlow 1.5s ease-in-out infinite alternate;
+
+}
+
+
+@keyframes puzzleGlow {
+
+    from {
+
+        box-shadow:
+            0 0 10px #ff1493;
+
+    }
+
+    to {
+
+        box-shadow:
+            0 0 30px #ff1493,
+            0 0 50px rgba(255,20,147,0.6);
+
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .puzzle-chapter {
+
+        padding:
+            12px
+            10px
+            20px;
+
+    }
+
+
+    .puzzle-title {
+
+        font-size: 27px;
+
+    }
+
+
+    .puzzle-intro {
+
+        margin:
+            7px auto
+            12px;
+
+        font-size: 17px;
+
+    }
+
+
+    .puzzle-board {
+
+        width: 88vw;
+
+    }
+
+
+    .puzzle-pieces {
+
+        width: 90vw;
+
+        margin-top: 12px;
+
+        gap: 6px;
+
+    }
+
+
+    .puzzle-hint {
+
+        margin-top: 8px;
+
+        font-size: 14px;
+
+    }
+
+
+    .puzzle-message {
+
+        margin: 10px auto;
+
+        font-size: 20px;
+
+    }
+
+}
+
+
+/* SMALL HEIGHT PHONES */
+
+@media (max-height: 700px) {
+
+    .puzzle-chapter {
+
+        padding-top: 8px;
+
+    }
+
+
+    .puzzle-title {
+
+        font-size: 24px;
+
+    }
+
+
+    .puzzle-intro {
+
+        margin:
+            5px auto
+            8px;
+
+        font-size: 15px;
+
+    }
+
+
+    .puzzle-pieces {
+
+        margin-top: 8px;
+
+    }
+
+
+    .puzzle-hint {
+
+        margin:
+            5px 0;
+
+        font-size: 13px;
+
+    }
+
+}
