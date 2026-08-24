@@ -1,5 +1,5 @@
 /* =========================================
-   RESET
+   GENERAL
 ========================================= */
 
 * {
@@ -8,236 +8,143 @@
     padding: 0;
 }
 
-
 html,
 body {
     width: 100%;
     min-height: 100%;
-}
-
-
-body {
-
-    background: #000;
-
-    color: white;
 
     font-family: Georgia, "Times New Roman", serif;
 
-    overflow-x: hidden;
+    background: #050505;
 
+    color: white;
+
+    overflow-x: hidden;
 }
 
 
 /* =========================================
-   COMMON SCREEN
+   MAIN SCREEN
 ========================================= */
 
-.screen,
-.memory-book {
+.puzzle-screen {
 
     position: relative;
 
-    width: 100%;
+    min-height: 100vh;
 
-    min-height: 100dvh;
-
-    display: none;
-
-    align-items: center;
-
-    justify-content: center;
+    padding:
+        35px
+        15px
+        70px;
 
     text-align: center;
 
-    overflow: hidden;
+    background:
 
-}
-
-
-/* ACTIVE SCREEN */
-
-.screen.active,
-.memory-book.active {
-
-    display: flex;
-
-}
-
-
-/* =========================================
-   BACKGROUND
-========================================= */
-
-/*
-   YOUR COMMON BACKGROUND IMAGE
-
-   Keep your background image outside
-   the HTML if you are using CSS.
-
-   Change this filename if needed.
-*/
-
-body::before {
-
-    content: "";
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: -5;
-
-    background-image:
         linear-gradient(
-            rgba(0,0,0,0.58),
-            rgba(0,0,0,0.72)
+            rgba(0, 0, 0, 0.76),
+            rgba(0, 0, 0, 0.92)
         ),
-        url("background.jpg");
+
+        url("memory10.jpg");
 
     background-size: cover;
 
     background-position: center;
 
-    background-repeat: no-repeat;
+    background-attachment: fixed;
 
+    overflow: hidden;
 }
 
 
 /* =========================================
-   HEART BACKGROUND
+   TOP BUTTONS
 ========================================= */
 
-.hearts-background {
+.back-button,
+.music-button {
 
     position: fixed;
 
-    inset: 0;
+    top: 28px;
 
-    pointer-events: none;
+    width: 58px;
+    height: 58px;
 
-    overflow: hidden;
+    border-radius: 50%;
 
-    z-index: -1;
+    border: 2px solid #ff5bbd;
 
+    background: rgba(20, 0, 15, 0.75);
+
+    color: white;
+
+    font-size: 30px;
+
+    box-shadow:
+        0 0 10px #ff1493,
+        0 0 25px rgba(255, 20, 147, .6);
+
+    z-index: 500;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(5px);
 }
 
-
-.hearts-background span {
-
-    position: absolute;
-
-    color: rgba(255,105,180,0.35);
-
-    font-size: 28px;
-
-    animation: floatHeart 8s linear infinite;
-
+.back-button {
+    left: 20px;
 }
 
+.music-button {
+    right: 20px;
 
-.hearts-background span:nth-child(1) {
-    left: 5%;
-    top: 20%;
-}
-
-.hearts-background span:nth-child(2) {
-    left: 80%;
-    top: 15%;
-    animation-delay: 1s;
-}
-
-.hearts-background span:nth-child(3) {
-    left: 20%;
-    top: 60%;
-    animation-delay: 2s;
-}
-
-.hearts-background span:nth-child(4) {
-    left: 90%;
-    top: 70%;
-    animation-delay: 3s;
-}
-
-.hearts-background span:nth-child(5) {
-    left: 45%;
-    top: 30%;
-    animation-delay: 1.5s;
-}
-
-.hearts-background span:nth-child(6) {
-    left: 70%;
-    top: 50%;
-    animation-delay: 4s;
-}
-
-.hearts-background span:nth-child(7) {
-    left: 10%;
-    top: 80%;
-    animation-delay: 2.5s;
-}
-
-.hearts-background span:nth-child(8) {
-    left: 60%;
-    top: 85%;
-    animation-delay: 3.5s;
-}
-
-.hearts-background span:nth-child(9) {
-    left: 35%;
-    top: 10%;
-    animation-delay: 5s;
-}
-
-.hearts-background span:nth-child(10) {
-    left: 85%;
-    top: 90%;
-    animation-delay: 4.5s;
-}
-
-
-@keyframes floatHeart {
-
-    0% {
-        transform: translateY(30px);
-        opacity: 0.1;
-    }
-
-    50% {
-        opacity: 0.5;
-    }
-
-    100% {
-        transform: translateY(-40px);
-        opacity: 0.1;
-    }
-
+    font-size: 25px;
 }
 
 
 /* =========================================
-   SCREEN 1
+   TITLE
 ========================================= */
 
-.opening-content {
+h1 {
 
-    width: min(90%, 600px);
+    position: relative;
 
-    padding: 30px 20px;
+    margin-top: 35px;
 
+    color: #ff73c7;
+
+    font-size: clamp(
+        30px,
+        8vw,
+        52px
+    );
+
+    line-height: 1.12;
+
+    font-weight: bold;
+
+    text-shadow:
+
+        0 0 5px #ff1493,
+        0 0 15px #ff1493,
+        0 0 30px rgba(255, 20, 147, .7);
+
+    z-index: 5;
+}
+
+h1 span {
+    display: inline-block;
+
+    animation:
+        heartBeat 1.5s infinite;
 }
 
 
-.main-heart {
-
-    font-size: 65px;
-
-    animation: heartbeat 1.5s infinite;
-
-}
-
-
-@keyframes heartbeat {
+@keyframes heartBeat {
 
     0%,
     100% {
@@ -245,762 +152,209 @@ body::before {
     }
 
     50% {
-        transform: scale(1.15);
+        transform: scale(1.2);
     }
-
-}
-
-
-.small-heading {
-
-    margin-top: 20px;
-
-    font-size: 15px;
-
-    letter-spacing: 4px;
-
-    color: #ff8bc7;
-
-}
-
-
-h1 {
-
-    margin-top: 18px;
-
-    font-size: clamp(40px, 11vw, 75px);
-
-}
-
-
-h1 span {
-
-    color: #ff69b4;
-
-}
-
-
-.tagline {
-
-    margin: 15px 0 30px;
-
-    font-size: 20px;
-
-    font-style: italic;
-
-}
-
-
-.big-button,
-.continue-button {
-
-    display: block;
-
-    width: min(80vw, 330px);
-
-    margin: 15px auto;
-
-    padding: 15px 20px;
-
-    border: none;
-
-    border-radius: 40px;
-
-    background: #ec006c;
-
-    color: white;
-
-    font-family: Georgia, serif;
-
-    font-size: 20px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 0 15px rgba(255,20,147,0.7);
-
-}
-
-
-.big-button:active,
-.continue-button:active,
-.continue-btn:active {
-
-    transform: scale(0.95);
-
 }
 
 
 /* =========================================
-   SCREEN 2
+   SMALL HEART
 ========================================= */
 
-.chapter-content {
+.small-heart {
 
-    width: min(90%, 650px);
+    margin-top: 8px;
 
-}
+    color: #ff1493;
 
-
-.chapter-label,
-.memory-label {
-
-    color: #ff8bc7;
-
-    letter-spacing: 4px;
-
-    font-size: 18px;
-
-}
-
-
-.chapter-content h2 {
-
-    margin: 25px 0;
-
-    color: #ff69b4;
-
-    font-size: clamp(42px, 11vw, 70px);
-
-}
-
-
-.chapter-text {
-
-    font-size: 24px;
-
-}
-
-
-.chapter-heart {
-
-    margin: 25px;
-
-    font-size: 50px;
-
-}
-
-
-/* =========================================
-   PHOTO SCREENS
-========================================= */
-
-.photo-content {
-
-    width: min(92%, 650px);
-
-    padding: 20px 10px;
-
-}
-
-
-.photo-content h3 {
-
-    margin: 15px 0;
-
-    font-size: clamp(35px, 9vw, 60px);
-
-}
-
-
-.photo-frame {
-
-    width: 100%;
-
-    max-height: 62vh;
-
-    overflow: hidden;
-
-    border-radius: 20px;
-
-    background: #050505;
-
-    border: 2px solid rgba(255,20,147,0.5);
-
-    box-shadow:
-        0 0 20px rgba(255,20,147,0.4);
-
-}
-
-
-.photo-frame img {
-
-    display: block;
-
-    width: 100%;
-
-    max-height: 62vh;
-
-    object-fit: contain;
-
-    object-position: center;
-
-}
-
-
-.photo-story {
-
-    margin: 20px auto;
-
-    width: min(90%, 600px);
-
-}
-
-
-.photo-story p {
-
-    margin: 12px 0;
-
-    font-size: clamp(17px, 4.5vw, 23px);
-
-    line-height: 1.5;
-
-    font-style: italic;
-
-}
-
-
-/* =========================================
-   MEMORY BOOK
-========================================= */
-
-.memory-book {
-
-    flex-direction: column;
-
-    justify-content: flex-start;
-
-    padding: 18px 12px 22px;
-
-}
-
-
-/* TITLE */
-
-.book-title {
-
-    flex-shrink: 0;
-
-    margin-bottom: 12px;
-
-    color: #ff69b4;
-
-    font-size: clamp(28px, 8vw, 46px);
-
-    font-weight: bold;
+    font-size: 32px;
 
     text-shadow:
-        0 0 8px #ff1493,
-        0 0 18px #ff1493;
-
+        0 0 10px #ff1493,
+        0 0 25px #ff1493;
 }
 
 
 /* =========================================
-   BOOK FRAME
+   SUBTITLE
 ========================================= */
 
-.book {
+.subtitle {
 
-    width: min(88vw, 500px);
+    max-width: 700px;
 
-    /*
-       This is deliberately limited so
-       Continue remains visible.
-    */
+    margin:
+        8px
+        auto
+        28px;
 
-    height: min(54vh, 560px);
-
-    min-height: 300px;
-
-    flex-shrink: 1;
-
-    perspective: 1200px;
-
-}
-
-
-/* PAGE */
-
-.book-page {
-
-    position: relative;
-
-    width: 100%;
-
-    height: 100%;
-
-    overflow: hidden;
-
-    border-radius: 22px;
-
-    background: #050505;
-
-    border: 3px solid #a50060;
-
-    box-shadow:
-        0 0 15px #ff1493,
-        0 0 30px rgba(255,20,147,0.4);
-
-    touch-action: pan-y;
-
-}
-
-
-/* =========================================
-   MEMORY PHOTO
-========================================= */
-
-.book-page img {
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    /*
-       IMPORTANT:
-       Every image stays completely
-       inside the same frame.
-    */
-
-    object-fit: cover;
-
-    object-position: center;
-
-    display: block;
-
-}
-
-
-/* =========================================
-   DARK BOTTOM FOR CAPTION
-========================================= */
-
-.book-page::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    height: 32%;
-
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,0.95),
-            rgba(0,0,0,0)
+    font-size:
+        clamp(
+            18px,
+            4.5vw,
+            27px
         );
-
-}
-
-
-/* =========================================
-   CAPTION
-========================================= */
-
-.photo-caption {
-
-    position: absolute;
-
-    left: 10px;
-    right: 10px;
-
-    bottom: 18px;
-
-    z-index: 5;
-
-    color: white;
-
-    font-size: clamp(18px, 5vw, 28px);
-
-    font-style: italic;
-
-    text-shadow:
-        0 2px 6px #000,
-        0 0 10px #000;
-
-}
-
-
-/* =========================================
-   PAGE FLIP
-========================================= */
-
-.book-page.page-changing {
-
-    animation: pageFlip 0.55s ease;
-
-}
-
-
-@keyframes pageFlip {
-
-    0% {
-
-        opacity: 0.5;
-
-        transform:
-            perspective(1200px)
-            rotateY(-15deg)
-            scale(0.98);
-
-    }
-
-    100% {
-
-        opacity: 1;
-
-        transform:
-            perspective(1200px)
-            rotateY(0deg)
-            scale(1);
-
-    }
-
-}
-
-
-/* =========================================
-   COUNTER
-========================================= */
-
-.book-counter {
-
-    flex-shrink: 0;
-
-    margin-top: 9px;
-
-    padding: 7px 18px;
-
-    border-radius: 30px;
-
-    background: rgba(0,0,0,0.7);
-
-    color: white;
-
-    font-size: 18px;
-
-}
-
-
-/* =========================================
-   SWIPE MESSAGE
-========================================= */
-
-.swipe-text {
-
-    flex-shrink: 0;
-
-    margin: 9px 0 11px;
-
-    color: white;
-
-    font-size: clamp(15px, 4vw, 20px);
-
-    font-style: italic;
-
-}
-
-
-/* =========================================
-   ONLY CONTINUE BUTTON
-========================================= */
-
-.continue-btn {
-
-    flex-shrink: 0;
-
-    width: min(72vw, 330px);
-
-    min-height: 52px;
-
-    padding: 10px 20px;
-
-    border: none;
-
-    border-radius: 40px;
-
-    background: #ec006c;
-
-    color: white;
-
-    font-family: Georgia, serif;
-
-    font-size: 21px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 0 15px rgba(255,20,147,0.7);
-
-}
-
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 600px) {
-
-    .memory-book {
-
-        padding:
-            14px
-            10px
-            18px;
-
-    }
-
-
-    .book-title {
-
-        font-size: 29px;
-
-        margin-bottom: 8px;
-
-    }
-
-
-    .book {
-
-        width: 88vw;
-
-        height: 53vh;
-
-        min-height: 280px;
-
-        max-height: 500px;
-
-    }
-
-
-    .photo-caption {
-
-        bottom: 16px;
-
-        font-size: 19px;
-
-    }
-
-
-    .book-counter {
-
-        font-size: 17px;
-
-        margin-top: 7px;
-
-    }
-
-
-    .swipe-text {
-
-        margin:
-            7px 0
-            9px;
-
-        font-size: 15px;
-
-    }
-
-
-    .continue-btn {
-
-        width: 72vw;
-
-        min-height: 50px;
-
-        font-size: 20px;
-
-    }
-
-}
-
-
-/* =========================================
-   SHORT MOBILE SCREENS
-========================================= */
-
-@media (max-height: 700px) {
-
-    .memory-book {
-
-        padding-top: 8px;
-
-        padding-bottom: 12px;
-
-    }
-
-
-    .book-title {
-
-        font-size: 25px;
-
-        margin-bottom: 5px;
-
-    }
-
-
-    .book {
-
-        height: 48vh;
-
-        min-height: 250px;
-
-    }
-
-
-    .swipe-text {
-
-        margin:
-            5px 0
-            7px;
-
-        font-size: 14px;
-
-    }
-
-
-    .continue-btn {
-
-        min-height: 46px;
-
-        font-size: 18px;
-
-    }
-
-}
-/* =========================================
-   PUZZLE CHAPTER
-========================================= */
-
-.puzzle-chapter {
-
-    position: relative;
-
-    width: 100%;
-
-    min-height: 100dvh;
-
-    padding: 20px 12px 30px;
-
-    display: none;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: flex-start;
-
-    text-align: center;
-
-    overflow: hidden;
-
-}
-
-
-/* SHOW PUZZLE */
-
-.puzzle-chapter.active {
-
-    display: flex;
-
-}
-
-
-/* TITLE */
-
-.puzzle-title {
-
-    margin-top: 10px;
-
-    color: #ff69b4;
-
-    font-size: clamp(27px, 7vw, 45px);
-
-    font-weight: bold;
-
-    text-shadow:
-        0 0 8px #ff1493,
-        0 0 18px #ff1493;
-
-}
-
-
-.puzzle-intro {
-
-    width: min(90%, 500px);
-
-    margin: 10px auto 16px;
-
-    font-size: clamp(17px, 4.5vw, 22px);
 
     font-style: italic;
 
     line-height: 1.4;
 
+    color: #ffffff;
+
+    text-shadow:
+        0 2px 5px black;
 }
 
 
 /* =========================================
-   PUZZLE BOARD
+   LARGE SQUARE PUZZLE
 ========================================= */
 
 .puzzle-board {
 
-    width: min(88vw, 480px);
+    position: relative;
 
-    aspect-ratio: 3 / 2;
+    width: min(
+        90vw,
+        520px
+    );
+
+    aspect-ratio: 1 / 1;
+
+    margin:
+        0
+        auto;
 
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:
+        repeat(3, 1fr);
 
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows:
+        repeat(3, 1fr);
 
-    gap: 2px;
+    border:
+        4px solid #ff1493;
 
-    padding: 3px;
-
-    border-radius: 16px;
+    border-radius: 25px;
 
     overflow: hidden;
 
-    background: rgba(255,20,147,0.5);
+    background:
 
-    border: 3px solid #ff1493;
+        linear-gradient(
+            rgba(80, 0, 40, .82),
+            rgba(50, 0, 30, .88)
+        ),
+
+        url("memory10.jpg");
+
+    background-size: cover;
+
+    background-position: center;
 
     box-shadow:
-        0 0 15px rgba(255,20,147,0.6);
 
+        0 0 10px #ff1493,
+        0 0 25px #ff1493,
+        0 0 50px rgba(255, 20, 147, .45),
+
+        inset 0 0 30px
+        rgba(255, 20, 147, .4);
+
+    z-index: 10;
 }
 
 
-/* EMPTY SLOTS */
+/* =========================================
+   PUZZLE SLOTS
+========================================= */
 
 .puzzle-slot {
 
     position: relative;
 
-    border: 1px dashed rgba(255,255,255,0.45);
+    width: 100%;
+    height: 100%;
 
-    background: rgba(0,0,0,0.35);
+    border:
+        1px dashed
+        rgba(255, 130, 210, .6);
 
-    border-radius: 3px;
+    background:
+        rgba(60, 0, 35, .18);
 
+    transition:
+        background .2s,
+        box-shadow .2s;
+}
+
+
+/* Highlight when correct */
+
+.puzzle-slot.correct {
+
+    background:
+        rgba(255, 20, 147, .12);
+
+    box-shadow:
+        inset 0 0 18px
+        rgba(255, 20, 147, .8);
+}
+
+
+/* =========================================
+   DRAG INSTRUCTION
+========================================= */
+
+.drag-text {
+
+    margin:
+        20px
+        auto
+        18px;
+
+    color: white;
+
+    font-size:
+        clamp(
+            18px,
+            4.5vw,
+            25px
+        );
+
+    font-style: italic;
+
+    text-shadow:
+        0 2px 5px black;
+}
+
+
+/* =========================================
+   PIECES CONTAINER
+========================================= */
+
+.pieces-container {
+
+    width: min(
+        94vw,
+        520px
+    );
+
+    margin:
+        0
+        auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    position: relative;
+
+    z-index: 50;
 }
 
 
@@ -1008,222 +362,309 @@ h1 span {
    PUZZLE PIECES
 ========================================= */
 
-.puzzle-pieces {
-
-    width: min(90vw, 500px);
-
-    margin-top: 18px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 8px;
-
-    touch-action: none;
-
-}
-
-
-/* EACH PIECE */
-
 .puzzle-piece {
 
-    aspect-ratio: 3 / 2;
+    width: 100%;
 
-    border-radius: 8px;
+    aspect-ratio: 1 / 1;
 
-    border: 2px solid rgba(255,255,255,0.7);
+    border-radius: 14px;
 
-    background-image: url("puzzle-photo.jpg");
+    border:
+        2px solid
+        rgba(255, 255, 255, .45);
 
-    background-size: 300% 200%;
+    background-image:
+        var(--piece-image);
+
+    background-size:
+        300% 300%;
+
+    background-position:
+        var(--piece-position);
+
+    box-shadow:
+
+        0 0 8px
+        rgba(255, 20, 147, .6);
 
     cursor: grab;
 
-    box-shadow:
-        0 4px 10px rgba(0,0,0,0.45);
-
-    transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
-
     touch-action: none;
 
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    transition:
+        transform .15s,
+        box-shadow .15s;
 }
 
 
-/* PIECE POSITIONS */
-
-.puzzle-piece[data-position="0"] {
-    background-position: 0% 0%;
-}
-
-.puzzle-piece[data-position="1"] {
-    background-position: 50% 0%;
-}
-
-.puzzle-piece[data-position="2"] {
-    background-position: 100% 0%;
-}
-
-.puzzle-piece[data-position="3"] {
-    background-position: 0% 100%;
-}
-
-.puzzle-piece[data-position="4"] {
-    background-position: 50% 100%;
-}
-
-.puzzle-piece[data-position="5"] {
-    background-position: 100% 100%;
-}
-
-
-/* DRAGGING */
+/* Piece being dragged */
 
 .puzzle-piece.dragging {
 
-    opacity: 0.65;
+    transform:
+        scale(1.08);
 
-    transform: scale(1.08);
+    box-shadow:
 
-    z-index: 20;
+        0 0 15px #ff1493,
+        0 0 35px #ff1493;
 
+    z-index: 9999;
+
+    cursor: grabbing;
 }
 
 
-/* CORRECT PIECE */
+/* Piece inside board */
 
-.puzzle-piece.correct {
+.puzzle-slot .puzzle-piece {
 
-    opacity: 0;
+    width: 100%;
+    height: 100%;
 
-    pointer-events: none;
+    border: none;
 
-}
+    border-radius: 0;
 
+    box-shadow: none;
 
-/* =========================================
-   HINT
-========================================= */
-
-.puzzle-hint {
-
-    margin: 12px 0 0;
-
-    font-size: 16px;
-
-    color: #ffd2e9;
-
-    font-style: italic;
-
+    cursor: default;
 }
 
 
 /* =========================================
-   COMPLETION MESSAGE
+   SUCCESS
 ========================================= */
 
-.puzzle-message {
+.success-message {
 
     display: none;
 
-    width: min(90%, 550px);
+    margin:
+        30px
+        auto
+        10px;
 
-    margin: 15px auto;
+    max-width: 500px;
 
-    color: #ffb6dc;
-
-    font-size: clamp(20px, 5vw, 29px);
-
-    font-style: italic;
-
-    line-height: 1.4;
-
-    animation: puzzleReveal 1s ease;
-
+    animation:
+        successAppear .8s ease;
 }
 
 
-.puzzle-message.show {
+.success-message.show {
 
     display: block;
-
 }
 
 
-@keyframes puzzleReveal {
+.success-heart {
 
-    0% {
+    font-size: 65px;
 
+    animation:
+        heartBeat 1s infinite;
+
+    filter:
+        drop-shadow(
+            0 0 15px #ff1493
+        );
+}
+
+
+.success-message h2 {
+
+    margin-top: 10px;
+
+    color: #ff73c7;
+
+    font-size: 28px;
+
+    text-shadow:
+        0 0 15px #ff1493;
+}
+
+
+.success-message p {
+
+    margin-top: 10px;
+
+    font-size: 19px;
+
+    line-height: 1.6;
+}
+
+
+@keyframes successAppear {
+
+    from {
         opacity: 0;
-
-        transform: scale(0.8);
-
+        transform: scale(.7);
     }
 
-    100% {
-
+    to {
         opacity: 1;
-
         transform: scale(1);
-
     }
-
 }
 
 
 /* =========================================
-   CONTINUE
+   CONTINUE BUTTON
 ========================================= */
 
 .puzzle-continue {
 
     display: none;
 
-    margin-top: 5px;
+    margin:
+        25px
+        auto
+        0;
 
+    padding:
+        15px
+        30px;
+
+    border: none;
+
+    border-radius: 35px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff1493,
+            #ff69b4
+        );
+
+    color: white;
+
+    font-size: 18px;
+
+    font-family: Georgia, serif;
+
+    font-weight: bold;
+
+    box-shadow:
+
+        0 0 10px #ff1493,
+        0 0 30px #ff1493;
+
+    cursor: pointer;
+
+    animation:
+        buttonGlow 1.5s infinite;
 }
 
 
 .puzzle-continue.show {
 
     display: block;
+}
 
+
+@keyframes buttonGlow {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.04);
+    }
 }
 
 
 /* =========================================
-   COMPLETED BOARD
+   FLOATING HEARTS
 ========================================= */
 
-.puzzle-board.completed {
+.hearts span {
+
+    position: fixed;
+
+    bottom: -50px;
+
+    color: #ff1493;
+
+    font-size:
+        clamp(
+            25px,
+            7vw,
+            50px
+        );
+
+    opacity: .25;
+
+    pointer-events: none;
+
+    z-index: 1;
 
     animation:
-        puzzleGlow 1.5s ease-in-out infinite alternate;
-
+        floatHeart
+        linear
+        infinite;
 }
 
 
-@keyframes puzzleGlow {
+.hearts span:nth-child(1) {
+    left: 5%;
+    animation-duration: 9s;
+}
+
+.hearts span:nth-child(2) {
+    left: 20%;
+    animation-duration: 12s;
+}
+
+.hearts span:nth-child(3) {
+    left: 40%;
+    animation-duration: 10s;
+}
+
+.hearts span:nth-child(4) {
+    left: 60%;
+    animation-duration: 13s;
+}
+
+.hearts span:nth-child(5) {
+    left: 80%;
+    animation-duration: 11s;
+}
+
+.hearts span:nth-child(6) {
+    left: 90%;
+    animation-duration: 15s;
+}
+
+
+@keyframes floatHeart {
 
     from {
+        transform:
+            translateY(0)
+            rotate(0deg);
 
-        box-shadow:
-            0 0 10px #ff1493;
+        opacity: 0;
+    }
 
+    15% {
+        opacity: .3;
     }
 
     to {
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
 
-        box-shadow:
-            0 0 30px #ff1493,
-            0 0 50px rgba(255,20,147,0.6);
-
+        opacity: 0;
     }
-
 }
 
 
@@ -1233,115 +674,55 @@ h1 span {
 
 @media (max-width: 600px) {
 
-    .puzzle-chapter {
+    .puzzle-screen {
 
-        padding:
-            12px
-            10px
-            20px;
-
+        padding-top: 85px;
     }
 
+    .back-button,
+    .music-button {
 
-    .puzzle-title {
+        width: 50px;
+        height: 50px;
 
-        font-size: 27px;
+        top: 18px;
 
+        font-size: 25px;
     }
 
-
-    .puzzle-intro {
-
-        margin:
-            7px auto
-            12px;
-
-        font-size: 17px;
-
+    .back-button {
+        left: 12px;
     }
 
+    .music-button {
+        right: 12px;
+    }
+
+    h1 {
+
+        margin-top: 10px;
+
+        font-size: 30px;
+    }
 
     .puzzle-board {
 
-        width: 88vw;
-
-    }
-
-
-    .puzzle-pieces {
-
         width: 90vw;
 
-        margin-top: 12px;
+        border-width: 3px;
 
-        gap: 6px;
-
+        border-radius: 20px;
     }
 
+    .pieces-container {
 
-    .puzzle-hint {
+        width: 94vw;
 
-        margin-top: 8px;
-
-        font-size: 14px;
-
+        gap: 8px;
     }
 
+    .puzzle-piece {
 
-    .puzzle-message {
-
-        margin: 10px auto;
-
-        font-size: 20px;
-
+        border-radius: 10px;
     }
-
-}
-
-
-/* SMALL HEIGHT PHONES */
-
-@media (max-height: 700px) {
-
-    .puzzle-chapter {
-
-        padding-top: 8px;
-
-    }
-
-
-    .puzzle-title {
-
-        font-size: 24px;
-
-    }
-
-
-    .puzzle-intro {
-
-        margin:
-            5px auto
-            8px;
-
-        font-size: 15px;
-
-    }
-
-
-    .puzzle-pieces {
-
-        margin-top: 8px;
-
-    }
-
-
-    .puzzle-hint {
-
-        margin:
-            5px 0;
-
-        font-size: 13px;
-
-    }
-
 }
