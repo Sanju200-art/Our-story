@@ -1,63 +1,171 @@
-/* =========================================
-   OUR STORY ❤️
-   STABLE VERSION
-========================================= */
+/* =====================================================
+   MUSIC
+===================================================== */
+
+const music = document.getElementById("music");
+const musicButton = document.getElementById("musicButton");
+
+let musicStarted = false;
+
+musicButton.addEventListener("click", function () {
+
+    music.play()
+        .then(() => {
+
+            musicStarted = true;
+
+            musicButton.innerHTML = "🎵 Music Playing ❤️";
+
+        })
+        .catch(error => {
+
+            console.log("Music error:", error);
+
+        });
+
+});
 
 
-/* =========================
-   MEMORY PHOTOS
-========================= */
+/* =====================================================
+   SCREEN SWITCHING
+===================================================== */
+
+function showScreen(screenId) {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    const target = document.getElementById(screenId);
+
+    if (target) {
+        target.classList.add("active");
+    }
+}
+
+
+/* =====================================================
+   SCREEN 1 → SCREEN 2
+===================================================== */
+
+const readyButton = document.getElementById("readyButton");
+
+if (readyButton) {
+
+    readyButton.addEventListener("click", function () {
+
+        showScreen("screen2");
+
+    });
+
+}
+
+
+/* =====================================================
+   SCREEN 2 → SCREEN 3
+===================================================== */
+
+const continue1 = document.getElementById("continue1");
+
+if (continue1) {
+
+    continue1.addEventListener("click", function () {
+
+        showScreen("screen3");
+
+    });
+
+}
+
+
+/* =====================================================
+   SCREEN 3 → SCREEN 4
+===================================================== */
+
+const continue2 = document.getElementById("continue2");
+
+if (continue2) {
+
+    continue2.addEventListener("click", function () {
+
+        showScreen("screen4");
+
+    });
+
+}
+
+
+/* =====================================================
+   SCREEN 4 → MEMORY BOOK
+===================================================== */
+
+const continue3 = document.getElementById("continue3");
+
+if (continue3) {
+
+    continue3.addEventListener("click", function () {
+
+        openMemoryBook();
+
+    });
+
+}
+
+
+/* =====================================================
+   MEMORY BOOK
+===================================================== */
 
 const memories = [
 
     {
         image: "memory1.jpg",
-        text: "Our beautiful memory ❤️"
+        caption: "Our beautiful memory ❤️"
     },
 
     {
         image: "memory2.jpg",
-        text: "Another beautiful moment together ❤️"
+        caption: "Another beautiful moment ❤️"
     },
 
     {
         image: "memory3.jpg",
-        text: "Every picture has a story behind it 💕"
+        caption: "A moment I will always remember 💕"
     },
 
     {
         image: "memory4.jpg",
-        text: "A moment I will always remember ❤️"
+        caption: "Another page of our story ❤️"
     },
 
     {
         image: "memory5.jpg",
-        text: "Another little piece of our journey 💗"
+        caption: "Memories that became ours 💗"
     },
 
     {
         image: "memory6.jpg",
-        text: "Every moment with you became special ❤️"
+        caption: "Another little piece of us ❤️"
     },
 
     {
         image: "memory7.jpg",
-        text: "Memories that will stay in my heart forever 💕"
+        caption: "A beautiful moment together 💕"
     },
 
     {
         image: "memory8.jpg",
-        text: "And our story kept growing ❤️"
+        caption: "One more memory to keep forever ❤️"
     },
 
     {
         image: "memory9.jpg",
-        text: "Another chapter of us 💗"
+        caption: "Every picture tells our story 💗"
     },
 
     {
         image: "memory10.jpg",
-        text: "And this is still only the beginning... ❤️"
+        caption: "And the story continues... ❤️"
     }
 
 ];
@@ -65,471 +173,178 @@ const memories = [
 
 let currentMemory = 0;
 
+const memoryBook = document.getElementById("memoryBook");
 
-/* =========================
-   START
-========================= */
+const memoryPhoto = document.getElementById("memoryPhoto");
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+const photoCaption = document.getElementById("photoCaption");
 
+const bookCounter = document.getElementById("bookCounter");
 
-        /* =====================
-           MUSIC
-        ===================== */
+const bookPage = document.getElementById("bookPage");
 
-        const music =
-            document.getElementById("music");
 
-        const musicButton =
-            document.getElementById("musicButton");
-
-
-        if (musicButton && music) {
-
-            musicButton.addEventListener(
-                "click",
-                function () {
-
-                    if (music.paused) {
-
-                        music.play()
-                            .then(function () {
-
-                                musicButton.innerHTML =
-                                    "🎵 Music Playing ❤️";
-
-                            })
-                            .catch(function () {
-
-                                musicButton.innerHTML =
-                                    "🎵 Click for Music";
-
-                            });
-
-                    }
-
-                    else {
-
-                        music.pause();
-
-                        musicButton.innerHTML =
-                            "🎵 Click for Music";
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        /* =====================
-           SCREEN 1 → SCREEN 2
-        ===================== */
-
-        const readyButton =
-            document.getElementById(
-                "readyButton"
-            );
-
-
-        if (readyButton) {
-
-            readyButton.addEventListener(
-                "click",
-                function () {
-
-                    showScreen("screen2");
-
-                }
-            );
-
-        }
-
-
-        /* =====================
-           SCREEN 2 → SCREEN 3
-        ===================== */
-
-        const continue1 =
-            document.getElementById(
-                "continue1"
-            );
-
-
-        if (continue1) {
-
-            continue1.addEventListener(
-                "click",
-                function () {
-
-                    showScreen("screen3");
-
-                }
-            );
-
-        }
-
-
-        /* =====================
-           SCREEN 3 → SCREEN 4
-        ===================== */
-
-        const continue2 =
-            document.getElementById(
-                "continue2"
-            );
-
-
-        if (continue2) {
-
-            continue2.addEventListener(
-                "click",
-                function () {
-
-                    showScreen("screen4");
-
-                }
-            );
-
-        }
-
-
-        /* =====================
-           SCREEN 4 → PHOTO BOOK
-        ===================== */
-
-        const continue3 =
-            document.getElementById(
-                "continue3"
-            );
-
-
-        if (continue3) {
-
-            continue3.addEventListener(
-                "click",
-                function () {
-
-                    openMemoryBook();
-
-                }
-            );
-
-        }
-
-
-        /* =====================
-           BOOK BUTTONS
-        ===================== */
-
-        const previousButton =
-            document.getElementById(
-                "previousButton"
-            );
-
-
-        const nextButton =
-            document.getElementById(
-                "nextButton"
-            );
-
-
-        if (previousButton) {
-
-            previousButton.addEventListener(
-                "click",
-                previousMemory
-            );
-
-        }
-
-
-        if (nextButton) {
-
-            nextButton.addEventListener(
-                "click",
-                nextMemory
-            );
-
-        }
-
-
-        /* =====================
-           BOOK CONTINUE
-        ===================== */
-
-        const bookContinue =
-            document.getElementById(
-                "bookContinue"
-            );
-
-
-        if (bookContinue) {
-
-            bookContinue.addEventListener(
-                "click",
-                continueFromBook
-            );
-
-        }
-
-
-        /* =====================
-           SWIPE
-        ===================== */
-
-        setupSwipe();
-
-
-        /* =====================
-           FIRST PHOTO
-        ===================== */
-
-        updateMemory();
-
-    }
-);
-
-
-/* =========================
-   CHANGE SCREEN
-========================= */
-
-function showScreen(screenId) {
-
-    const screens =
-        document.querySelectorAll(
-            ".screen"
-        );
-
-
-    screens.forEach(
-        function (screen) {
-
-            screen.classList.remove(
-                "active"
-            );
-
-        }
-    );
-
-
-    const target =
-        document.getElementById(
-            screenId
-        );
-
-
-    if (target) {
-
-        target.classList.add(
-            "active"
-        );
-
-    }
-
-}
-
-
-/* =========================
-   OPEN PHOTO BOOK
-========================= */
+/* =====================================================
+   OPEN MEMORY BOOK
+===================================================== */
 
 function openMemoryBook() {
 
-    currentMemory = 0;
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
 
-    updateMemory();
+    if (memoryBook) {
 
-    showScreen("memoryBook");
-
-}
-
-
-/* =========================
-   UPDATE PHOTO
-========================= */
-
-function updateMemory() {
-
-    const photo =
-        document.getElementById(
-            "memoryPhoto"
-        );
-
-
-    const caption =
-        document.getElementById(
-            "photoCaption"
-        );
-
-
-    const counter =
-        document.getElementById(
-            "bookCounter"
-        );
-
-
-    if (!photo ||
-        !caption ||
-        !counter) {
-
-        return;
+        memoryBook.classList.add("active");
 
     }
 
+    currentMemory = 0;
 
-    photo.src =
-        memories[currentMemory].image;
-
-
-    caption.textContent =
-        memories[currentMemory].text;
-
-
-    counter.textContent =
-        (currentMemory + 1)
-        + " / "
-        + memories.length;
+    updateMemory(false);
 
 }
 
 
-/* =========================
-   NEXT PHOTO
-========================= */
+/* =====================================================
+   UPDATE MEMORY
+===================================================== */
+
+function updateMemory(animationDirection = false) {
+
+    if (!memoryPhoto) return;
+
+    const memory = memories[currentMemory];
+
+    if (!memory) return;
+
+
+    memoryPhoto.src = memory.image;
+
+    memoryPhoto.alt = memory.caption;
+
+    if (photoCaption) {
+        photoCaption.textContent = memory.caption;
+    }
+
+    if (bookCounter) {
+        bookCounter.textContent =
+            `${currentMemory + 1} / ${memories.length}`;
+    }
+
+
+    /*
+       If an image is missing, show a useful message
+       instead of leaving a broken huge image.
+    */
+
+    memoryPhoto.onerror = function () {
+
+        console.log("Missing image:", memory.image);
+
+        memoryPhoto.style.display = "none";
+
+        if (photoCaption) {
+
+            photoCaption.textContent =
+                `Please check ${memory.image}`;
+
+        }
+
+    };
+
+
+    memoryPhoto.onload = function () {
+
+        memoryPhoto.style.display = "block";
+
+    };
+
+
+    if (animationDirection && bookPage) {
+
+        bookPage.classList.remove(
+            "flip-next",
+            "flip-prev"
+        );
+
+        void bookPage.offsetWidth;
+
+        bookPage.classList.add(animationDirection);
+
+    }
+
+}
+
+
+/* =====================================================
+   NEXT MEMORY
+===================================================== */
 
 function nextMemory() {
 
     if (currentMemory >= memories.length - 1) {
+
         return;
+
     }
-
-    const page = document.getElementById("bookPage");
-
-    page.classList.remove("flip-next", "flip-prev");
 
     currentMemory++;
 
-    updateMemory();
+    updateMemory("flip-next");
 
-    void page.offsetWidth;
-
-    page.classList.add("flip-next");
-
-    setTimeout(() => {
-        page.classList.remove("flip-next");
-        page.style.transform = "none";
-    }, 800);
 }
 
+
+/* =====================================================
+   PREVIOUS MEMORY
+===================================================== */
 
 function previousMemory() {
 
     if (currentMemory <= 0) {
+
         return;
+
     }
-
-    const page = document.getElementById("bookPage");
-
-    page.classList.remove("flip-next", "flip-prev");
 
     currentMemory--;
 
-    updateMemory();
-
-    void page.offsetWidth;
-
-    page.classList.add("flip-prev");
-
-    setTimeout(() => {
-        page.classList.remove("flip-prev");
-        page.style.transform = "none";
-    }, 800);
-}
-/* =========================
-   PREVIOUS PHOTO
-========================= */
-
-function previousMemory() {
-
-    if (
-        currentMemory > 0
-    ) {
-
-        currentMemory--;
-
-        updateMemory();
-
-    }
+    updateMemory("flip-prev");
 
 }
 
 
-/* =========================
-   SWIPE
-========================= */
+/* =====================================================
+   SWIPE SUPPORT
+===================================================== */
 
-function setupSwipe() {
+let touchStartX = 0;
+let touchEndX = 0;
 
-    const page =
-        document.getElementById(
-            "bookPage"
-        );
+if (memoryBook) {
 
-
-    if (!page) {
-
-        return;
-
-    }
-
-
-    let startX = 0;
-
-
-    page.addEventListener(
+    memoryBook.addEventListener(
         "touchstart",
         function (event) {
 
-            startX =
-                event.changedTouches[0]
-                .screenX;
+            touchStartX =
+                event.changedTouches[0].screenX;
 
         },
         { passive: true }
     );
 
 
-    page.addEventListener(
+    memoryBook.addEventListener(
         "touchend",
         function (event) {
 
-            const endX =
-                event.changedTouches[0]
-                .screenX;
+            touchEndX =
+                event.changedTouches[0].screenX;
 
-
-            const difference =
-                startX - endX;
-
-
-            if (difference > 50) {
-
-                nextMemory();
-
-            }
-
-            else if (
-                difference < -50
-            ) {
-
-                previousMemory();
-
-            }
+            handleSwipe();
 
         },
         { passive: true }
@@ -538,22 +353,51 @@ function setupSwipe() {
 }
 
 
-/* =========================
-   BOOK → FUTURE CHAPTER
-========================= */
+function handleSwipe() {
+
+    const difference =
+        touchEndX - touchStartX;
+
+
+    if (Math.abs(difference) < 50) {
+        return;
+    }
+
+
+    if (difference < 0) {
+
+        nextMemory();
+
+    } else {
+
+        previousMemory();
+
+    }
+
+}
+
+
+/* =====================================================
+   CONTINUE FROM BOOK
+===================================================== */
 
 function continueFromBook() {
 
     /*
-       We haven't created the next
-       chapter yet.
-
-       We'll connect this button
-       when we create the next scene.
+       For now, after the last memory,
+       return to a simple final chapter.
     */
 
-    alert(
-        "Next chapter is coming ❤️"
-    );
+    if (currentMemory < memories.length - 1) {
+
+        currentMemory = memories.length - 1;
+
+        updateMemory(false);
+
+        return;
 
     }
+
+    alert("More of our story is coming ❤️");
+
+}
