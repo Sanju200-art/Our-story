@@ -319,75 +319,90 @@
 </section>
 
     
-<!-- =================================
-     PUZZLE CHAPTER
-================================= -->
+<!-- =====================================================
+     PUZZLE SCREEN
+===================================================== -->
 
-<section id="puzzleChapter" class="puzzle-chapter">
+<section id="puzzleScreen" class="screen puzzle-screen">
 
-    <div class="puzzle-title">
-        🧩 PIECE OUR STORY TOGETHER ❤️
+    <div class="puzzle-content">
+
+        <div class="puzzle-title">
+            🧩 PIECE OUR STORY
+        </div>
+
+        <div class="puzzle-title">
+            TOGETHER ❤️
+        </div>
+
+        <p class="puzzle-subtitle">
+            Some beautiful things take time to come together...
+        </p>
+
+
+        <!-- LARGE SQUARE 3×3 BOARD -->
+
+        <div id="puzzleBoard" class="puzzle-board">
+
+            <div class="puzzle-slot" data-position="0"></div>
+            <div class="puzzle-slot" data-position="1"></div>
+            <div class="puzzle-slot" data-position="2"></div>
+
+            <div class="puzzle-slot" data-position="3"></div>
+            <div class="puzzle-slot" data-position="4"></div>
+            <div class="puzzle-slot" data-position="5"></div>
+
+            <div class="puzzle-slot" data-position="6"></div>
+            <div class="puzzle-slot" data-position="7"></div>
+            <div class="puzzle-slot" data-position="8"></div>
+
+        </div>
+
+
+        <p class="drag-text">
+            Drag each piece into the correct place ❤️
+        </p>
+
+
+        <!-- SHUFFLED PIECES -->
+
+        <div id="piecesContainer"
+             class="pieces-container">
+        </div>
+
+
+        <!-- SUCCESS -->
+
+        <div id="successMessage"
+             class="success-message">
+
+            <div class="success-heart">
+                ❤️
+            </div>
+
+            <h2>
+                You found all the pieces!
+            </h2>
+
+            <p>
+                Just like our story...<br>
+                everything came together beautifully. ❤️
+            </p>
+
+        </div>
+
+
+        <button id="puzzleContinue"
+                class="puzzle-continue"
+                type="button">
+
+            Continue Our Story ❤️
+
+        </button>
+
     </div>
-
-    <p class="puzzle-intro">
-        Some beautiful things take time
-        to come together...
-    </p>
-
-    <div id="puzzleBoard" class="puzzle-board">
-
-        <div class="puzzle-slot" data-position="0"></div>
-        <div class="puzzle-slot" data-position="1"></div>
-        <div class="puzzle-slot" data-position="2"></div>
-        <div class="puzzle-slot" data-position="3"></div>
-        <div class="puzzle-slot" data-position="4"></div>
-        <div class="puzzle-slot" data-position="5"></div>
-
-    </div>
-
-    <p id="puzzleHint" class="puzzle-hint">
-        Drag the pieces into the correct places ❤️
-    </p>
-
-    <div id="puzzlePieces" class="puzzle-pieces">
-
-        <div class="puzzle-piece"
-             data-position="0"></div>
-
-        <div class="puzzle-piece"
-             data-position="1"></div>
-
-        <div class="puzzle-piece"
-             data-position="2"></div>
-
-        <div class="puzzle-piece"
-             data-position="3"></div>
-
-        <div class="puzzle-piece"
-             data-position="4"></div>
-
-        <div class="puzzle-piece"
-             data-position="5"></div>
-
-    </div>
-
-    <div id="puzzleMessage"
-         class="puzzle-message">
-
-        Piece by piece,
-        our story came together... ❤️
-
-    </div>
-
-    <button id="puzzleContinue"
-            class="continue-btn puzzle-continue">
-
-        Continue →
-
-    </button>
 
 </section>
-
     
 <!-- =================================
      JAVASCRIPT
