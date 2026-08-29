@@ -398,403 +398,526 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================================
-       PUZZLE
-    ========================================= */
+    /* =====================================================
+   🧩 PUZZLE
+===================================================== */
 
-    const puzzleBoard =
-        document.getElementById(
-            "puzzleBoard"
-        );
+const puzzleScreen =
+    document.getElementById("puzzleScreen");
 
-    const puzzlePieces =
-        document.getElementById(
-            "puzzlePieces"
-        );
+const puzzleBoard =
+    document.getElementById("puzzleBoard");
 
-    const puzzleMessage =
-        document.getElementById(
-            "puzzleMessage"
-        );
+const piecesContainer =
+    document.getElementById("piecesContainer");
 
-    const puzzleContinue =
-        document.getElementById(
-            "puzzleContinue"
-        );
+const successMessage =
+    document.getElementById("successMessage");
 
-    const puzzleHint =
-        document.getElementById(
-            "puzzleHint"
-        );
+const puzzleContinue =
+    document.getElementById("puzzleContinue");
 
 
-    let puzzleStarted = false;
+/*
+   YOUR PUZZLE PHOTO
+*/
 
-    let correctPieces = 0;
-
-
-    function startPuzzle() {
-
-        if (!puzzleBoard || !puzzlePieces) {
-            return;
-        }
+const puzzleImage =
+    "puzzle-photo.jpg";
 
 
-        puzzleStarted = true;
+let draggedPiece = null;
 
-        correctPieces = 0;
-
-
-        puzzleMessage.classList.remove(
-            "show"
-        );
-
-        puzzleContinue.classList.remove(
-            "show"
-        );
-
-        puzzleBoard.classList.remove(
-            "completed"
-        );
+let correctPieces = 0;
 
 
-        puzzleHint.textContent =
-            "Drag each piece into the correct place ❤️";
+/* =====================================================
+   OPEN PUZZLE
+===================================================== */
+
+function openPuzzle() {
+
+    showScreen("puzzleScreen");
+
+    createPuzzle();
+
+}
 
 
-        const pieces =
-            Array.from(
-                puzzlePieces.querySelectorAll(
-                    ".puzzle-piece"
-                )
-            );
+/* =====================================================
+   CREATE PUZZLE
+===================================================== */
+
+function createPuzzle() {
+
+    if (!puzzleBoard || !piecesContainer) {
+        return;
+    }
+
+
+    puzzleBoard.innerHTML = "";
+
+    piecesContainer.innerHTML = "";
+
+    correctPieces = 0;
+
+
+    if (successMessage) {
+        successMessage.classList.remove("show");
+    }
+
+    if (puzzleContinue) {
+        puzzleContinue.classList.remove("show");
+    }
+
+
+    /*
+       CREATE 9 EMPTY SLOTS
+    */
+
+    for (let i = 0; i < 9; i++) {
+
+        const slot =
+            document.createElement("div");
+
+        slot.className =
+            "puzzle-slot";
+
+        slot.dataset.position =
+            i;
+
+        puzzleBoard.appendChild(slot);
+    }
+
+
+    /*
+       CREATE 9 PIECES
+    */
+
+    const pieces = [];
+
+
+    for (let i = 0; i < 9; i++) {
+
+        const piece =
+            document.createElement("div");
+
+        piece.className =
+            "puzzle-piece";
+
+        piece.dataset.correct =
+            i;
 
 
         /*
-           SHUFFLE PIECES
+           3 × 3 image coordinates
         */
 
-        pieces.sort(function () {
+        const row =
+            Math.floor(i / 3);
 
-            return Math.random() - 0.5;
+        const column =
+            i % 3;
 
-        });
 
-
-        pieces.forEach(function (piece) {
-
-            piece.classList.remove(
-                "correct"
-            );
-
-            puzzlePieces.appendChild(
-                piece
-            );
-
-        });
-
-
-        setupPuzzlePieces();
-
-    }
-
-
-    /* =========================================
-       PUZZLE PIECE DRAG / TOUCH
-    ========================================= */
-
-    function setupPuzzlePieces() {
-
-        const pieces =
-            document.querySelectorAll(
-                ".puzzle-piece"
-            );
-
-
-        pieces.forEach(function (piece) {
-
-
-            piece.addEventListener(
-                "dragstart",
-                function (event) {
-
-                    event.dataTransfer.setData(
-                        "text/plain",
-                        piece.dataset.position
-                    );
-
-                    piece.classList.add(
-                        "dragging"
-                    );
-
-                }
-            );
-
-
-            piece.addEventListener(
-                "dragend",
-                function () {
-
-                    piece.classList.remove(
-                        "dragging"
-                    );
-
-                }
-            );
-
-
-            /*
-               TOUCH SUPPORT
-            */
-
-            piece.addEventListener(
-                "touchstart",
-                function (event) {
-
-                    piece.classList.add(
-                        "dragging"
-                    );
-
-                    piece._startX =
-                        event.touches[0]
-                        .clientX;
-
-                    piece._startY =
-                        event.touches[0]
-                        .clientY;
-
-                },
-                { passive: true }
-            );
-
-
-            piece.addEventListener(
-                "touchend",
-                function () {
-
-                    piece.classList.remove(
-                        "dragging"
-                    );
-
-                    checkTouchDrop(piece);
-
-                },
-                { passive: true }
-            );
-
-
-        });
-
-
-        /*
-           DESKTOP DROP
-        */
-
-        const slots =
-            document.querySelectorAll(
-                ".puzzle-slot"
-            );
-
-
-        slots.forEach(function (slot) {
-
-            slot.addEventListener(
-                "dragover",
-                function (event) {
-
-                    event.preventDefault();
-
-                }
-            );
-
-
-            slot.addEventListener(
-                "drop",
-                function (event) {
-
-                    event.preventDefault();
-
-
-                    const position =
-                        event.dataTransfer
-                        .getData(
-                            "text/plain"
-                        );
-
-
-                    const piece =
-                        document.querySelector(
-                            `.puzzle-piece[data-position="${position}"]`
-                        );
-
-
-                    if (piece) {
-
-                        placePiece(
-                            piece,
-                            slot
-                        );
-
-                    }
-
-                }
-            );
-
-        });
-
-    }
-
-
-    /* =========================================
-       TOUCH DROP
-    ========================================= */
-
-    function checkTouchDrop(piece) {
-
-        const pieceRect =
-            piece.getBoundingClientRect();
-
-
-        const pieceCenterX =
-            pieceRect.left +
-            pieceRect.width / 2;
-
-
-        const pieceCenterY =
-            pieceRect.top +
-            pieceRect.height / 2;
-
-
-        const slots =
-            document.querySelectorAll(
-                ".puzzle-slot"
-            );
-
-
-        slots.forEach(function (slot) {
-
-            const rect =
-                slot.getBoundingClientRect();
-
-
-            if (
-
-                pieceCenterX >= rect.left &&
-                pieceCenterX <= rect.right &&
-                pieceCenterY >= rect.top &&
-                pieceCenterY <= rect.bottom
-
-            ) {
-
-                placePiece(
-                    piece,
-                    slot
-                );
-
-            }
-
-        });
-
-    }
-
-
-    /* =========================================
-       PLACE PUZZLE PIECE
-    ========================================= */
-
-    function placePiece(
-        piece,
-        slot
-    ) {
-
-        const piecePosition =
-            piece.dataset.position;
-
-
-        const slotPosition =
-            slot.dataset.position;
-
-
-        if (
-            piecePosition ===
-            slotPosition
-        ) {
-
-            piece.classList.add(
-                "correct"
-            );
-
-
-            slot.style.backgroundImage =
-                "url('puzzle-photo.jpg')";
-
-
-            slot.style.backgroundSize =
-                "300% 200%";
-
-
-            const position =
-                parseInt(
-                    piecePosition
-                );
-
-
-            const backgrounds = [
-
-                "0% 0%",
-
-                "50% 0%",
-
-                "100% 0%",
-
-                "0% 100%",
-
-                "50% 100%",
-
-                "100% 100%"
-
-            ];
-
-
-            slot.style.backgroundPosition =
-                backgrounds[position];
-
-
-            correctPieces++;
-
-
-            if (
-                correctPieces === 6
-            ) {
-
-                completePuzzle();
-
-            }
-
-        }
-
-    }
-
-
-    /* =========================================
-       PUZZLE COMPLETED
-    ========================================= */
-
-    function completePuzzle() {
-
-        puzzleBoard.classList.add(
-            "completed"
+        piece.style.setProperty(
+            "--piece-image",
+            `url("${puzzleImage}")`
         );
 
 
-        puzzleHint.textContent =
-            "You put every piece together ❤️";
+        piece.style.setProperty(
+            "--piece-position",
+            `${column * 50}% ${row * 50}%`
+        );
 
 
-        puzzleMessage.classList.add(
+        pieces.push(piece);
+    }
+
+
+    /*
+       SHUFFLE
+    */
+
+    pieces.sort(
+        () => Math.random() - 0.5
+    );
+
+
+    /*
+       PUT SHUFFLED PIECES
+       UNDER THE BOARD
+    */
+
+    pieces.forEach(piece => {
+
+        piecesContainer.appendChild(piece);
+
+        setupPuzzleDrag(piece);
+
+    });
+
+}
+
+
+/* =====================================================
+   DRAG SETUP
+===================================================== */
+
+function setupPuzzleDrag(piece) {
+
+    piece.addEventListener(
+        "pointerdown",
+        puzzlePointerDown
+    );
+
+}
+
+
+/* =====================================================
+   START DRAG
+===================================================== */
+
+function puzzlePointerDown(event) {
+
+    event.preventDefault();
+
+    draggedPiece =
+        event.currentTarget;
+
+
+    draggedPiece.classList.add(
+        "dragging"
+    );
+
+
+    /*
+       Capture the finger
+    */
+
+    draggedPiece.setPointerCapture(
+        event.pointerId
+    );
+
+
+    /*
+       Get exact current position
+    */
+
+    const rect =
+        draggedPiece.getBoundingClientRect();
+
+
+    /*
+       Convert to fixed positioning
+       so it follows the finger
+    */
+
+    draggedPiece.style.position =
+        "fixed";
+
+    draggedPiece.style.width =
+        rect.width + "px";
+
+    draggedPiece.style.height =
+        rect.height + "px";
+
+    draggedPiece.style.left =
+        rect.left + "px";
+
+    draggedPiece.style.top =
+        rect.top + "px";
+
+    draggedPiece.style.margin =
+        "0";
+
+    draggedPiece.style.zIndex =
+        "99999";
+
+
+    draggedPiece.addEventListener(
+        "pointermove",
+        puzzlePointerMove
+    );
+
+
+    draggedPiece.addEventListener(
+        "pointerup",
+        puzzlePointerUp
+    );
+
+
+    draggedPiece.addEventListener(
+        "pointercancel",
+        puzzlePointerUp
+    );
+
+}
+
+
+/* =====================================================
+   MOVE WITH FINGER
+===================================================== */
+
+function puzzlePointerMove(event) {
+
+    if (!draggedPiece) {
+        return;
+    }
+
+    event.preventDefault();
+
+
+    const rect =
+        draggedPiece.getBoundingClientRect();
+
+
+    draggedPiece.style.left =
+        (
+            event.clientX -
+            rect.width / 2
+        ) + "px";
+
+
+    draggedPiece.style.top =
+        (
+            event.clientY -
+            rect.height / 2
+        ) + "px";
+
+}
+
+
+/* =====================================================
+   RELEASE / DROP
+===================================================== */
+
+function puzzlePointerUp(event) {
+
+    if (!draggedPiece) {
+        return;
+    }
+
+
+    event.preventDefault();
+
+
+    const piece =
+        draggedPiece;
+
+
+    piece.removeEventListener(
+        "pointermove",
+        puzzlePointerMove
+    );
+
+
+    piece.removeEventListener(
+        "pointerup",
+        puzzlePointerUp
+    );
+
+
+    piece.removeEventListener(
+        "pointercancel",
+        puzzlePointerUp
+    );
+
+
+    /*
+       Temporarily hide piece
+       so we can detect the slot
+       underneath the finger.
+    */
+
+    piece.style.visibility =
+        "hidden";
+
+
+    const element =
+        document.elementFromPoint(
+            event.clientX,
+            event.clientY
+        );
+
+
+    piece.style.visibility =
+        "visible";
+
+
+    const slot =
+        element
+            ?.closest(".puzzle-slot");
+
+
+    /*
+       CHECK CORRECT POSITION
+    */
+
+    const isCorrect =
+
+        slot &&
+
+        Number(slot.dataset.position) ===
+        Number(piece.dataset.correct) &&
+
+        slot.children.length === 0;
+
+
+    if (isCorrect) {
+
+        placePuzzlePiece(
+            piece,
+            slot
+        );
+
+    } else {
+
+        returnPuzzlePiece(
+            piece
+        );
+
+    }
+
+
+    draggedPiece = null;
+
+}
+
+
+/* =====================================================
+   CORRECT PIECE
+===================================================== */
+
+function placePuzzlePiece(
+    piece,
+    slot
+) {
+
+    piece.classList.remove(
+        "dragging"
+    );
+
+
+    /*
+       Reset position
+    */
+
+    piece.style.position =
+        "relative";
+
+    piece.style.left =
+        "";
+
+    piece.style.top =
+        "";
+
+    piece.style.width =
+        "100%";
+
+    piece.style.height =
+        "100%";
+
+    piece.style.margin =
+        "";
+
+    piece.style.zIndex =
+        "";
+
+
+    /*
+       Put into board
+    */
+
+    slot.appendChild(
+        piece
+    );
+
+
+    slot.classList.add(
+        "correct"
+    );
+
+
+    correctPieces++;
+
+
+    /*
+       ALL 9 COMPLETED
+    */
+
+    if (correctPieces === 9) {
+
+        puzzleCompleted();
+
+    }
+
+}
+
+
+/* =====================================================
+   WRONG PIECE
+===================================================== */
+
+function returnPuzzlePiece(
+    piece
+) {
+
+    piece.classList.remove(
+        "dragging"
+    );
+
+
+    piece.style.position =
+        "";
+
+    piece.style.left =
+        "";
+
+    piece.style.top =
+        "";
+
+    piece.style.width =
+        "";
+
+    piece.style.height =
+        "";
+
+    piece.style.margin =
+        "";
+
+    piece.style.zIndex =
+        "";
+
+
+    /*
+       Return to pieces area
+    */
+
+    piecesContainer.appendChild(
+        piece
+    );
+
+}
+
+
+/* =====================================================
+   PUZZLE COMPLETED
+===================================================== */
+
+function puzzleCompleted() {
+
+    if (successMessage) {
+
+        successMessage.classList.add(
             "show"
         );
 
+    }
+
+
+    if (puzzleContinue) {
 
         puzzleContinue.classList.add(
             "show"
@@ -803,30 +926,149 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =========================================
-       PUZZLE CONTINUE
-    ========================================= */
+    /*
+       Board glow
+    */
 
-    if (puzzleContinue) {
+    if (puzzleBoard) {
 
-        puzzleContinue.addEventListener(
-            "click",
-            function () {
-
-                /*
-                   NEXT CHAPTER WILL GO HERE.
-
-                   For now this is just a
-                   temporary message.
-                */
-
-                alert(
-                    "Another beautiful chapter is coming ❤️"
-                );
-
-            }
-        );
+        puzzleBoard.style.boxShadow =
+            "0 0 15px #ff1493," +
+            "0 0 35px #ff1493," +
+            "0 0 70px rgba(255,20,147,0.8)";
 
     }
 
-});
+
+    createPuzzleHearts();
+
+}
+
+
+/* =====================================================
+   HEART CELEBRATION
+===================================================== */
+
+function createPuzzleHearts() {
+
+    for (let i = 0; i < 20; i++) {
+
+        const heart =
+            document.createElement("div");
+
+        heart.innerHTML = "❤️";
+
+        heart.style.position =
+            "fixed";
+
+        heart.style.left =
+            Math.random() * 100 + "%";
+
+        heart.style.bottom =
+            "-40px";
+
+        heart.style.fontSize =
+            (15 + Math.random() * 25) +
+            "px";
+
+        heart.style.zIndex =
+            "99999";
+
+        heart.style.pointerEvents =
+            "none";
+
+        heart.style.transition =
+            "transform 3s linear, opacity 3s linear";
+
+        document.body.appendChild(
+            heart
+        );
+
+
+        setTimeout(() => {
+
+            heart.style.transform =
+                "translateY(-110vh) rotate(360deg)";
+
+            heart.style.opacity =
+                "0";
+
+        }, 50);
+
+
+        setTimeout(() => {
+
+            heart.remove();
+
+        }, 3200);
+
+    }
+
+}
+
+
+/* =====================================================
+   MEMORY BOOK → PUZZLE
+===================================================== */
+
+if (bookContinue) {
+
+    bookContinue.addEventListener(
+        "click",
+        function () {
+
+            /*
+               If not on final memory,
+               go to final memory first.
+            */
+
+            if (
+                currentMemory <
+                memories.length - 1
+            ) {
+
+                currentMemory =
+                    memories.length - 1;
+
+                updateMemory(false);
+
+                return;
+
+            }
+
+
+            /*
+               FINAL MEMORY → PUZZLE
+            */
+
+            openPuzzle();
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   PUZZLE CONTINUE
+===================================================== */
+
+if (puzzleContinue) {
+
+    puzzleContinue.addEventListener(
+        "click",
+        function () {
+
+            alert(
+                "❤️ The next chapter of our story is waiting..."
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   DO NOT CREATE PUZZLE UNTIL OPENED
+===================================================== */
