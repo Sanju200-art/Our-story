@@ -1003,16 +1003,203 @@ h1 span {
 
 }
 
+/* =====================================================
+   🧩 PUZZLE SCREEN
+===================================================== */
 
-/* =========================================
-   PUZZLE PIECES
-========================================= */
+.puzzle-screen {
+    position: fixed !important;
+    inset: 0 !important;
 
-.puzzle-pieces {
+    width: 100% !important;
+    height: 100svh !important;
 
-    width: min(90vw, 500px);
+    display: none;
 
-    margin-top: 18px;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    padding: 25px 10px 50px;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.70),
+            rgba(0,0,0,0.88)
+        ),
+        url("background.jpg") center / cover no-repeat;
+
+    z-index: 1000 !important;
+}
+
+.puzzle-screen.active {
+    display: block !important;
+}
+
+
+/* =====================================================
+   PUZZLE CONTENT
+===================================================== */
+
+.puzzle-content {
+    width: 100%;
+    min-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.puzzle-title {
+    color: #ff73b5;
+
+    font-size: clamp(
+        30px,
+        8vw,
+        48px
+    );
+
+    font-weight: bold;
+
+    line-height: 1.1;
+
+    text-shadow:
+        0 0 8px #ff1493,
+        0 0 20px #ff1493;
+
+    margin-bottom: 3px;
+}
+
+.puzzle-subtitle {
+    max-width: 600px;
+
+    margin:
+        15px auto 22px;
+
+    padding: 0 10px;
+
+    color: white;
+
+    font-size:
+        clamp(
+            16px,
+            4.5vw,
+            23px
+        );
+
+    font-style: italic;
+
+    line-height: 1.4;
+}
+
+
+/* =====================================================
+   🧩 LARGE SQUARE BOARD
+===================================================== */
+
+.puzzle-board {
+
+    width: min(
+        91vw,
+        500px
+    );
+
+    aspect-ratio: 1 / 1;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    grid-template-rows:
+        repeat(3, 1fr);
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border:
+        4px solid #ff1493;
+
+    border-radius: 20px;
+
+    background:
+        rgba(30,0,20,0.8);
+
+    box-shadow:
+        0 0 12px #ff1493,
+        0 0 30px #ff1493,
+        0 0 55px rgba(255,20,147,0.5);
+}
+
+
+/* =====================================================
+   EMPTY SLOTS
+===================================================== */
+
+.puzzle-slot {
+
+    width: 100%;
+    height: 100%;
+
+    border:
+        1px dashed
+        rgba(255,150,220,0.55);
+
+    background:
+        rgba(70,0,40,0.35);
+
+    position: relative;
+}
+
+.puzzle-slot.correct {
+    background:
+        rgba(255,20,147,0.12);
+
+    box-shadow:
+        inset 0 0 15px
+        rgba(255,20,147,0.8);
+}
+
+
+/* =====================================================
+   INSTRUCTION
+===================================================== */
+
+.drag-text {
+
+    margin:
+        18px auto 15px;
+
+    color: white;
+
+    font-size:
+        clamp(
+            16px,
+            4.5vw,
+            22px
+        );
+
+    font-style: italic;
+}
+
+
+/* =====================================================
+   PIECES
+===================================================== */
+
+.pieces-container {
+
+    width: min(
+        94vw,
+        500px
+    );
 
     display: grid;
 
@@ -1021,327 +1208,248 @@ h1 span {
 
     gap: 8px;
 
-    touch-action: none;
-
+    margin-bottom: 20px;
 }
 
 
-/* EACH PIECE */
+/* =====================================================
+   INDIVIDUAL PIECE
+===================================================== */
 
 .puzzle-piece {
 
-    aspect-ratio: 3 / 2;
+    width: 100%;
 
-    border-radius: 8px;
+    aspect-ratio: 1 / 1;
 
-    border: 2px solid rgba(255,255,255,0.7);
+    background-image:
+        var(--piece-image);
 
-    background-image: url("puzzle-photo.jpg");
+    background-size:
+        300% 300%;
 
-    background-size: 300% 200%;
+    background-position:
+        var(--piece-position);
+
+    background-repeat: no-repeat;
+
+    border:
+        2px solid
+        rgba(255,255,255,0.5);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 8px
+        rgba(255,20,147,0.7);
 
     cursor: grab;
 
-    box-shadow:
-        0 4px 10px rgba(0,0,0,0.45);
-
-    transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
+    /*
+       THIS IS IMPORTANT FOR
+       ANDROID FINGER DRAGGING
+    */
 
     touch-action: none;
 
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    -webkit-touch-callout: none;
+
+    position: relative;
+
+    z-index: 10;
 }
 
 
-/* PIECE POSITIONS */
-
-.puzzle-piece[data-position="0"] {
-    background-position: 0% 0%;
-}
-
-.puzzle-piece[data-position="1"] {
-    background-position: 50% 0%;
-}
-
-.puzzle-piece[data-position="2"] {
-    background-position: 100% 0%;
-}
-
-.puzzle-piece[data-position="3"] {
-    background-position: 0% 100%;
-}
-
-.puzzle-piece[data-position="4"] {
-    background-position: 50% 100%;
-}
-
-.puzzle-piece[data-position="5"] {
-    background-position: 100% 100%;
-}
-
-
-/* DRAGGING */
+/* PIECE BEING DRAGGED */
 
 .puzzle-piece.dragging {
 
-    opacity: 0.65;
-
     transform: scale(1.08);
 
-    z-index: 20;
+    opacity: 0.95;
 
+    z-index: 99999;
+
+    cursor: grabbing;
+
+    box-shadow:
+        0 0 15px #ff1493,
+        0 0 35px #ff1493;
 }
 
 
-/* CORRECT PIECE */
+/* PIECE AFTER ENTERING BOARD */
 
-.puzzle-piece.correct {
+.puzzle-slot .puzzle-piece {
 
-    opacity: 0;
+    width: 100%;
+    height: 100%;
 
-    pointer-events: none;
+    border: none;
 
+    border-radius: 0;
+
+    box-shadow: none;
+
+    cursor: default;
+
+    transform: none;
 }
 
 
-/* =========================================
-   HINT
-========================================= */
+/* =====================================================
+   SUCCESS
+===================================================== */
 
-.puzzle-hint {
-
-    margin: 12px 0 0;
-
-    font-size: 16px;
-
-    color: #ffd2e9;
-
-    font-style: italic;
-
-}
-
-
-/* =========================================
-   COMPLETION MESSAGE
-========================================= */
-
-.puzzle-message {
+.success-message {
 
     display: none;
 
-    width: min(90%, 550px);
+    margin:
+        15px auto 10px;
 
-    margin: 15px auto;
-
-    color: #ffb6dc;
-
-    font-size: clamp(20px, 5vw, 29px);
-
-    font-style: italic;
-
-    line-height: 1.4;
-
-    animation: puzzleReveal 1s ease;
-
+    max-width: 500px;
 }
 
-
-.puzzle-message.show {
-
+.success-message.show {
     display: block;
 
+    animation:
+        puzzleSuccess 0.7s ease;
 }
 
+.success-heart {
 
-@keyframes puzzleReveal {
+    font-size: 60px;
 
-    0% {
+    animation:
+        puzzleHeartbeat 1s infinite;
+}
 
-        opacity: 0;
+.success-message h2 {
 
-        transform: scale(0.8);
+    color: #ff73b5;
 
-    }
+    font-size: 27px;
 
-    100% {
+    margin-top: 8px;
 
-        opacity: 1;
+    text-shadow:
+        0 0 15px #ff1493;
+}
 
+.success-message p {
+
+    margin-top: 10px;
+
+    font-size: 18px;
+
+    line-height: 1.5;
+}
+
+@keyframes puzzleHeartbeat {
+
+    0%,100% {
         transform: scale(1);
-
     }
 
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+@keyframes puzzleSuccess {
+
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 
-/* =========================================
+/* =====================================================
    CONTINUE
-========================================= */
+===================================================== */
 
 .puzzle-continue {
 
     display: none;
 
-    margin-top: 5px;
+    width: min(
+        80vw,
+        350px
+    );
 
+    min-height: 52px;
+
+    margin:
+        15px auto 20px;
+
+    padding:
+        12px 20px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff0068,
+            #d90055
+        );
+
+    color: white;
+
+    font-family: Georgia, serif;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 7px 25px
+        rgba(255,0,100,0.5);
+
+    cursor: pointer;
 }
-
 
 .puzzle-continue.show {
-
     display: block;
-
 }
 
 
-/* =========================================
-   COMPLETED BOARD
-========================================= */
+/* =====================================================
+   SMALL PHONES
+===================================================== */
 
-.puzzle-board.completed {
+@media (max-width: 380px) {
 
-    animation:
-        puzzleGlow 1.5s ease-in-out infinite alternate;
-
-}
-
-
-@keyframes puzzleGlow {
-
-    from {
-
-        box-shadow:
-            0 0 10px #ff1493;
-
+    .puzzle-screen {
+        padding-top: 15px;
     }
-
-    to {
-
-        box-shadow:
-            0 0 30px #ff1493,
-            0 0 50px rgba(255,20,147,0.6);
-
-    }
-
-}
-
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 600px) {
-
-    .puzzle-chapter {
-
-        padding:
-            12px
-            10px
-            20px;
-
-    }
-
-
-    .puzzle-title {
-
-        font-size: 27px;
-
-    }
-
-
-    .puzzle-intro {
-
-        margin:
-            7px auto
-            12px;
-
-        font-size: 17px;
-
-    }
-
 
     .puzzle-board {
-
-        width: 88vw;
-
+        width: 92vw;
     }
 
-
-    .puzzle-pieces {
-
-        width: 90vw;
-
-        margin-top: 12px;
-
+    .pieces-container {
+        width: 95vw;
         gap: 6px;
-
     }
 
-
-    .puzzle-hint {
-
-        margin-top: 8px;
-
-        font-size: 14px;
-
+    .puzzle-piece {
+        border-width: 1px;
+        border-radius: 7px;
     }
-
-
-    .puzzle-message {
-
-        margin: 10px auto;
-
-        font-size: 20px;
-
-    }
-
 }
 
-
-/* SMALL HEIGHT PHONES */
-
-@media (max-height: 700px) {
-
-    .puzzle-chapter {
-
-        padding-top: 8px;
-
-    }
-
-
-    .puzzle-title {
-
-        font-size: 24px;
-
-    }
-
-
-    .puzzle-intro {
-
-        margin:
-            5px auto
-            8px;
-
-        font-size: 15px;
-
-    }
-
-
-    .puzzle-pieces {
-
-        margin-top: 8px;
-
-    }
-
-
-    .puzzle-hint {
-
-        margin:
-            5px 0;
-
-        font-size: 13px;
-
-    }
-
-   }
