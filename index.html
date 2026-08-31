@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Our Story ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     MUSIC
+================================= -->
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+
+<!-- =================================
+     HEARTS
+================================= -->
+
+<div class="hearts-background">
+
+    <span>♡</span>
+    <span>♥</span>
+    <span>♡</span>
+    <span>♥</span>
+    <span>♡</span>
+    <span>♥</span>
+    <span>♡</span>
+    <span>♥</span>
+    <span>♡</span>
+    <span>♥</span>
+
+</div>
+
+
+<!-- =================================
+     SCREEN 1
+================================= -->
+
+<section id="screen1" class="screen active">
+
+    <div class="opening-content">
+
+        <div class="main-heart">
+            ❤️
+        </div>
+
+        <div class="small-heading">
+            A STORY WRITTEN BY TWO HEARTS
+        </div>
+
+        <h1>
+            OUR <span>STORY💞</span>
+        </h1>
+
+        <p class="tagline">
+            Journey of two hearts & one soul
+        </p>
+
+        <button id="musicButton"
+                class="big-button music-button">
+
+            🎵 Click for Music
+
+        </button>
+
+
+        <button id="readyButton"
+                class="big-button ready-button">
+
+            Click Here for More ☺️
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     SCREEN 2
+     8 OCTOBER 2024
+================================= -->
+
+<section id="screen2" class="screen">
+
+    <div class="chapter-content">
+
+        <div class="chapter-label">
+            ✨ OUR STORY BEGINS ✨
+        </div>
+
+        <h2>
+            8 October 2024
+        </h2>
+
+        <p class="chapter-text">
+            This is how we both started our
+            Journey Together...
+        </p>
+
+        <div class="chapter-heart">
+            💗
+        </div>
+
+        <button id="continue1"
+                class="continue-button">
+
+            Continue →
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     SCREEN 3
+     FIRST DATE
+================================= -->
+
+<section id="screen3"
+         class="screen photo-screen">
+
+    <div class="photo-content">
+
+        <div class="memory-label">
+            OUR FIRST DATE ❤️
+        </div>
+
+
+        <div class="photo-frame">
+
+            <img src="first-date.jpg"
+                 alt="Our first date">
+
+        </div>
+
+
+        <div class="photo-story">
+
+            <p>
+                The day we finally met,
+                talked, smiled and created
+                our first memory together. ❤️
+            </p>
+
+            <p>
+                Some moments become memories...
+                and some memories become our story.
+            </p>
+
+        </div>
+
+
+        <button id="continue2"
+                class="continue-button">
+
+            Continue →
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     SCREEN 4
+     2 NOVEMBER 2024
+================================= -->
+
+<section id="screen4"
+         class="screen photo-screen">
+
+    <div class="photo-content">
+
+        <div class="memory-label">
+            ✨ ANOTHER BEAUTIFUL MEMORY ✨
+        </div>
+
+
+        <h3>
+            2 November 2024
+        </h3>
+
+
+        <div class="photo-frame">
+
+            <img src="2-nov-2024.jpg"
+                 alt="2 November 2024">
+
+        </div>
+
+
+        <div class="photo-story">
+
+            <p>
+                Every picture has a moment behind it,
+                and every moment became a part of us.
+            </p>
+
+        </div>
+
+
+        <button id="continue3"
+                class="continue-button">
+
+            Continue →
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     MEMORY BOOK
+     10 PHOTOS
+================================= -->
+
+<section id="memoryBook"
+         class="memory-book">
+
+
+    <!-- TITLE -->
+
+    <div class="book-title">
+
+        💕 OUR MEMORIES 💕
+
+    </div>
+
+
+    <!-- BOOK FRAME -->
+
+    <div class="book">
+
+        <div id="bookPage"
+             class="book-page">
+
+
+            <!--
+                ONLY ONE IMAGE HERE.
+
+                JavaScript will automatically
+                change it from:
+
+                memory1.jpg
+                memory2.jpg
+                ...
+                memory10.jpg
+            -->
+
+            <img id="memoryPhoto"
+                 src="memory1.jpg"
+                 alt="Our memory">
+
+
+            <!-- CAPTION -->
+
+            <div id="photoCaption"
+                 class="photo-caption">
+
+                Our beautiful memory ❤️
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PHOTO NUMBER -->
+
+    <div id="bookCounter"
+         class="book-counter">
+
+        1 / 10
+
+    </div>
+
+
+    <!-- SWIPE INSTRUCTION -->
+
+    <p class="swipe-text">
+
+        Swipe to view other photos ❤️
+
+    </p>
+
+
+    <!-- ONLY ONE BUTTON -->
+
+    <button id="bookContinue"
+            class="continue-btn">
+
+        Continue →
+
+    </button>
+
+
+</section>
+
+    
+<!-- =================================
+     PUZZLE CHAPTER
+================================= -->
+
+<section id="puzzleChapter" class="puzzle-chapter">
+
+    <div class="puzzle-title">
+        🧩 PIECE OUR STORY TOGETHER ❤️
+    </div>
+
+    <p class="puzzle-intro">
+        Some beautiful things take time
+        to come together...
+    </p>
+
+    <div id="puzzleBoard" class="puzzle-board">
+
+        <div class="puzzle-slot" data-position="0"></div>
+        <div class="puzzle-slot" data-position="1"></div>
+        <div class="puzzle-slot" data-position="2"></div>
+        <div class="puzzle-slot" data-position="3"></div>
+        <div class="puzzle-slot" data-position="4"></div>
+        <div class="puzzle-slot" data-position="5"></div>
+
+    </div>
+
+    <p id="puzzleHint" class="puzzle-hint">
+        Drag the pieces into the correct places ❤️
+    </p>
+
+    <div id="puzzlePieces" class="puzzle-pieces">
+
+        <div class="puzzle-piece"
+             data-position="0"></div>
+
+        <div class="puzzle-piece"
+             data-position="1"></div>
+
+        <div class="puzzle-piece"
+             data-position="2"></div>
+
+        <div class="puzzle-piece"
+             data-position="3"></div>
+
+        <div class="puzzle-piece"
+             data-position="4"></div>
+
+        <div class="puzzle-piece"
+             data-position="5"></div>
+
+    </div>
+
+    <div id="puzzleMessage"
+         class="puzzle-message">
+
+        Piece by piece,
+        our story came together... ❤️
+
+    </div>
+
+    <button id="puzzleContinue"
+            class="continue-btn puzzle-continue">
+
+        Continue →
+
+    </button>
+
+</section>
+
+    
+<!-- =================================
+     JAVASCRIPT
+================================= -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
