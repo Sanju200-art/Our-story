@@ -1,0 +1,1202 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+:root {
+
+    /* deep aubergine-black, warmer than flat #000 */
+    --bg: #0c0609;
+    --bg-raised: #150a10;
+
+    /* warm ivory instead of pure white */
+    --ink: #f4ece6;
+    --ink-soft: rgba(244,236,230,0.72);
+
+    /* refined rose/berry, replaces neon magenta */
+    --accent: #d94d78;
+    --accent-bright: #ea6390;
+    --accent-deep: #7a1f42;
+
+    /* muted gold, for dates and small labels */
+    --gold: #cf9c52;
+    --gold-soft: #e3c48c;
+
+    --display-font: "Playfair Display", Georgia, "Times New Roman", serif;
+    --body-font: Georgia, "Times New Roman", serif;
+
+}
+
+
+body {
+
+    background: var(--bg);
+
+    color: var(--ink);
+
+    font-family: var(--body-font);
+
+    overflow-x: hidden;
+
+}
+
+
+/* =========================================
+   COMMON SCREEN
+========================================= */
+
+.screen,
+.memory-book {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 100dvh;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+}
+
+
+/* ACTIVE SCREEN */
+
+.screen.active,
+.memory-book.active {
+
+    display: flex;
+
+}
+
+
+/* =========================================
+   CINEMATIC TRANSITION
+========================================= */
+
+.screen-transition {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: #000;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    transition: opacity 0.45s ease;
+
+}
+
+
+.screen-transition.active {
+
+    opacity: 1;
+
+}
+
+
+.screen.entering,
+.memory-book.entering {
+
+    animation: cinematicEnter 0.7s ease both;
+
+}
+
+
+@keyframes cinematicEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(1.04);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+
+/* =========================================
+   WHO LOVES THE MOST
+========================================= */
+
+.love-screen {
+
+    padding: 20px 16px;
+
+}
+
+
+.love-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 36px;
+
+    width: 100%;
+
+    max-width: 480px;
+
+}
+
+
+.love-title {
+
+    font-family: var(--display-font);
+
+    font-size: 30px;
+
+    color: var(--ink);
+
+    line-height: 1.4;
+
+}
+
+
+.love-options {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 340px;
+
+    height: 220px;
+
+}
+
+
+.love-btn {
+
+    position: absolute;
+
+    min-width: 130px;
+
+    padding: 16px 28px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    font-family: var(--display-font);
+
+    font-size: 18px;
+
+    color: var(--ink);
+
+    cursor: pointer;
+
+    background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+
+    box-shadow: 0 8px 20px rgba(217, 77, 120, 0.35);
+
+    transition: left 0.25s ease, top 0.25s ease, transform 0.15s ease;
+
+}
+
+
+.love-btn:active {
+
+    transform: scale(0.96);
+
+}
+
+
+#sanjuBtn {
+
+    left: 10%;
+
+    top: 15%;
+
+}
+
+
+#davidBtn {
+
+    left: 45%;
+
+    top: 65%;
+
+}
+
+
+.love-popup {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(12, 6, 9, 0.85);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 10000;
+
+    padding: 20px;
+
+}
+
+
+.love-popup.active {
+
+    display: flex;
+
+}
+
+
+.love-popup-box {
+
+    background: var(--bg-raised);
+
+    border: 1px solid var(--accent-deep);
+
+    border-radius: 20px;
+
+    padding: 34px 26px;
+
+    text-align: center;
+
+    max-width: 320px;
+
+    animation: cinematicEnter 0.4s ease both;
+
+}
+
+
+.love-popup-box p {
+
+    font-family: var(--display-font);
+
+    font-size: 20px;
+
+    line-height: 1.6;
+
+    margin-bottom: 22px;
+
+    color: var(--ink);
+
+}
+
+/*
+   YOUR COMMON BACKGROUND IMAGE
+
+   Keep your background image outside
+   the HTML if you are using CSS.
+
+   Change this filename if needed.
+*/
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -5;
+
+    background-image:
+        linear-gradient(
+            rgba(12,6,9,0.62),
+            rgba(12,6,9,0.8)
+        ),
+        url("background.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+}
+
+
+/* =========================================
+   HEART BACKGROUND
+========================================= */
+
+.hearts-background {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: -1;
+
+}
+
+
+.hearts-background span {
+
+    position: absolute;
+
+    color: rgba(217,77,120,0.22);
+
+    font-size: 24px;
+
+    animation: floatHeart 9s ease-in-out infinite;
+
+}
+
+
+.hearts-background span:nth-child(1) {
+    left: 5%;
+    top: 20%;
+}
+
+.hearts-background span:nth-child(2) {
+    left: 80%;
+    top: 15%;
+    animation-delay: 1s;
+}
+
+.hearts-background span:nth-child(3) {
+    left: 20%;
+    top: 60%;
+    animation-delay: 2s;
+}
+
+.hearts-background span:nth-child(4) {
+    left: 90%;
+    top: 70%;
+    animation-delay: 3s;
+}
+
+.hearts-background span:nth-child(5) {
+    left: 45%;
+    top: 30%;
+    animation-delay: 1.5s;
+}
+
+.hearts-background span:nth-child(6) {
+    left: 70%;
+    top: 50%;
+    animation-delay: 4s;
+}
+
+.hearts-background span:nth-child(7) {
+    left: 10%;
+    top: 80%;
+    animation-delay: 2.5s;
+}
+
+.hearts-background span:nth-child(8) {
+    left: 60%;
+    top: 85%;
+    animation-delay: 3.5s;
+}
+
+.hearts-background span:nth-child(9) {
+    left: 35%;
+    top: 10%;
+    animation-delay: 5s;
+}
+
+.hearts-background span:nth-child(10) {
+    left: 85%;
+    top: 90%;
+    animation-delay: 4.5s;
+}
+
+
+@keyframes floatHeart {
+
+    0% {
+        transform: translateY(30px);
+        opacity: 0.1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-40px);
+        opacity: 0.1;
+    }
+
+}
+
+
+/* =========================================
+   SCREEN 1
+========================================= */
+
+.opening-content {
+
+    width: min(90%, 600px);
+
+    padding: 30px 20px;
+
+}
+
+
+.main-heart {
+
+    font-size: 65px;
+
+    animation: heartbeat 1.5s infinite;
+
+}
+
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+}
+
+
+.small-heading {
+
+    margin-top: 20px;
+
+    font-size: 14px;
+
+    letter-spacing: 3px;
+
+    color: var(--gold-soft);
+
+}
+
+
+h1 {
+
+    margin-top: 16px;
+
+    font-family: var(--display-font);
+
+    font-weight: 700;
+
+    font-size: clamp(40px, 11vw, 75px);
+
+}
+
+
+h1 span {
+
+    color: var(--accent-bright);
+
+    font-style: italic;
+
+}
+
+
+.tagline {
+
+    margin: 15px 0 30px;
+
+    font-family: var(--display-font);
+
+    font-size: 21px;
+
+    font-style: italic;
+
+    color: var(--ink-soft);
+
+}
+
+
+.big-button,
+.continue-button {
+
+    display: block;
+
+    width: min(80vw, 330px);
+
+    margin: 15px auto;
+
+    padding: 15px 20px;
+
+    border: 1px solid rgba(244,236,230,0.18);
+
+    border-radius: 40px;
+
+    background: linear-gradient(135deg, var(--accent-bright), var(--accent-deep));
+
+    color: var(--ink);
+
+    font-family: var(--body-font);
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 20px rgba(122,31,66,0.55);
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+}
+
+
+.big-button:active,
+.continue-button:active,
+.continue-btn:active {
+
+    transform: scale(0.95);
+
+}
+
+
+.big-button:focus-visible,
+.continue-button:focus-visible,
+.continue-btn:focus-visible {
+
+    outline: 2px solid var(--gold-soft);
+
+    outline-offset: 3px;
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+
+    }
+
+}
+
+
+/* =========================================
+   SCREEN 2
+========================================= */
+
+.chapter-content {
+
+    width: min(90%, 650px);
+
+}
+
+
+.chapter-label,
+.memory-label {
+
+    color: var(--gold-soft);
+
+    letter-spacing: 3px;
+
+    font-size: 16px;
+
+}
+
+
+.chapter-content h2 {
+
+    margin: 22px 0;
+
+    font-family: var(--display-font);
+
+    font-weight: 700;
+
+    font-style: italic;
+
+    color: var(--accent-bright);
+
+    font-size: clamp(42px, 11vw, 70px);
+
+}
+
+
+.chapter-text {
+
+    font-size: 22px;
+
+    color: var(--ink-soft);
+
+}
+
+
+.chapter-heart {
+
+    margin: 25px;
+
+    font-size: 50px;
+
+}
+
+
+/* =========================================
+   PHOTO SCREENS
+========================================= */
+
+.photo-content {
+
+    width: min(92%, 650px);
+
+    padding: 20px 10px;
+
+}
+
+
+.photo-content h3 {
+
+    margin: 15px 0;
+
+    font-family: var(--display-font);
+
+    font-weight: 700;
+
+    font-style: italic;
+
+    color: var(--accent-bright);
+
+    font-size: clamp(35px, 9vw, 60px);
+
+}
+
+
+.photo-frame {
+
+    width: 100%;
+
+    max-height: 62vh;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: var(--bg-raised);
+
+    border: 1px solid rgba(207,156,82,0.4);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.5);
+
+}
+
+
+.photo-frame img {
+
+    display: block;
+
+    width: 100%;
+
+    max-height: 62vh;
+
+    object-fit: contain;
+
+    object-position: center;
+
+}
+
+
+.photo-story {
+
+    margin: 20px auto;
+
+    width: min(90%, 600px);
+
+}
+
+
+.photo-story p {
+
+    margin: 12px 0;
+
+    font-size: clamp(17px, 4.5vw, 23px);
+
+    line-height: 1.5;
+
+    font-style: italic;
+
+    color: var(--ink-soft);
+
+}
+
+
+/* =========================================
+   MEMORY BOOK
+========================================= */
+
+.memory-book {
+
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+    padding: 18px 12px 22px;
+
+}
+
+
+/* TITLE */
+
+.book-title {
+
+    flex-shrink: 0;
+
+    margin-bottom: 12px;
+
+    font-family: var(--display-font);
+
+    color: var(--accent-bright);
+
+    font-size: clamp(28px, 8vw, 46px);
+
+    font-weight: 700;
+
+    font-style: italic;
+
+    text-shadow:
+        0 0 24px rgba(217,77,120,0.5);
+
+}
+
+
+/* =========================================
+   BOOK FRAME
+========================================= */
+
+.book {
+
+    width: min(88vw, 500px);
+
+    /*
+       This is deliberately limited so
+       Continue remains visible.
+    */
+
+    height: min(54vh, 560px);
+
+    min-height: 300px;
+
+    flex-shrink: 1;
+
+    perspective: 1200px;
+
+}
+
+
+/* PAGE */
+
+.book-page {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background: var(--bg-raised);
+
+    border: 1px solid rgba(207,156,82,0.4);
+
+    box-shadow:
+        0 12px 34px rgba(0,0,0,0.55);
+
+    touch-action: pan-y;
+
+}
+
+
+/* =========================================
+   MEMORY PHOTO
+========================================= */
+
+.book-page img {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    /*
+       IMPORTANT:
+       Every image stays completely
+       inside the same frame.
+    */
+
+    object-fit: cover;
+
+    object-position: center;
+
+    display: block;
+
+}
+
+
+/* =========================================
+   DARK BOTTOM FOR CAPTION
+========================================= */
+
+.book-page::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 32%;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.95),
+            rgba(0,0,0,0)
+        );
+
+}
+
+
+/* =========================================
+   CAPTION
+========================================= */
+
+.photo-caption {
+
+    position: absolute;
+
+    left: 10px;
+    right: 10px;
+
+    bottom: 18px;
+
+    z-index: 5;
+
+    color: var(--ink);
+
+    font-family: var(--display-font);
+
+    font-size: clamp(18px, 5vw, 28px);
+
+    font-style: italic;
+
+    text-shadow:
+        0 2px 6px rgba(0,0,0,0.9),
+        0 0 12px rgba(0,0,0,0.7);
+
+}
+
+
+/* =========================================
+   PAGE FLIP
+========================================= */
+
+.book-page.page-changing {
+
+    animation: pageFlip 0.55s ease;
+
+}
+
+
+@keyframes pageFlip {
+
+    0% {
+
+        opacity: 0.5;
+
+        transform:
+            perspective(1200px)
+            rotateY(-15deg)
+            scale(0.98);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            perspective(1200px)
+            rotateY(0deg)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================
+   COUNTER
+========================================= */
+
+.book-counter {
+
+    flex-shrink: 0;
+
+    margin-top: 9px;
+
+    padding: 7px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(21,10,16,0.75);
+
+    border: 1px solid rgba(207,156,82,0.3);
+
+    color: var(--gold-soft);
+
+    font-size: 17px;
+
+}
+
+
+/* =========================================
+   SWIPE MESSAGE
+========================================= */
+
+.swipe-text {
+
+    flex-shrink: 0;
+
+    margin: 9px 0 11px;
+
+    color: var(--ink-soft);
+
+    font-size: clamp(15px, 4vw, 20px);
+
+    font-style: italic;
+
+}
+
+
+/* =========================================
+   ONLY CONTINUE BUTTON
+========================================= */
+
+.continue-btn {
+
+    flex-shrink: 0;
+
+    width: min(72vw, 330px);
+
+    min-height: 52px;
+
+    padding: 10px 20px;
+
+    border: 1px solid rgba(244,236,230,0.18);
+
+    border-radius: 40px;
+
+    background: linear-gradient(135deg, var(--accent-bright), var(--accent-deep));
+
+    color: var(--ink);
+
+    font-family: var(--body-font);
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 20px rgba(122,31,66,0.55);
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .memory-book {
+
+        padding:
+            14px
+            10px
+            18px;
+
+    }
+
+
+    .book-title {
+
+        font-size: 29px;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .book {
+
+        width: 88vw;
+
+        height: 53vh;
+
+        min-height: 280px;
+
+        max-height: 500px;
+
+    }
+
+
+    .photo-caption {
+
+        bottom: 16px;
+
+        font-size: 19px;
+
+    }
+
+
+    .book-counter {
+
+        font-size: 17px;
+
+        margin-top: 7px;
+
+    }
+
+
+    .swipe-text {
+
+        margin:
+            7px 0
+            9px;
+
+        font-size: 15px;
+
+    }
+
+
+    .continue-btn {
+
+        width: 72vw;
+
+        min-height: 50px;
+
+        font-size: 20px;
+
+    }
+
+}
+
+
+/* =========================================
+   SHORT MOBILE SCREENS
+========================================= */
+
+@media (max-height: 700px) {
+
+    .memory-book {
+
+        padding-top: 8px;
+
+        padding-bottom: 12px;
+
+    }
+
+
+    .book-title {
+
+        font-size: 25px;
+
+        margin-bottom: 5px;
+
+    }
+
+
+    .book {
+
+        height: 48vh;
+
+        min-height: 250px;
+
+    }
+
+
+    .swipe-text {
+
+        margin:
+            5px 0
+            7px;
+
+        font-size: 14px;
+
+    }
+
+
+    .continue-btn {
+
+        min-height: 46px;
+
+        font-size: 18px;
+
+    }
+
+}
